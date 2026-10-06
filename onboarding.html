@@ -10,9 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════════════════════════════════════════
-   TOKENS
-   ═══════════════════════════════════════════════════════════════════════════ */
 :root{
   --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
   --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
@@ -64,35 +61,24 @@ svg{display:block}
 ::selection{background:var(--primary);color:#fff}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
 ::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;
-  border:3px solid transparent;background-clip:content-box}
-::-webkit-scrollbar-thumb:hover{background:var(--text-3);background-clip:content-box;border:3px solid transparent}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
-}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:3px solid transparent;background-clip:content-box}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SHELL
-   ═══════════════════════════════════════════════════════════════════════════ */
 .ob-shell{
-  min-height:100dvh;
-  display:grid;
-  grid-template-rows:auto 1fr auto;
+  min-height:100dvh; display:grid; grid-template-rows:auto 1fr auto;
   background:
     radial-gradient(900px 520px at 15% -10%, var(--primary-soft), transparent 62%),
     radial-gradient(760px 480px at 95% 108%, var(--accent-soft), transparent 60%),
     var(--bg);
 }
 
-/* ─────────────── HEADER ─────────────── */
 .ob-head{
   flex:none; position:sticky; top:0; z-index:20;
   background:color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter:blur(20px) saturate(1.3);
   -webkit-backdrop-filter:blur(20px) saturate(1.3);
   border-bottom:1px solid var(--border);
-  padding:16px 28px;
-  display:flex; align-items:center; gap:20px;
+  padding:16px 28px; display:flex; align-items:center; gap:20px;
 }
 .ob-brand{display:flex; align-items:center; gap:11px; flex:none}
 .ob-brand-mark{
@@ -108,52 +94,30 @@ svg{display:block}
 .ob-brand-mark svg{width:22px; height:22px; position:relative; z-index:1}
 .ob-brand-mark svg *{stroke:#fff; stroke-width:1.8; fill:none; stroke-linecap:round}
 .ob-brand-mark svg .node{fill:#fff; stroke:none}
-.ob-brand-name{
-  font-size:15.5px; font-weight:800; letter-spacing:1.1px;
-}
-.ob-progress-wrap{
-  flex:1; display:flex; flex-direction:column; gap:6px;
-  min-width:0; max-width:480px; margin:0 auto;
-}
-.ob-progress-meta{
-  display:flex; justify-content:space-between; align-items:baseline;
-  font-size:11.5px; font-weight:700; letter-spacing:.05em;
-}
+.ob-brand-name{font-size:15.5px; font-weight:800; letter-spacing:1.1px}
+
+.ob-progress-wrap{flex:1; display:flex; flex-direction:column; gap:6px; min-width:0; max-width:480px; margin:0 auto}
+.ob-progress-meta{display:flex; justify-content:space-between; align-items:baseline; font-size:11.5px; font-weight:700; letter-spacing:.05em}
 .ob-progress-meta .step-num{color:var(--text-2); text-transform:uppercase; letter-spacing:.1em}
 .ob-progress-meta .step-name{color:var(--text-3); text-transform:uppercase; letter-spacing:.1em}
-.ob-progress-bar{
-  height:5px; background:var(--surface-3); border-radius:20px; overflow:hidden;
-}
-.ob-progress-bar i{
-  display:block; height:100%; width:25%; border-radius:20px;
-  background:var(--grad-primary);
-  transition:width .5s cubic-bezier(.2,.8,.2,1);
-}
+.ob-progress-bar{height:5px; background:var(--surface-3); border-radius:20px; overflow:hidden}
+.ob-progress-bar i{display:block; height:100%; width:25%; border-radius:20px; background:var(--grad-primary); transition:width .5s cubic-bezier(.2,.8,.2,1)}
 .ob-head-actions{display:flex; gap:8px; flex:none}
 .icon-btn{
-  width:42px;height:42px;border-radius:12px;flex:none;
-  display:grid;place-items:center;
+  width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;
   border:1px solid var(--border); background:var(--surface);
   color:var(--text-2); overflow:hidden; position:relative;
   transition:background .16s,color .16s,border-color .16s,transform .16s;
 }
 .icon-btn:hover{background:var(--surface-2); color:var(--text); border-color:var(--border-strong)}
 .icon-btn:active{transform:scale(.94)}
-.icon-btn svg{
-  width:19px;height:19px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-  position:absolute;
-  transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .3s;
-}
+.icon-btn svg{width:19px;height:19px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:absolute;transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .3s}
 #themeBtn .icon-sun{transform:rotate(0) scale(1);opacity:0}
 #themeBtn .icon-moon{transform:rotate(0) scale(1);opacity:1}
 [data-theme="light"] #themeBtn .icon-sun{opacity:1;transform:rotate(360deg) scale(1)}
 [data-theme="light"] #themeBtn .icon-moon{opacity:0;transform:rotate(-180deg) scale(.5)}
 
-/* ─────────────── MAIN ─────────────── */
-.ob-main{
-  display:flex; justify-content:center; padding:44px 28px 32px;
-  overflow-y:auto;
-}
+.ob-main{display:flex; justify-content:center; padding:44px 28px 32px; overflow-y:auto}
 .ob-inner{width:100%; max-width:720px}
 
 .step{display:none; animation:fadeUp .4s cubic-bezier(.4,0,.2,1)}
@@ -164,55 +128,71 @@ svg{display:block}
   display:inline-flex; align-items:center; gap:8px;
   font-size:10.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
   color:var(--primary); background:var(--primary-soft);
-  padding:6px 12px; border-radius:var(--radius-full);
-  margin-bottom:18px;
+  padding:6px 12px; border-radius:var(--radius-full); margin-bottom:18px;
 }
 .step-eyebrow i{width:5px; height:5px; border-radius:50%; background:var(--primary)}
+.step h1{font-size:clamp(26px,3.6vw,38px); font-weight:800; letter-spacing:-1.2px; line-height:1.15; margin-bottom:12px}
+.step .lede{font-size:15.5px; color:var(--text-2); line-height:1.6; max-width:560px; font-weight:500; margin-bottom:34px}
+.step h2.section-title{font-size:19px; font-weight:800; letter-spacing:-.5px; margin-bottom:8px}
+.step .section-lede{font-size:14px; color:var(--text-2); line-height:1.55; font-weight:500; margin-bottom:20px; max-width:560px}
 
-.step h1{
-  font-size:clamp(26px,3.6vw,38px); font-weight:800;
-  letter-spacing:-1.2px; line-height:1.15; margin-bottom:12px;
-}
-.step .lede{
-  font-size:15.5px; color:var(--text-2); line-height:1.6;
-  max-width:560px; font-weight:500; margin-bottom:34px;
-}
-.step h2.section-title{
-  font-size:19px; font-weight:800; letter-spacing:-.5px;
-  margin-bottom:8px;
-}
-.step .section-lede{
-  font-size:14px; color:var(--text-2); line-height:1.55;
-  font-weight:500; margin-bottom:20px; max-width:560px;
-}
-
-/* ─── fields ─── */
-.field{margin-bottom:18px; max-width:420px}
-.field label{
-  display:block; font-size:12px; font-weight:700; color:var(--text-2);
-  margin-bottom:8px; letter-spacing:.02em;
-}
+.field{margin-bottom:18px; max-width:460px}
+.field label{display:block; font-size:12px; font-weight:700; color:var(--text-2); margin-bottom:8px; letter-spacing:.02em}
+.field label .optional{color:var(--text-3); font-weight:500}
 .input-wrap{
   position:relative; display:flex; align-items:center;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:var(--radius-md);
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
   transition:border-color .16s, box-shadow .16s;
 }
-.input-wrap:focus-within{
-  border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft);
-}
+.input-wrap:focus-within{border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft)}
 .input-wrap.is-error{border-color:var(--danger); box-shadow:0 0 0 3px var(--danger-soft)}
 .input-wrap.is-ok{border-color:var(--success)}
-.input-wrap > svg{
-  width:18px; height:18px; margin-left:15px; flex:none; color:var(--text-3);
-  stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
-}
-.input-wrap input{
-  flex:1; padding:14px 15px; font-size:14.5px; font-weight:500; min-width:0;
-}
+.input-wrap > svg{width:18px; height:18px; margin-left:15px; flex:none; color:var(--text-3); stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.input-wrap input{flex:1; padding:14px 15px; font-size:14.5px; font-weight:500; min-width:0; background:none}
 .input-wrap input::placeholder{color:var(--text-3)}
 
-/* ─── geo button ─── */
+.country-select{position:relative; width:100%}
+.country-trigger{
+  width:100%; display:flex; align-items:center; gap:12px;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:13px 15px; font-size:14.5px; font-weight:500;
+  cursor:pointer; transition:border-color .16s, box-shadow .16s; text-align:left;
+}
+.country-trigger:hover{border-color:var(--border-strong)}
+.country-trigger.is-open, .country-trigger:focus-visible{border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft)}
+.country-trigger.is-error{border-color:var(--danger); box-shadow:0 0 0 3px var(--danger-soft)}
+.country-trigger .flag{font-size:22px; line-height:1; flex:none}
+.country-trigger .name{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.country-trigger .name.placeholder{color:var(--text-3)}
+.country-trigger .caret{width:18px;height:18px;flex:none;color:var(--text-3);transition:transform .2s}
+.country-trigger.is-open .caret{transform:rotate(180deg)}
+.country-panel{
+  position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:30;
+  background:var(--bg-elev); border:1px solid var(--border-strong);
+  border-radius:var(--radius-md); box-shadow:var(--shadow-lg);
+  display:none; flex-direction:column; overflow:hidden;
+  max-height:min(360px, 60vh);
+}
+.country-panel.is-open{display:flex}
+.country-search-wrap{padding:10px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:9px; background:var(--surface)}
+.country-search-wrap svg{width:16px;height:16px;color:var(--text-3);flex:none;stroke-width:2.2}
+.country-search{flex:1; padding:8px 2px; font-size:14px; font-weight:500}
+.country-search::placeholder{color:var(--text-3)}
+.country-list{flex:1; overflow-y:auto; padding:6px; -webkit-overflow-scrolling:touch}
+.country-item{
+  display:flex; align-items:center; gap:11px;
+  padding:10px 12px; border-radius:10px;
+  font-size:13.5px; font-weight:500; color:var(--text-2);
+  cursor:pointer; transition:background .12s, color .12s;
+  width:100%; text-align:left;
+}
+.country-item:hover{background:var(--surface-2); color:var(--text)}
+.country-item.is-selected{background:var(--primary-soft); color:var(--primary); font-weight:700}
+.country-item .flag{font-size:20px; line-height:1; flex:none}
+.country-item .cname{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.country-item mark{background:transparent; color:var(--primary); font-weight:800}
+.country-empty{padding:26px 16px; text-align:center; color:var(--text-3); font-size:12.5px; font-weight:500}
+
 .geo-btn{
   display:inline-flex; align-items:center; gap:8px;
   padding:11px 16px; border-radius:var(--radius-md);
@@ -224,7 +204,6 @@ svg{display:block}
 .geo-btn:disabled{opacity:.55; cursor:wait}
 .geo-btn svg{width:16px;height:16px;stroke-width:2.2;flex:none}
 
-/* ─── chips ─── */
 .chip-grid{display:flex; flex-wrap:wrap; gap:9px}
 .chip{
   display:inline-flex; align-items:center; gap:9px;
@@ -235,13 +214,16 @@ svg{display:block}
 }
 .chip:hover{border-color:var(--border-strong); color:var(--text)}
 .chip.is-on{background:var(--primary-soft); border-color:var(--primary); color:var(--primary)}
-.chip.is-on::before{
-  content:""; width:7px; height:7px; border-radius:50%; background:var(--primary); flex:none;
+.chip.is-on::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--primary); flex:none}
+.chip.is-custom{border-style:dashed}
+.chip.is-custom .custom-tag{
+  font-size:9px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 6px; border-radius:5px; background:var(--accent-soft); color:var(--accent);
+  margin-left:2px; flex:none;
 }
 .chip .sev-tag{
   font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
-  padding:3px 8px; border-radius:6px; margin-left:auto; flex:none;
-  display:none;
+  padding:3px 8px; border-radius:6px; margin-left:auto; flex:none; display:none;
 }
 .chip[data-sev="1"] .sev-tag{display:inline-block; background:var(--success-soft); color:var(--success)}
 .chip[data-sev="2"] .sev-tag{display:inline-block; background:var(--warning-soft); color:var(--warning)}
@@ -254,19 +236,14 @@ svg{display:block}
 .chip[data-sev="2"]::before{background:var(--warning)}
 .chip[data-sev="3"]::before{background:var(--danger)}
 
-/* ─── section grouping ─── */
 .family-label{
-  font-size:10.5px; font-weight:800; letter-spacing:.13em;
-  text-transform:uppercase; color:var(--text-3);
-  margin:22px 0 12px; display:flex; align-items:center; gap:12px;
+  font-size:10.5px; font-weight:800; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--text-3); margin:22px 0 12px; display:flex; align-items:center; gap:12px;
 }
 .family-label:first-child{margin-top:0}
 .family-label::after{content:""; flex:1; height:1px; background:var(--border)}
 
-.counter{
-  margin-top:16px; font-size:12.5px; color:var(--text-3);
-  font-weight:600; letter-spacing:.02em;
-}
+.counter{margin-top:16px; font-size:12.5px; color:var(--text-3); font-weight:600; letter-spacing:.02em}
 .counter b{color:var(--text); font-weight:800; font-variant-numeric:tabular-nums}
 .counter.warn b{color:var(--warning)}
 .counter.ok b{color:var(--success)}
@@ -280,12 +257,73 @@ svg{display:block}
 .hint-box svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--text-3);stroke-width:2.2}
 .hint-box b{color:var(--text)}
 
-/* ─── inline message ─── */
+/* ── CUSTOM ADD PANEL ── */
+.custom-add{
+  margin-top:26px; padding:16px 18px; border-radius:var(--radius-md);
+  background:var(--surface-2); border:1px dashed var(--border-strong);
+}
+.custom-add-head{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  font-size:13px; color:var(--text-2); font-weight:600; line-height:1.5;
+}
+.custom-add-head svg.head-icon{width:18px; height:18px; flex:none; color:var(--text-3); stroke-width:2.2}
+.custom-add-head .msg{flex:1; min-width:0}
+.custom-add-toggle{
+  display:inline-flex; align-items:center; gap:6px; flex:none;
+  padding:8px 14px; border-radius:var(--radius-full);
+  font-size:12.5px; font-weight:700;
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--primary); transition:all .16s;
+}
+.custom-add-toggle:hover{border-color:var(--primary); background:var(--primary-soft)}
+.custom-add-toggle svg{width:14px;height:14px;stroke-width:2.6;stroke-linecap:round}
+
+.custom-add-form{
+  display:none; flex-direction:column; gap:12px; margin-top:16px;
+  padding-top:16px; border-top:1px solid var(--border);
+}
+.custom-add-form.is-open{display:flex}
+.custom-add-form .custom-row{display:flex; gap:10px; flex-wrap:wrap}
+.custom-add-form .custom-row > *{flex:1; min-width:180px}
+.custom-add-form input,
+.custom-add-form select{
+  width:100%; padding:12px 14px; font-size:14px; font-weight:500;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  transition:border-color .16s, box-shadow .16s, background .3s;
+  appearance:none; -webkit-appearance:none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-3) 50%),
+    linear-gradient(135deg, var(--text-3) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.custom-add-form input{
+  background-image:none; padding-right:14px;
+}
+.custom-add-form input:focus,
+.custom-add-form select:focus{border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft)}
+.custom-add-form select option{background:var(--bg-elev); color:var(--text)}
+.custom-add-form .hint{font-size:11.5px; color:var(--text-3); font-weight:500; line-height:1.5}
+.custom-add-actions{display:flex; gap:8px}
+.custom-add-actions .btn{flex:1; min-height:44px}
+
+/* inline message inside custom form */
+.custom-msg{
+  display:none; align-items:flex-start; gap:8px;
+  padding:10px 12px; border-radius:var(--radius-sm);
+  font-size:12.5px; font-weight:600; line-height:1.5;
+}
+.custom-msg.is-visible{display:flex}
+.custom-msg svg{width:15px;height:15px;flex:none;margin-top:1px;stroke-width:2.2}
+.custom-msg.err{background:var(--danger-soft); color:var(--danger)}
+.custom-msg.ok{background:var(--success-soft); color:var(--success)}
+
 .form-msg{
   display:none; align-items:flex-start; gap:10px;
   padding:12px 14px; border-radius:var(--radius-md);
-  font-size:13px; font-weight:600; line-height:1.5;
-  margin:18px 0;
+  font-size:13px; font-weight:600; line-height:1.5; margin:18px 0;
 }
 .form-msg.is-visible{display:flex}
 .form-msg svg{width:17px;height:17px;flex:none;margin-top:1px;stroke-width:2.2}
@@ -293,15 +331,13 @@ svg{display:block}
 .form-msg.ok{background:var(--success-soft); color:var(--success)}
 .form-msg.info{background:var(--accent-soft); color:var(--accent)}
 
-/* ─────────────── FOOTER ─────────────── */
 .ob-foot{
   flex:none; position:sticky; bottom:0; z-index:20;
   background:color-mix(in srgb, var(--bg) 90%, transparent);
   backdrop-filter:blur(20px) saturate(1.3);
   -webkit-backdrop-filter:blur(20px) saturate(1.3);
   border-top:1px solid var(--border);
-  padding:16px 28px;
-  display:flex; align-items:center; gap:14px;
+  padding:16px 28px; display:flex; align-items:center; gap:14px;
 }
 .btn{
   position:relative;
@@ -315,10 +351,7 @@ svg{display:block}
 .btn:active{transform:scale(.985)}
 .btn:disabled{opacity:.5; cursor:not-allowed; transform:none}
 .btn svg{width:17px;height:17px;stroke-width:2.2;flex:none;stroke-linecap:round;stroke-linejoin:round}
-.btn-primary{
-  background:var(--grad-warm); border-color:transparent; color:#fff;
-  box-shadow:0 14px 30px -14px var(--primary-glow);
-}
+.btn-primary{background:var(--grad-warm); border-color:transparent; color:#fff; box-shadow:0 14px 30px -14px var(--primary-glow)}
 .btn-primary:hover{color:#fff; filter:brightness(1.06); background:var(--grad-warm)}
 .btn-ghost{background:transparent; border-color:transparent}
 .btn-ghost:hover{background:var(--surface-2)}
@@ -333,14 +366,8 @@ svg{display:block}
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 .ob-foot .spacer{flex:1}
-.ob-foot .foot-hint{
-  font-size:12px; color:var(--text-3); font-weight:600;
-  letter-spacing:.02em; max-width:320px; line-height:1.5;
-}
+.ob-foot .foot-hint{font-size:12px; color:var(--text-3); font-weight:600; letter-spacing:.02em; max-width:320px; line-height:1.5}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   COMPLETION OVERLAY
-   ═══════════════════════════════════════════════════════════════════════════ */
 .done-overlay{
   position:fixed; inset:0; z-index:200;
   display:none; align-items:center; justify-content:center; padding:32px;
@@ -355,64 +382,31 @@ svg{display:block}
   width:100%; max-width:560px;
   background:var(--surface); border:1px solid var(--border);
   border-radius:var(--radius-xl); padding:44px 36px;
-  box-shadow:var(--shadow-lg);
-  animation:fadeUp .5s cubic-bezier(.4,0,.2,1);
+  box-shadow:var(--shadow-lg); animation:fadeUp .5s cubic-bezier(.4,0,.2,1);
 }
 .done-mark{
   width:80px; height:80px; border-radius:26px; margin:0 auto 26px;
   background:var(--grad-primary); display:grid; place-items:center;
   box-shadow:0 22px 48px -16px var(--primary-glow); position:relative;
 }
-.done-mark::after{
-  content:""; position:absolute; inset:0; border-radius:inherit;
-  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);
-  mix-blend-mode:overlay;
-}
-.done-mark svg{
-  width:42px; height:42px; stroke:#fff; stroke-width:2.6; fill:none;
-  stroke-linecap:round; stroke-linejoin:round; position:relative; z-index:1;
-}
-.done-mark svg path{
-  stroke-dasharray:30; stroke-dashoffset:30;
-  animation:drawCheck .55s .15s cubic-bezier(.4,0,.2,1) forwards;
-}
+.done-mark::after{content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%); mix-blend-mode:overlay}
+.done-mark svg{width:42px; height:42px; stroke:#fff; stroke-width:2.6; fill:none; stroke-linecap:round; stroke-linejoin:round; position:relative; z-index:1}
+.done-mark svg path{stroke-dasharray:30; stroke-dashoffset:30; animation:drawCheck .55s .15s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes drawCheck{to{stroke-dashoffset:0}}
-.done-card h1{
-  font-size:26px; font-weight:800; letter-spacing:-.9px;
-  text-align:center; margin-bottom:10px;
-}
-.done-card > p{
-  font-size:14.5px; color:var(--text-2); line-height:1.6;
-  font-weight:500; text-align:center; margin-bottom:30px;
-}
-.done-summary{
-  background:var(--surface-2); border:1px solid var(--border);
-  border-radius:var(--radius-md); padding:20px; margin-bottom:26px;
-  display:flex; flex-direction:column; gap:16px;
-}
+.done-card h1{font-size:26px; font-weight:800; letter-spacing:-.9px; text-align:center; margin-bottom:10px}
+.done-card > p{font-size:14.5px; color:var(--text-2); line-height:1.6; font-weight:500; text-align:center; margin-bottom:30px}
+.done-summary{background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:20px; margin-bottom:26px; display:flex; flex-direction:column; gap:16px}
 .done-row{display:flex; flex-direction:column; gap:8px}
-.done-row .k{
-  font-size:10.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase;
-  color:var(--text-3);
-}
-.done-row .v{
-  font-size:13.5px; font-weight:600; color:var(--text); line-height:1.5;
-}
+.done-row .k{font-size:10.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; color:var(--text-3)}
+.done-row .v{font-size:13.5px; font-weight:600; color:var(--text); line-height:1.5}
 .done-tags{display:flex; flex-wrap:wrap; gap:6px}
-.done-tag{
-  font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:8px;
-  background:var(--primary-soft); color:var(--primary);
-  border:1px solid transparent;
-}
+.done-tag{font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:8px; background:var(--primary-soft); color:var(--primary); border:1px solid transparent}
 .done-tag.need{background:var(--danger-soft);  color:var(--danger)}
 .done-tag.give{background:var(--success-soft); color:var(--success)}
 .done-tag.time{background:var(--warning-soft); color:var(--warning)}
 .done-actions{display:flex; flex-direction:column; gap:10px}
 .btn.full{width:100%}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TOASTS
-   ═══════════════════════════════════════════════════════════════════════════ */
 .toast-root{
   position:fixed; bottom:26px; left:50%; transform:translateX(-50%);
   z-index:300; display:flex; flex-direction:column; gap:10px; align-items:center;
@@ -429,44 +423,23 @@ svg{display:block}
 .toast.err svg{color:var(--danger)}
 @keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LOADING / ERROR / CONFIG
-   ═══════════════════════════════════════════════════════════════════════════ */
 .loading-screen{
   position:fixed; inset:0; z-index:400;
   display:none; align-items:center; justify-content:center; flex-direction:column; gap:18px;
   background:var(--bg);
 }
 .loading-screen.is-open{display:flex}
-.loading-spinner{
-  width:36px;height:36px;border-radius:50%;
-  border:3px solid var(--surface-3); border-top-color:var(--primary);
-  animation:spin .8s linear infinite;
-}
+.loading-spinner{width:36px;height:36px;border-radius:50%; border:3px solid var(--surface-3); border-top-color:var(--primary); animation:spin .8s linear infinite}
 .loading-screen p{font-size:13.5px; color:var(--text-3); font-weight:600}
 
-.error-screen{
-  position:fixed; inset:0; z-index:400;
-  display:none; align-items:center; justify-content:center; padding:32px;
-  background:var(--bg);
-}
+.error-screen{position:fixed; inset:0; z-index:400; display:none; align-items:center; justify-content:center; padding:32px; background:var(--bg)}
 .error-screen.is-open{display:flex}
-.error-card{
-  max-width:560px; background:var(--surface); border:1px solid var(--danger);
-  border-radius:var(--radius-lg); padding:32px;
-}
+.error-card{max-width:560px; background:var(--surface); border:1px solid var(--danger); border-radius:var(--radius-lg); padding:32px}
 .error-card h2{font-size:19px; font-weight:800; color:var(--danger); margin-bottom:14px}
 .error-card p{font-size:13.5px; color:var(--text-2); line-height:1.65; margin-bottom:14px}
-.error-card code{
-  display:inline-block; background:var(--surface-2); border:1px solid var(--border);
-  padding:3px 8px; border-radius:6px; font-size:12px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-}
+.error-card code{display:inline-block; background:var(--surface-2); border:1px solid var(--border); padding:3px 8px; border-radius:6px; font-size:12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .error-card .btn{margin-top:8px; margin-right:8px}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
 @media (max-width:820px){
   .ob-head{padding:14px 18px; gap:12px}
   .ob-brand-name{display:none}
@@ -480,18 +453,17 @@ svg{display:block}
   .step .lede{font-size:14.5px; margin-bottom:26px}
   .done-card{padding:34px 24px}
   .done-card h1{font-size:22px}
+  .custom-add-form .custom-row > *{min-width:0}
 }
 @media (max-width:480px){
   .chip{padding:10px 14px; font-size:13px; min-height:42px}
-  .family-label{font-size:10px}
+  .country-trigger{padding:12px 14px; font-size:14px}
+  .country-panel{max-height:min(320px, 55vh)}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     LOADING + ERROR
-     ═══════════════════════════════════════════════════════════════════════════ -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loading-spinner"></div>
   <p id="loadingMsg">Loading your setup…</p>
@@ -505,12 +477,8 @@ svg{display:block}
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     ONBOARDING SHELL
-     ═══════════════════════════════════════════════════════════════════════════ -->
 <div class="ob-shell" id="obShell" style="display:none">
 
-  <!-- ───────── HEADER ───────── -->
   <header class="ob-head">
     <div class="ob-brand">
       <div class="ob-brand-mark">
@@ -543,38 +511,56 @@ svg{display:block}
     </div>
   </header>
 
-  <!-- ───────── MAIN ───────── -->
   <main class="ob-main">
     <div class="ob-inner">
 
-      <!-- ══════════ STEP 1 · LOCATION ══════════ -->
+      <!-- STEP 1 · LOCATION -->
       <section class="step is-active" data-step="0">
         <span class="step-eyebrow"><i></i>Step 1 · Location</span>
         <h1>Where are you creating from?</h1>
         <p class="lede">
-          Your city is used for distance scoring only. Nobody ever sees your
-          address — just <b>“2.1 km away”</b> on their feed.
+          We work with creators everywhere on earth. Your country and city are
+          used for distance scoring only — nobody ever sees your address,
+          just <b>"2.1 km away"</b> on their feed.
         </p>
+
+        <div class="field">
+          <label for="countryTrigger">Country</label>
+          <div class="country-select" id="countrySelect">
+            <button class="country-trigger" id="countryTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span class="flag" id="countryFlag">🌍</span>
+              <span class="name placeholder" id="countryName">Select your country…</span>
+              <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="country-panel" id="countryPanel" role="listbox">
+              <div class="country-search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input class="country-search" id="countrySearch" type="text" placeholder="Search 195 countries…" autocomplete="off" spellcheck="false"/>
+              </div>
+              <div class="country-list" id="countryList"></div>
+            </div>
+          </div>
+        </div>
 
         <div class="field">
           <label for="cityInput">City</label>
           <div class="input-wrap" id="cityWrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <input id="cityInput" type="text" placeholder="Austin" autocomplete="address-level2" />
+            <input id="cityInput" type="text" placeholder="e.g. Lagos, London, Austin, Tokyo…" autocomplete="address-level2" />
           </div>
         </div>
 
         <div class="field">
-          <label for="regionInput">State / Region <span style="color:var(--text-3);font-weight:500">— optional</span></label>
+          <label for="regionInput">State / Region / Province <span class="optional">— optional</span></label>
           <div class="input-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-            <input id="regionInput" type="text" placeholder="Texas" autocomplete="address-level1" />
+            <input id="regionInput" type="text" placeholder="e.g. Rivers State, England, California…" autocomplete="address-level1" />
           </div>
         </div>
 
         <button class="geo-btn" id="geoBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-          Use my current location
+          Auto-detect my location
         </button>
 
         <div class="form-msg" id="step1Msg" role="status" aria-live="polite"></div>
@@ -585,7 +571,7 @@ svg{display:block}
         </div>
       </section>
 
-      <!-- ══════════ STEP 2 · NICHES ══════════ -->
+      <!-- STEP 2 · NICHES -->
       <section class="step" data-step="1">
         <span class="step-eyebrow"><i></i>Step 2 · Niches</span>
         <h1>What do you make?</h1>
@@ -593,15 +579,38 @@ svg{display:block}
           Pick up to <b>four</b>. Adjacent niches still score well — you don’t
           have to be an exact twin to be a great match.
         </p>
-
         <div id="nicheGrid"></div>
-
         <div class="counter" id="nicheCounter">Selected: <b>0</b> / 4</div>
+
+        <div class="custom-add" id="nicheCustom">
+          <div class="custom-add-head">
+            <svg class="head-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+            <span class="msg">Can’t find your niche? Add your own — it becomes available to every TIMCRENET creator.</span>
+            <button type="button" class="custom-add-toggle" data-custom-toggle="niche">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+              Add custom niche
+            </button>
+          </div>
+          <div class="custom-add-form" id="nicheCustomForm">
+            <div class="custom-row">
+              <input id="nicheCustomLabel" type="text" placeholder="e.g. Retro gaming, Cooking for one, Woodworking…" maxlength="50" />
+              <select id="nicheCustomFamily">
+                <option value="">— Pick a family —</option>
+              </select>
+            </div>
+            <div class="hint">Your custom niche is saved to the shared catalog so anyone can use it in the future.</div>
+            <div class="custom-msg" id="nicheCustomMsg"></div>
+            <div class="custom-add-actions">
+              <button type="button" class="btn" data-custom-cancel="niche">Cancel</button>
+              <button type="button" class="btn btn-primary" data-custom-save="niche">Add niche</button>
+            </div>
+          </div>
+        </div>
 
         <div class="form-msg" id="step2Msg" role="status" aria-live="polite"></div>
       </section>
 
-      <!-- ══════════ STEP 3 · STRUGGLES ══════════ -->
+      <!-- STEP 3 · STRUGGLES -->
       <section class="step" data-step="2">
         <span class="step-eyebrow"><i></i>Step 3 · Struggles</span>
         <h1>What’s holding you back?</h1>
@@ -610,10 +619,40 @@ svg{display:block}
           <b>blocking</b>. Tap a fourth time to clear. This is exactly what the
           matcher hunts for.
         </p>
-
         <div id="struggleGrid"></div>
-
         <div class="counter" id="struggleCounter">Selected: <b>0</b></div>
+
+        <div class="custom-add" id="struggleCustom">
+          <div class="custom-add-head">
+            <svg class="head-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+            <span class="msg">Not on the list? Describe your struggle in your own words.</span>
+            <button type="button" class="custom-add-toggle" data-custom-toggle="struggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+              Add custom struggle
+            </button>
+          </div>
+          <div class="custom-add-form" id="struggleCustomForm">
+            <div class="custom-row">
+              <input id="struggleCustomLabel" type="text" placeholder="e.g. My camera is too heavy to carry far…" maxlength="80" />
+              <select id="struggleCustomCategory">
+                <option value="equipment">Equipment</option>
+                <option value="space">Space</option>
+                <option value="skill">Skill</option>
+                <option value="time">Time</option>
+                <option value="confidence">Confidence</option>
+                <option value="knowledge">Knowledge</option>
+                <option value="money">Money</option>
+                <option value="audience">Audience</option>
+              </select>
+            </div>
+            <div class="hint">Pick the closest category so the matcher can pair you with someone who fixes it.</div>
+            <div class="custom-msg" id="struggleCustomMsg"></div>
+            <div class="custom-add-actions">
+              <button type="button" class="btn" data-custom-cancel="struggle">Cancel</button>
+              <button type="button" class="btn btn-primary" data-custom-save="struggle">Add struggle</button>
+            </div>
+          </div>
+        </div>
 
         <div class="form-msg" id="step3Msg" role="status" aria-live="polite"></div>
 
@@ -623,7 +662,7 @@ svg{display:block}
         </div>
       </section>
 
-      <!-- ══════════ STEP 4 · ADVANTAGES + TIME ══════════ -->
+      <!-- STEP 4 · ADVANTAGES + TIME -->
       <section class="step" data-step="3">
         <span class="step-eyebrow"><i></i>Step 4 · What you bring</span>
         <h1>What can you offer?</h1>
@@ -631,35 +670,57 @@ svg{display:block}
           Gear, space, skills, or just reliability. Someone within a few
           kilometres needs exactly this.
         </p>
-
         <div id="advantageGrid"></div>
-
         <div class="counter" id="advantageCounter">Selected: <b>0</b></div>
 
+        <div class="custom-add" id="advantageCustom">
+          <div class="custom-add-head">
+            <svg class="head-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+            <span class="msg">Got a skill or resource that isn’t listed? Add it in your own words.</span>
+            <button type="button" class="custom-add-toggle" data-custom-toggle="advantage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+              Add custom advantage
+            </button>
+          </div>
+          <div class="custom-add-form" id="advantageCustomForm">
+            <div class="custom-row">
+              <input id="advantageCustomLabel" type="text" placeholder="e.g. Rooftop terrace, Sign language, Vintage film camera…" maxlength="80" />
+              <select id="advantageCustomCategory">
+                <option value="equipment">Equipment</option>
+                <option value="space">Space</option>
+                <option value="skill">Skill</option>
+                <option value="knowledge">Knowledge</option>
+                <option value="money">Money / funding</option>
+                <option value="audience">Audience</option>
+                <option value="attitude">Attitude & mindset</option>
+              </select>
+            </div>
+            <div class="hint">Pick the closest category so the matcher knows who benefits from it.</div>
+            <div class="custom-msg" id="advantageCustomMsg"></div>
+            <div class="custom-add-actions">
+              <button type="button" class="btn" data-custom-cancel="advantage">Cancel</button>
+              <button type="button" class="btn btn-primary" data-custom-save="advantage">Add advantage</button>
+            </div>
+          </div>
+        </div>
+
         <h2 class="section-title" style="margin-top:44px">When can you meet?</h2>
-        <p class="section-lede">
-          Matches that share at least one time window score noticeably higher.
-        </p>
+        <p class="section-lede">Matches that share at least one time window score noticeably higher.</p>
         <div class="chip-grid" id="availabilityGrid"></div>
-
         <div class="counter" id="availCounter">Selected: <b>0</b></div>
-
         <div class="form-msg" id="step4Msg" role="status" aria-live="polite"></div>
       </section>
 
     </div>
   </main>
 
-  <!-- ───────── FOOTER ───────── -->
   <footer class="ob-foot">
     <button class="btn" id="backBtn" style="visibility:hidden">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg>
       Back
     </button>
     <div class="spacer"></div>
-    <div class="foot-hint" id="footHint">
-      Your progress saves automatically. You can close this tab and come back.
-    </div>
+    <div class="foot-hint" id="footHint">Your progress saves automatically. You can close this tab and come back.</div>
     <button class="btn btn-primary" id="nextBtn">
       <span id="nextLabel">Continue</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 6 6 6-6 6"/></svg>
@@ -667,14 +728,9 @@ svg{display:block}
   </footer>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     COMPLETION OVERLAY
-     ═══════════════════════════════════════════════════════════════════════════ -->
 <div class="done-overlay" id="doneOverlay" aria-hidden="true">
   <div class="done-card">
-    <div class="done-mark">
-      <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-    </div>
+    <div class="done-mark"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
     <h1 id="doneTitle">You’re all set</h1>
     <p id="doneSub">Your TIMCRENET profile is live. The matcher is already scoring your neighbourhood.</p>
     <div class="done-summary" id="doneSummary"></div>
@@ -689,67 +745,93 @@ svg{display:block}
 
 <div class="toast-root" id="toastRoot"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     SCRIPT
-     ═══════════════════════════════════════════════════════════════════════════ -->
 <script type="module">
-/* ╔═══════════════════════════════════════════════════════════════════════╗
-   ║  TIMCRENET · onboarding.html                                            ║
-   ╚═══════════════════════════════════════════════════════════════════════╝ */
+/* ╔══════════════════════════════════════════════════════════════════════╗
+   ║  TIMCRENET · onboarding.html · v3 (custom items)                      ║
+   ╚══════════════════════════════════════════════════════════════════════╝ */
 
-/* ────────────────────────────────────────────────────────────────────────
-   Supabase credentials — must match index.html
-   ──────────────────────────────────────────────────────────────────────── */
-const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_URL      = 'https://wwzryfzmfgkfwpxznypn.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
 
-/* Where to send the user after onboarding finishes. */
-const APP_URL       = 'app.html';
-const SIGNIN_URL    = 'index.html';
+const APP_URL    = 'app.html';
+const SIGNIN_URL = 'index.html';
 
-/* ────────────────────────────────────────────────────────────────────────
-   Import client
-   ──────────────────────────────────────────────────────────────────────── */
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
 
 const supabase = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
-    detectSessionInUrl: true,
+    detectSessionInUrl: false,
     storageKey: 'timcrenet.auth'
   },
   global: { headers: { 'x-application-name': 'timcrenet-web' } }
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Helpers
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   COUNTRY DATA (UN members + territories)
+   ══════════════════════════════════════════════════════════════════════════ */
+const COUNTRY_CODES = [
+  ['AF','Afghanistan'],['AL','Albania'],['DZ','Algeria'],['AD','Andorra'],['AO','Angola'],
+  ['AG','Antigua and Barbuda'],['AR','Argentina'],['AM','Armenia'],['AU','Australia'],['AT','Austria'],
+  ['AZ','Azerbaijan'],['BS','Bahamas'],['BH','Bahrain'],['BD','Bangladesh'],['BB','Barbados'],
+  ['BY','Belarus'],['BE','Belgium'],['BZ','Belize'],['BJ','Benin'],['BT','Bhutan'],
+  ['BO','Bolivia'],['BA','Bosnia and Herzegovina'],['BW','Botswana'],['BR','Brazil'],['BN','Brunei'],
+  ['BG','Bulgaria'],['BF','Burkina Faso'],['BI','Burundi'],['CV','Cabo Verde'],['KH','Cambodia'],
+  ['CM','Cameroon'],['CA','Canada'],['CF','Central African Republic'],['TD','Chad'],['CL','Chile'],
+  ['CN','China'],['CO','Colombia'],['KM','Comoros'],['CG','Congo (Republic)'],['CD','Congo (DRC)'],
+  ['CR','Costa Rica'],['CI',"Côte d'Ivoire"],['HR','Croatia'],['CU','Cuba'],['CY','Cyprus'],
+  ['CZ','Czechia'],['DK','Denmark'],['DJ','Djibouti'],['DM','Dominica'],['DO','Dominican Republic'],
+  ['EC','Ecuador'],['EG','Egypt'],['SV','El Salvador'],['GQ','Equatorial Guinea'],['ER','Eritrea'],
+  ['EE','Estonia'],['SZ','Eswatini'],['ET','Ethiopia'],['FJ','Fiji'],['FI','Finland'],
+  ['FR','France'],['GA','Gabon'],['GM','Gambia'],['GE','Georgia'],['DE','Germany'],
+  ['GH','Ghana'],['GR','Greece'],['GD','Grenada'],['GT','Guatemala'],['GN','Guinea'],
+  ['GW','Guinea-Bissau'],['GY','Guyana'],['HT','Haiti'],['HN','Honduras'],['HU','Hungary'],
+  ['IS','Iceland'],['IN','India'],['ID','Indonesia'],['IR','Iran'],['IQ','Iraq'],
+  ['IE','Ireland'],['IL','Israel'],['IT','Italy'],['JM','Jamaica'],['JP','Japan'],
+  ['JO','Jordan'],['KZ','Kazakhstan'],['KE','Kenya'],['KI','Kiribati'],['KP','North Korea'],
+  ['KR','South Korea'],['KW','Kuwait'],['KG','Kyrgyzstan'],['LA','Laos'],['LV','Latvia'],
+  ['LB','Lebanon'],['LS','Lesotho'],['LR','Liberia'],['LY','Libya'],['LI','Liechtenstein'],
+  ['LT','Lithuania'],['LU','Luxembourg'],['MG','Madagascar'],['MW','Malawi'],['MY','Malaysia'],
+  ['MV','Maldives'],['ML','Mali'],['MT','Malta'],['MH','Marshall Islands'],['MR','Mauritania'],
+  ['MU','Mauritius'],['MX','Mexico'],['FM','Micronesia'],['MD','Moldova'],['MC','Monaco'],
+  ['MN','Mongolia'],['ME','Montenegro'],['MA','Morocco'],['MZ','Mozambique'],['MM','Myanmar'],
+  ['NA','Namibia'],['NR','Nauru'],['NP','Nepal'],['NL','Netherlands'],['NZ','New Zealand'],
+  ['NI','Nicaragua'],['NE','Niger'],['NG','Nigeria'],['MK','North Macedonia'],['NO','Norway'],
+  ['OM','Oman'],['PK','Pakistan'],['PW','Palau'],['PS','Palestine'],['PA','Panama'],
+  ['PG','Papua New Guinea'],['PY','Paraguay'],['PE','Peru'],['PH','Philippines'],['PL','Poland'],
+  ['PT','Portugal'],['QA','Qatar'],['RO','Romania'],['RU','Russia'],['RW','Rwanda'],
+  ['KN','Saint Kitts and Nevis'],['LC','Saint Lucia'],['VC','Saint Vincent and the Grenadines'],
+  ['WS','Samoa'],['SM','San Marino'],['ST','São Tomé and Príncipe'],['SA','Saudi Arabia'],
+  ['SN','Senegal'],['RS','Serbia'],['SC','Seychelles'],['SL','Sierra Leone'],['SG','Singapore'],
+  ['SK','Slovakia'],['SI','Slovenia'],['SB','Solomon Islands'],['SO','Somalia'],['ZA','South Africa'],
+  ['SS','South Sudan'],['ES','Spain'],['LK','Sri Lanka'],['SD','Sudan'],['SR','Suriname'],
+  ['SE','Sweden'],['CH','Switzerland'],['SY','Syria'],['TW','Taiwan'],['TJ','Tajikistan'],
+  ['TZ','Tanzania'],['TH','Thailand'],['TL','Timor-Leste'],['TG','Togo'],['TO','Tonga'],
+  ['TT','Trinidad and Tobago'],['TN','Tunisia'],['TR','Türkiye'],['TM','Turkmenistan'],['TV','Tuvalu'],
+  ['UG','Uganda'],['UA','Ukraine'],['AE','United Arab Emirates'],['GB','United Kingdom'],
+  ['US','United States'],['UY','Uruguay'],['UZ','Uzbekistan'],['VU','Vanuatu'],['VA','Vatican City'],
+  ['VE','Venezuela'],['VN','Vietnam'],['YE','Yemen'],['ZM','Zambia'],['ZW','Zimbabwe']
+].map(([code, name]) => ({
+  code, name,
+  flag: code.replace(/./g, c => String.fromCodePoint(127397 + c.charCodeAt()))
+}));
+
+const COUNTRY_BY_CODE = new Map(COUNTRY_CODES.map(c => [c.code.toUpperCase(), c]));
+const COUNTRY_BY_NAME = new Map(COUNTRY_CODES.map(c => [c.name.toLowerCase(), c]));
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HELPERS
+   ══════════════════════════════════════════════════════════════════════════ */
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const DRAFT_KEY = 'timcrenet.onboarding.draft';
 
-/* ────────────────────────────────────────────────────────────────────────
-   Theme
-   ──────────────────────────────────────────────────────────────────────── */
-(function initTheme() {
-  const saved = localStorage.getItem('timcrenet-theme');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  const theme = saved || (prefersLight ? 'light' : 'dark');
-  document.documentElement.setAttribute('data-theme', theme);
-  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
-})();
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, m =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
 
-$('#themeBtn').addEventListener('click', () => {
-  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('timcrenet-theme', next);
-  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
-});
-
-/* ────────────────────────────────────────────────────────────────────────
-   Screens
-   ──────────────────────────────────────────────────────────────────────── */
 function showLoading(msg = 'Loading your setup…') {
   $('#loadingMsg').textContent = msg;
   $('#loadingScreen').classList.add('is-open');
@@ -764,9 +846,6 @@ function showError(title, bodyHTML, actionsHTML = '') {
   $('#errorScreen').classList.add('is-open');
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Toasts
-   ──────────────────────────────────────────────────────────────────────── */
 function toast(text, kind = 'ok') {
   const el = document.createElement('div');
   el.className = 'toast' + (kind === 'err' ? ' err' : '');
@@ -774,7 +853,7 @@ function toast(text, kind = 'ok') {
     kind === 'err'
       ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
       : '<path d="M20 6 9 17l-5-5"/>'
-  }</svg><span>${text}</span>`;
+  }</svg><span>${esc(text)}</span>`;
   $('#toastRoot').appendChild(el);
   setTimeout(() => {
     el.style.transition = 'opacity .3s, transform .3s';
@@ -784,33 +863,84 @@ function toast(text, kind = 'ok') {
   }, 2800);
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Static catalogs
-   ──────────────────────────────────────────────────────────────────────── */
+/* ── Theme ── */
+(function initTheme() {
+  const saved = localStorage.getItem('timcrenet-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const theme = saved || (prefersLight ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', theme);
+  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
+})();
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+});
+
+/* ══════════════════════════════════════════════════════════════════════════
+   EXPANDED CATALOGS
+   ══════════════════════════════════════════════════════════════════════════ */
 const STRUGGLE_LIBRARY = [
+  // Equipment
   { label:'No camera body',                 category:'equipment',  severity:3 },
   { label:'No lighting kit',                category:'equipment',  severity:3 },
   { label:'No microphone',                  category:'equipment',  severity:2 },
   { label:'No editing computer',            category:'equipment',  severity:3 },
   { label:'No editing software',            category:'equipment',  severity:2 },
+  { label:'No tripod',                      category:'equipment',  severity:2 },
+  { label:'No teleprompter',                category:'equipment',  severity:1 },
+  { label:'No backup storage',              category:'equipment',  severity:2 },
+  // Space
   { label:'No dedicated shooting space',    category:'space',      severity:3 },
   { label:'No natural light',               category:'space',      severity:2 },
   { label:'Bad room acoustics',             category:'space',      severity:2 },
+  { label:'No parking for shoots',          category:'space',      severity:2 },
+  { label:'Neighbours complain',            category:'space',      severity:2 },
+  { label:'No green screen setup',          category:'space',      severity:2 },
+  // Skill
   { label:'Weak thumbnail design',          category:'skill',      severity:2 },
   { label:'Cannot edit video',              category:'skill',      severity:3 },
   { label:'Weak SEO / titles',              category:'skill',      severity:2 },
   { label:'No colour grading skill',        category:'skill',      severity:2 },
+  { label:'Poor audio mixing',              category:'skill',      severity:2 },
+  { label:'Weak hook writing',              category:'skill',      severity:2 },
+  { label:'Low viewer retention',           category:'skill',      severity:3 },
+  { label:'No on-camera delivery skill',    category:'skill',      severity:2 },
+  { label:'No lighting skill',              category:'skill',      severity:2 },
+  { label:'Weak storytelling',              category:'skill',      severity:2 },
+  // Time
   { label:'Inconsistent upload schedule',   category:'time',       severity:2 },
   { label:'Full-time job limits shoots',    category:'time',       severity:3 },
   { label:'No time to edit',                category:'time',       severity:3 },
+  { label:'Long travel to shoots',          category:'time',       severity:2 },
+  { label:'No weekends free',               category:'time',       severity:3 },
+  { label:'Seasonal availability only',     category:'time',       severity:2 },
+  // Confidence
   { label:'Fear of being on camera',        category:'confidence', severity:3 },
   { label:'Perfectionism paralysis',        category:'confidence', severity:2 },
+  { label:'Impostor syndrome',              category:'confidence', severity:2 },
+  { label:'Camera shy',                     category:'confidence', severity:3 },
+  { label:'Fear of criticism',              category:'confidence', severity:2 },
+  // Knowledge
   { label:'Cannot get started at all',      category:'knowledge',  severity:3 },
   { label:'No idea what to film',           category:'knowledge',  severity:3 },
-  { label:'Content research takes forever', category:'knowledge',  severity:2 }
+  { label:'Content research takes forever', category:'knowledge',  severity:2 },
+  { label:'No idea how to monetise',        category:'knowledge',  severity:3 },
+  { label:"Don't know my target audience",  category:'knowledge',  severity:2 },
+  { label:'No SEO knowledge',               category:'knowledge',  severity:2 },
+  // Money
+  { label:'No budget for gear',             category:'money',      severity:3 },
+  { label:'Cannot afford an editor',        category:'money',      severity:3 },
+  { label:'No travel budget',               category:'money',      severity:2 },
+  // Audience
+  { label:'Very small audience',            category:'audience',   severity:2 },
+  { label:'Wrong audience for my content',  category:'audience',   severity:3 },
+  { label:'Low engagement rate',            category:'audience',   severity:2 }
 ];
 
 const ADVANTAGE_LIBRARY = [
+  // Equipment
   { label:'Camera package',               category:'equipment' },
   { label:'Lens collection',              category:'equipment' },
   { label:'Lighting kit',                 category:'equipment' },
@@ -818,10 +948,18 @@ const ADVANTAGE_LIBRARY = [
   { label:'Editing computer',             category:'equipment' },
   { label:'Drone kit',                    category:'equipment' },
   { label:'Gimbal / stabilizer',          category:'equipment' },
+  { label:'Teleprompter',                 category:'equipment' },
+  { label:'Green screen setup',           category:'equipment' },
+  { label:'Slider / dolly',               category:'equipment' },
+  { label:'Backup storage array',         category:'equipment' },
+  // Space
   { label:'Dedicated studio room',        category:'space' },
   { label:'Acoustic treatment',           category:'space' },
   { label:'Large bright room',            category:'space' },
   { label:'Quiet apartment',              category:'space' },
+  { label:'Cyclorama / seamless wall',    category:'space' },
+  { label:'Outdoor location access',      category:'space' },
+  // Skill
   { label:'Premiere Pro editing',         category:'skill' },
   { label:'DaVinci colour grading',       category:'skill' },
   { label:'Motion graphics',              category:'skill' },
@@ -831,12 +969,38 @@ const ADVANTAGE_LIBRARY = [
   { label:'Interview hosting',            category:'skill' },
   { label:'Product photography',          category:'skill' },
   { label:'On-camera confidence',         category:'skill' },
+  { label:'Camera operation',             category:'skill' },
+  { label:'Sound recording',              category:'skill' },
+  { label:'Lighting setup',               category:'skill' },
+  { label:'Sound design',                 category:'skill' },
+  { label:'Voiceover',                    category:'skill' },
+  { label:'Storyboarding',                category:'skill' },
+  { label:'Live streaming',               category:'skill' },
+  // Knowledge
   { label:'Deep topic research',          category:'knowledge' },
   { label:'Analytics & retention',        category:'knowledge' },
+  { label:'Project management',           category:'knowledge' },
+  { label:'Email marketing',              category:'knowledge' },
+  { label:'Community building',           category:'knowledge' },
+  { label:'Paid ads experience',          category:'knowledge' },
+  { label:'Contract & legal basics',      category:'knowledge' },
+  // Money
+  { label:'Can fund small shoots',        category:'money' },
+  { label:'Can fund equipment rentals',   category:'money' },
+  // Audience
+  { label:'Large existing audience',      category:'audience' },
+  { label:'Strong email list',            category:'audience' },
+  { label:'Good social following',        category:'audience' },
+  // Attitude
   { label:'Reliable & punctual',          category:'attitude' },
   { label:'Comfortable taking direction', category:'attitude' },
   { label:'Fast learner',                 category:'attitude' },
-  { label:'Strong work ethic',            category:'attitude' }
+  { label:'Strong work ethic',            category:'attitude' },
+  { label:'Patient teacher',              category:'attitude' },
+  { label:'Good with nervous people',     category:'attitude' },
+  { label:'Strong networking',            category:'attitude' },
+  { label:'Great communicator',           category:'attitude' },
+  { label:'Calm under pressure',          category:'attitude' }
 ];
 
 const AVAILABILITY_SLOTS = [
@@ -849,160 +1013,231 @@ const AVAILABILITY_SLOTS = [
 ];
 
 const STRUGGLE_GROUPS = [
-  ['equipment', 'Equipment'],
-  ['space',     'Space'],
-  ['skill',     'Skills'],
-  ['time',      'Time'],
-  ['confidence','Confidence'],
-  ['knowledge', 'Knowledge']
+  ['equipment','Equipment'],['space','Space'],['skill','Skills'],
+  ['time','Time'],['confidence','Confidence'],['knowledge','Knowledge'],
+  ['money','Money'],['audience','Audience']
 ];
 
 const ADVANTAGE_GROUPS = [
-  ['equipment', 'Equipment'],
-  ['space',     'Space'],
-  ['skill',     'Skills'],
-  ['knowledge', 'Knowledge'],
-  ['attitude',  'Attitude & mindset']
+  ['equipment','Equipment'],['space','Space'],['skill','Skills'],
+  ['knowledge','Knowledge'],['money','Money'],['audience','Audience'],
+  ['attitude','Attitude & mindset']
 ];
 
-/* ────────────────────────────────────────────────────────────────────────
-   Draft state
-   ──────────────────────────────────────────────────────────────────────── */
+/* Custom-item allowed categories (must match SQL check constraints) */
+const STRUGGLE_CATEGORIES = ['equipment','space','skill','time','confidence','knowledge','money','audience'];
+const ADVANTAGE_CATEGORIES = ['equipment','space','skill','knowledge','money','audience','attitude'];
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DRAFT STATE
+   ══════════════════════════════════════════════════════════════════════════ */
 const draft = {
-  city: '',
-  region: '',
-  country: 'United States',
-  lat: null,
-  lng: null,
+  countryCode: '', countryName: '', city: '', region: '', lat: null, lng: null,
   nicheSlugs: new Set(),
-  struggles: new Map(),   // label → { label, category, severity }
-  advantages: new Map(),  // label → { label, category, strength }
+  struggles: new Map(),   // label -> { label, category, severity, isCustom? }
+  advantages: new Map(),  // label -> { label, category, strength, isCustom? }
   availability: new Set()
 };
 
 function saveDraft() {
   try {
     localStorage.setItem(DRAFT_KEY, JSON.stringify({
-      city: draft.city,
-      region: draft.region,
-      country: draft.country,
-      lat: draft.lat,
-      lng: draft.lng,
+      countryCode: draft.countryCode, countryName: draft.countryName,
+      city: draft.city, region: draft.region, lat: draft.lat, lng: draft.lng,
       nicheSlugs: [...draft.nicheSlugs],
-      struggles: [...draft.struggles.values()],
+      struggles:  [...draft.struggles.values()],
       advantages: [...draft.advantages.values()],
       availability: [...draft.availability]
     }));
-  } catch (e) { /* quota exceeded — silent */ }
+  } catch {}
 }
-
 function loadDraft() {
   try {
     const raw = localStorage.getItem(DRAFT_KEY);
     if (!raw) return;
     const d = JSON.parse(raw);
+    draft.countryCode = d.countryCode || '';
+    draft.countryName = d.countryName || '';
     draft.city = d.city || '';
     draft.region = d.region || '';
-    draft.country = d.country || 'United States';
     draft.lat = d.lat ?? null;
     draft.lng = d.lng ?? null;
     (d.nicheSlugs || []).forEach(s => draft.nicheSlugs.add(s));
-    (d.struggles || []).forEach(s => draft.struggles.set(s.label, s));
+    (d.struggles  || []).forEach(s => draft.struggles.set(s.label, s));
     (d.advantages || []).forEach(a => draft.advantages.set(a.label, a));
     (d.availability || []).forEach(s => draft.availability.add(s));
-  } catch (e) { /* ignore malformed draft */ }
+  } catch {}
 }
+function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch {} }
 
-function clearDraft() {
-  try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
-}
-
-/* ────────────────────────────────────────────────────────────────────────
-   Session + profile guard
-   ──────────────────────────────────────────────────────────────────────── */
-let currentUser   = null;
+/* ══════════════════════════════════════════════════════════════════════════
+   SESSION GUARD
+   ══════════════════════════════════════════════════════════════════════════ */
+let currentUser    = null;
 let currentProfile = null;
 let NICHES = [];
 
 async function guard() {
   showLoading();
-
   const { data: { session } } = await supabase.auth.getSession();
-  if (!session) {
-    location.replace(SIGNIN_URL);
-    return false;
-  }
+  if (!session) { location.replace(SIGNIN_URL); return false; }
   currentUser = session.user;
 
   const { data: profile, error } = await supabase
     .from('profiles')
-    .select('id, handle, display_name, onboarded_at, city, region, lat, lng')
+    .select('id, handle, display_name, onboarded_at, city, region, country, lat, lng')
     .eq('id', session.user.id)
     .maybeSingle();
 
   if (error) {
-    showError(
-      'Could not load your profile',
-      `<p>${escapeHTML(error.message)}</p>
-       <p>This usually means the <code>timcrenet_auth.sql</code> file hasn't been run in your Supabase project yet, or the database is temporarily unreachable.</p>`,
+    showError('Could not load your profile',
+      `<p>${esc(error.message)}</p>
+       <p>This usually means <code>timcrenet_auth_fix.sql</code> hasn't been run, or the database is unreachable.</p>`,
       `<button class="btn" onclick="location.reload()">Try again</button>
-       <button class="btn" onclick="signOut()">Sign out</button>`
-    );
+       <button class="btn" onclick="signOut()">Sign out</button>`);
     return false;
   }
-
   if (!profile) {
-    showError(
-      'Your profile row is missing',
-      `<p>We signed you in, but the row that stores your profile wasn't created. This usually means the <code>handle_new_user</code> trigger in <code>timcrenet_auth.sql</code> didn't fire.</p>
-       <p>Sign out and sign in again — the trigger will create it on next signup. If it still fails, re-run <code>timcrenet_auth.sql</code>.</p>`,
-      `<button class="btn" onclick="signOut()">Sign out</button>`
-    );
+    showError('Your profile row is missing',
+      `<p>Sign out and sign in again — the trigger will create it on next signup.</p>`,
+      `<button class="btn" onclick="signOut()">Sign out</button>`);
     return false;
   }
-
   currentProfile = profile;
 
-  // Already onboarded → skip straight to the app.
-  if (profile.onboarded_at) {
-    location.replace(APP_URL);
-    return false;
-  }
-
+  if (profile.onboarded_at) { location.replace(APP_URL); return false; }
   return true;
-}
-
-function escapeHTML(s) {
-  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
 window.signOut = async function () {
   await supabase.auth.signOut();
   location.replace(SIGNIN_URL);
 };
-
 $('#signOutBtn').addEventListener('click', () => window.signOut());
 
-/* ────────────────────────────────────────────────────────────────────────
-   Render helpers
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   COUNTRY SELECTOR
+   ══════════════════════════════════════════════════════════════════════════ */
+let countryFiltered = COUNTRY_CODES.slice();
+
+function renderCountryList(filter = '') {
+  const q = filter.trim().toLowerCase();
+  countryFiltered = q
+    ? COUNTRY_CODES.filter(c => c.name.toLowerCase().includes(q) || c.code.toLowerCase() === q)
+    : COUNTRY_CODES.slice();
+
+  if (!countryFiltered.length) {
+    $('#countryList').innerHTML = `<div class="country-empty">No country matches "${esc(filter)}"</div>`;
+    return;
+  }
+
+  $('#countryList').innerHTML = countryFiltered.map(c => {
+    const isSel = draft.countryCode === c.code;
+    let nameHTML = esc(c.name);
+    if (q && q.length >= 1) {
+      const idx = c.name.toLowerCase().indexOf(q);
+      if (idx >= 0) {
+        nameHTML = esc(c.name.slice(0, idx)) +
+                   '<mark>' + esc(c.name.slice(idx, idx + q.length)) + '</mark>' +
+                   esc(c.name.slice(idx + q.length));
+      }
+    }
+    return `<button type="button" class="country-item ${isSel ? 'is-selected' : ''}" data-country="${c.code}" role="option">
+      <span class="flag">${c.flag}</span>
+      <span class="cname">${nameHTML}</span>
+    </button>`;
+  }).join('');
+}
+
+function openCountryPanel() {
+  $('#countryPanel').classList.add('is-open');
+  $('#countryTrigger').classList.add('is-open');
+  $('#countryTrigger').setAttribute('aria-expanded', 'true');
+  renderCountryList('');
+  setTimeout(() => $('#countrySearch')?.focus(), 40);
+}
+function closeCountryPanel() {
+  $('#countryPanel').classList.remove('is-open');
+  $('#countryTrigger').classList.remove('is-open');
+  $('#countryTrigger').setAttribute('aria-expanded', 'false');
+  $('#countrySearch').value = '';
+}
+function setCountry(code) {
+  const c = COUNTRY_BY_CODE.get(code.toUpperCase());
+  if (!c) return;
+  draft.countryCode = c.code;
+  draft.countryName = c.name;
+  $('#countryFlag').textContent = c.flag;
+  const nameEl = $('#countryName');
+  nameEl.textContent = c.name;
+  nameEl.classList.remove('placeholder');
+  $('#countryTrigger').classList.remove('is-error');
+  saveDraft();
+  clearStepMsg('step1Msg');
+  closeCountryPanel();
+}
+
+$('#countryTrigger').addEventListener('click', e => {
+  e.stopPropagation();
+  if ($('#countryPanel').classList.contains('is-open')) closeCountryPanel();
+  else openCountryPanel();
+});
+$('#countrySearch').addEventListener('input', e => renderCountryList(e.target.value));
+$('#countryList').addEventListener('click', e => {
+  const item = e.target.closest('[data-country]');
+  if (item) setCountry(item.dataset.country);
+});
+document.addEventListener('click', e => {
+  if (!$('#countrySelect').contains(e.target)) closeCountryPanel();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCountryPanel();
+});
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RENDERERS
+   ══════════════════════════════════════════════════════════════════════════ */
 function renderNiches() {
+  // Group niches by family, preserving alphabetical order from server
   const families = [...new Set(NICHES.map(n => n.family))];
-  $('#nicheGrid').innerHTML = families.map(fam => `
-    <div class="family-label">${escapeHTML(fam)}</div>
-    <div class="chip-grid">
-      ${NICHES.filter(n => n.family === fam).map(n => `
-        <button type="button" class="chip ${draft.nicheSlugs.has(n.slug) ? 'is-on' : ''}"
-                data-niche="${escapeHTML(n.slug)}">${escapeHTML(n.label)}</button>
-      `).join('')}
-    </div>
-  `).join('');
+  $('#nicheGrid').innerHTML = families.map(fam => {
+    const items = NICHES.filter(n => n.family === fam);
+    if (!items.length) return '';
+    return `
+      <div class="family-label">${esc(fam)}</div>
+      <div class="chip-grid">
+        ${items.map(n => {
+          const isOn = draft.nicheSlugs.has(n.slug);
+          return `<button type="button"
+                    class="chip ${isOn ? 'is-on' : ''} ${n.is_custom ? 'is-custom' : ''}"
+                    data-niche="${esc(n.slug)}">
+              ${esc(n.label)}
+              ${n.is_custom ? '<span class="custom-tag">custom</span>' : ''}
+            </button>`;
+        }).join('')}
+      </div>`;
+  }).join('');
   updateNicheCounter();
+  renderFamilySelect();
+}
+
+function renderFamilySelect() {
+  const fams = [...new Set(NICHES.map(n => n.family))].sort();
+  const sel = $('#nicheCustomFamily');
+  const current = sel.value;
+  sel.innerHTML = `<option value="">— Pick a family —</option>` +
+    fams.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('') +
+    `<option value="Custom">Custom</option>`;
+  if (fams.includes(current) || current === 'Custom') sel.value = current;
 }
 
 function renderStruggles() {
   $('#struggleGrid').innerHTML = STRUGGLE_GROUPS.map(([key, label]) => {
-    const items = STRUGGLE_LIBRARY.filter(s => s.category === key);
+    const lib = STRUGGLE_LIBRARY.filter(s => s.category === key);
+    const custom = [...draft.struggles.values()].filter(s =>
+      s.isCustom && s.category === key && !lib.some(l => l.label === s.label)
+    );
+    const items = [...lib.map(l => ({ ...l, isCustom:false })), ...custom];
     if (!items.length) return '';
     return `
       <div class="family-label">${label}</div>
@@ -1010,15 +1245,16 @@ function renderStruggles() {
         ${items.map(s => {
           const stored = draft.struggles.get(s.label);
           const sev = stored ? stored.severity : 0;
-          return `
-            <button type="button" class="chip ${sev ? 'is-on' : ''}"
-                    data-struggle="${escapeHTML(s.label)}"
-                    data-category="${s.category}"
-                    data-sev="${sev}">
-              ${escapeHTML(s.label)}
+          return `<button type="button"
+                    class="chip ${sev ? 'is-on' : ''} ${s.isCustom ? 'is-custom' : ''}"
+                    data-struggle="${esc(s.label)}"
+                    data-category="${esc(s.category)}"
+                    data-sev="${sev}"
+                    data-custom="${s.isCustom ? '1' : '0'}">
+              ${esc(s.label)}
+              ${s.isCustom ? '<span class="custom-tag">custom</span>' : ''}
               <span class="sev-tag">${sevLabel(sev)}</span>
-            </button>
-          `;
+            </button>`;
         }).join('')}
       </div>`;
   }).join('');
@@ -1027,16 +1263,26 @@ function renderStruggles() {
 
 function renderAdvantages() {
   $('#advantageGrid').innerHTML = ADVANTAGE_GROUPS.map(([key, label]) => {
-    const items = ADVANTAGE_LIBRARY.filter(a => a.category === key);
+    const lib = ADVANTAGE_LIBRARY.filter(a => a.category === key);
+    const custom = [...draft.advantages.values()].filter(a =>
+      a.isCustom && a.category === key && !lib.some(l => l.label === a.label)
+    );
+    const items = [...lib.map(l => ({ ...l, isCustom:false })), ...custom];
     if (!items.length) return '';
     return `
       <div class="family-label">${label}</div>
       <div class="chip-grid">
-        ${items.map(a => `
-          <button type="button" class="chip ${draft.advantages.has(a.label) ? 'is-on' : ''}"
-                  data-advantage="${escapeHTML(a.label)}"
-                  data-category="${a.category}">${escapeHTML(a.label)}</button>
-        `).join('')}
+        ${items.map(a => {
+          const on = draft.advantages.has(a.label);
+          return `<button type="button"
+                    class="chip ${on ? 'is-on' : ''} ${a.isCustom ? 'is-custom' : ''}"
+                    data-advantage="${esc(a.label)}"
+                    data-category="${esc(a.category)}"
+                    data-custom="${a.isCustom ? '1' : '0'}">
+              ${esc(a.label)}
+              ${a.isCustom ? '<span class="custom-tag">custom</span>' : ''}
+            </button>`;
+        }).join('')}
       </div>`;
   }).join('');
   updateAdvantageCounter();
@@ -1045,78 +1291,64 @@ function renderAdvantages() {
 function renderAvailability() {
   $('#availabilityGrid').innerHTML = AVAILABILITY_SLOTS.map(s => `
     <button type="button" class="chip ${draft.availability.has(s.key) ? 'is-on' : ''}"
-            data-slot="${s.key}">${escapeHTML(s.label)}</button>
+            data-slot="${s.key}">${esc(s.label)}</button>
   `).join('');
   updateAvailCounter();
 }
 
-function sevLabel(n) {
-  return n === 1 ? 'Mild' : n === 2 ? 'Real' : n === 3 ? 'Blocking' : '';
-}
+function sevLabel(n) { return n === 1 ? 'Mild' : n === 2 ? 'Real' : n === 3 ? 'Blocking' : ''; }
 
 function updateNicheCounter() {
-  const el = $('#nicheCounter');
-  const n = draft.nicheSlugs.size;
+  const n = draft.nicheSlugs.size, el = $('#nicheCounter');
   el.innerHTML = `Selected: <b>${n}</b> / 4`;
   el.className = 'counter' + (n >= 4 ? ' ok' : '');
 }
 function updateStruggleCounter() {
-  const el = $('#struggleCounter');
-  const n = draft.struggles.size;
+  const n = draft.struggles.size, el = $('#struggleCounter');
   el.innerHTML = `Selected: <b>${n}</b>`;
   el.className = 'counter' + (n > 0 ? ' ok' : '');
 }
 function updateAdvantageCounter() {
-  const el = $('#advantageCounter');
-  const n = draft.advantages.size;
+  const n = draft.advantages.size, el = $('#advantageCounter');
   el.innerHTML = `Selected: <b>${n}</b>`;
   el.className = 'counter' + (n > 0 ? ' ok' : '');
 }
 function updateAvailCounter() {
-  const el = $('#availCounter');
-  const n = draft.availability.size;
+  const n = draft.availability.size, el = $('#availCounter');
   el.innerHTML = `Selected: <b>${n}</b>`;
   el.className = 'counter' + (n > 0 ? ' ok' : '');
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Step navigation
-   ──────────────────────────────────────────────────────────────────────── */
-const STEPS = ['Location', 'Niches', 'Struggles', 'What you bring'];
+/* ══════════════════════════════════════════════════════════════════════════
+   STEP NAVIGATION
+   ══════════════════════════════════════════════════════════════════════════ */
+const STEPS = ['Location','Niches','Struggles','What you bring'];
 let step = 0;
 
 function setStep(next) {
   step = Math.max(0, Math.min(3, next));
   $$('.step').forEach(s => s.classList.toggle('is-active', +s.dataset.step === step));
-
   const pct = ((step + 1) / 4) * 100;
   $('#progressFill').style.width = pct + '%';
   $('#progressNum').textContent = `Step ${step + 1} of 4`;
   $('#progressName').textContent = STEPS[step];
-
   $('#backBtn').style.visibility = step === 0 ? 'hidden' : 'visible';
-
-  const labels = ['Continue', 'Continue', 'Continue', 'Finish'];
-  $('#nextLabel').textContent = labels[step];
-
-  const hints = [
+  $('#nextLabel').textContent = ['Continue','Continue','Continue','Finish'][step];
+  $('#footHint').textContent = [
     'Your progress saves automatically. You can close this tab and come back.',
     'Pick between 1 and 4 niches.',
     'At least one struggle helps the matcher find the right partner.',
     'At least one thing you bring, and one time window.'
-  ];
-  $('#footHint').textContent = hints[step];
-
-  document.querySelector('.ob-main').scrollTo({ top: 0, behavior: 'smooth' });
+  ][step];
   document.querySelector('.ob-main').scrollTop = 0;
   window.scrollTo({ top: 0 });
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Inline messages
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   MESSAGES
+   ══════════════════════════════════════════════════════════════════════════ */
 function showStepMsg(id, text, kind = 'err') {
-  const el = $('#' + id);
+  const el = $('#' + id); if (!el) return;
   el.className = `form-msg is-visible ${kind}`;
   const icon = kind === 'err'
     ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
@@ -1126,15 +1358,27 @@ function showStepMsg(id, text, kind = 'err') {
   el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${icon}</svg><span>${text}</span>`;
 }
 function clearStepMsg(id) {
-  const el = $('#' + id);
-  if (!el) return;
+  const el = $('#' + id); if (!el) return;
   el.className = 'form-msg';
   el.innerHTML = '';
 }
+function showCustomMsg(id, text, kind = 'err') {
+  const el = $('#' + id); if (!el) return;
+  el.className = `custom-msg is-visible ${kind}`;
+  const icon = kind === 'err'
+    ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
+    : '<path d="M20 6 9 17l-5-5"/>';
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${icon}</svg><span>${text}</span>`;
+}
+function clearCustomMsg(id) {
+  const el = $('#' + id); if (!el) return;
+  el.className = 'custom-msg';
+  el.innerHTML = '';
+}
 
-/* ────────────────────────────────────────────────────────────────────────
-   Interaction — niches
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   INTERACTIONS — chip selection
+   ══════════════════════════════════════════════════════════════════════════ */
 $('#nicheGrid').addEventListener('click', e => {
   const chip = e.target.closest('[data-niche]');
   if (!chip) return;
@@ -1143,10 +1387,7 @@ $('#nicheGrid').addEventListener('click', e => {
     draft.nicheSlugs.delete(slug);
     chip.classList.remove('is-on');
   } else {
-    if (draft.nicheSlugs.size >= 4) {
-      toast('Four niches max', 'err');
-      return;
-    }
+    if (draft.nicheSlugs.size >= 4) return toast('Four niches max', 'err');
     draft.nicheSlugs.add(slug);
     chip.classList.add('is-on');
   }
@@ -1155,46 +1396,36 @@ $('#nicheGrid').addEventListener('click', e => {
   clearStepMsg('step2Msg');
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Interaction — struggles (tap cycles 0 → 1 → 2 → 3 → 0)
-   ──────────────────────────────────────────────────────────────────────── */
 $('#struggleGrid').addEventListener('click', e => {
   const chip = e.target.closest('[data-struggle]');
   if (!chip) return;
   const label = chip.dataset.struggle;
   const category = chip.dataset.category;
+  const isCustom = chip.dataset.custom === '1';
   const current = +(chip.dataset.sev || 0);
   const next = (current + 1) % 4;
-
   chip.dataset.sev = next;
   chip.classList.toggle('is-on', next > 0);
   chip.querySelector('.sev-tag').textContent = sevLabel(next);
-
   if (next === 0) draft.struggles.delete(label);
-  else draft.struggles.set(label, { label, category, severity: next });
-
+  else draft.struggles.set(label, { label, category, severity: next, isCustom });
   updateStruggleCounter();
   saveDraft();
   clearStepMsg('step3Msg');
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Interaction — advantages
-   ──────────────────────────────────────────────────────────────────────── */
 $('#advantageGrid').addEventListener('click', e => {
   const chip = e.target.closest('[data-advantage]');
   if (!chip) return;
   const label = chip.dataset.advantage;
   const category = chip.dataset.category;
+  const isCustom = chip.dataset.custom === '1';
   if (draft.advantages.has(label)) {
     draft.advantages.delete(label);
     chip.classList.remove('is-on');
   } else {
-    if (draft.advantages.size >= 12) {
-      toast('Twelve is plenty', 'err');
-      return;
-    }
-    draft.advantages.set(label, { label, category, strength: 2 });
+    if (draft.advantages.size >= 12) return toast('Twelve is plenty', 'err');
+    draft.advantages.set(label, { label, category, strength: 2, isCustom });
     chip.classList.add('is-on');
   }
   updateAdvantageCounter();
@@ -1202,9 +1433,6 @@ $('#advantageGrid').addEventListener('click', e => {
   clearStepMsg('step4Msg');
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Interaction — availability
-   ──────────────────────────────────────────────────────────────────────── */
 $('#availabilityGrid').addEventListener('click', e => {
   const chip = e.target.closest('[data-slot]');
   if (!chip) return;
@@ -1221,38 +1449,197 @@ $('#availabilityGrid').addEventListener('click', e => {
   clearStepMsg('step4Msg');
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Geocoding
-   ──────────────────────────────────────────────────────────────────────── */
-async function geocodeCity(city, region) {
-  const q = [city, region, 'USA'].filter(Boolean).join(', ');
-  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`;
-  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-  if (!res.ok) throw new Error('Location service unreachable.');
-  const rows = await res.json();
-  if (!rows.length) {
-    throw new Error(`We couldn’t find “${city}”. Try adding the state — e.g. “Austin, Texas”.`);
+/* ══════════════════════════════════════════════════════════════════════════
+   INTERACTIONS — custom add panels
+   ══════════════════════════════════════════════════════════════════════════ */
+const CUSTOM = {
+  niche:     { form:'#nicheCustomForm',     label:'#nicheCustomLabel',     msg:'#nicheCustomMsg',     kind:'#nicheCustomFamily' },
+  struggle:  { form:'#struggleCustomForm',  label:'#struggleCustomLabel',  msg:'#struggleCustomMsg',  kind:'#struggleCustomCategory' },
+  advantage: { form:'#advantageCustomForm', label:'#advantageCustomLabel', msg:'#advantageCustomMsg', kind:'#advantageCustomCategory' }
+};
+
+function toggleCustomForm(name) {
+  const cfg = CUSTOM[name];
+  if (!cfg) return;
+  const form = $(cfg.form);
+  const isOpen = form.classList.toggle('is-open');
+  if (isOpen) {
+    clearCustomMsg(cfg.msg.slice(1));
+    setTimeout(() => $(cfg.label).focus(), 60);
   }
-  return { lat: parseFloat(rows[0].lat), lng: parseFloat(rows[0].lon), displayName: rows[0].display_name };
+}
+function closeCustomForm(name, reset = true) {
+  const cfg = CUSTOM[name];
+  if (!cfg) return;
+  $(cfg.form).classList.remove('is-open');
+  if (reset) {
+    $(cfg.label).value = '';
+    if (name === 'niche') $(cfg.kind).value = '';
+    clearCustomMsg(cfg.msg.slice(1));
+  }
+}
+
+document.addEventListener('click', e => {
+  const toggle = e.target.closest('[data-custom-toggle]');
+  if (toggle) { toggleCustomForm(toggle.dataset.customToggle); return; }
+  const cancel = e.target.closest('[data-custom-cancel]');
+  if (cancel) { closeCustomForm(cancel.dataset.customCancel); return; }
+  const save = e.target.closest('[data-custom-save]');
+  if (save) { handleCustomSave(save.dataset.customSave, save); return; }
+});
+
+/* Allow Enter key inside custom forms */
+['nicheCustomLabel','struggleCustomLabel','advantageCustomLabel'].forEach(id => {
+  const el = $('#' + id); if (!el) return;
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const name = id.replace('CustomLabel','');
+      const btn = document.querySelector(`[data-custom-save="${name}"]`);
+      if (btn) handleCustomSave(name, btn);
+    }
+  });
+});
+
+async function handleCustomSave(name, btnEl) {
+  const cfg = CUSTOM[name]; if (!cfg) return;
+  const label = $(cfg.label).value.trim();
+  const msgId = cfg.msg.slice(1);
+
+  if (label.length < 2) {
+    return showCustomMsg(msgId, 'Give it a name (2+ characters).');
+  }
+
+  if (name === 'niche') {
+    const family = $(cfg.kind).value;
+    if (!family) return showCustomMsg(msgId, 'Pick a family for your niche.');
+
+    btnEl.classList.add('is-loading');
+    btnEl.disabled = true;
+    try {
+      const { data, error } = await supabase.rpc('create_custom_niche', {
+        p_label: label,
+        p_family: family
+      });
+      if (error) throw error;
+
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row) throw new Error('No niche returned.');
+
+      // If new to our list, add it
+      if (!NICHES.some(n => n.slug === row.slug)) {
+        NICHES.push({ slug: row.slug, label: row.label, family: row.family, is_custom: true });
+      }
+
+      // Enforce 4-niche limit
+      if (draft.nicheSlugs.size >= 4 && !draft.nicheSlugs.has(row.slug)) {
+        showCustomMsg(msgId, 'You already have 4 niches — remove one first, then try again.');
+        btnEl.classList.remove('is-loading');
+        btnEl.disabled = false;
+        return;
+      }
+
+      draft.nicheSlugs.add(row.slug);
+      saveDraft();
+      renderNiches();
+      closeCustomForm('niche');
+      toast(`Added "${row.label}"`);
+    } catch (err) {
+      console.error('[TIMCRENET] create_custom_niche failed:', err);
+      const raw = err?.message || String(err);
+      if (raw.includes('invalid_label')) showCustomMsg(msgId, 'Name must be 2–50 characters.');
+      else if (raw.includes('does not exist')) showCustomMsg(msgId, 'Run timcrenet_custom_items.sql in Supabase first.');
+      else showCustomMsg(msgId, raw.slice(0, 100));
+    } finally {
+      btnEl.classList.remove('is-loading');
+      btnEl.disabled = false;
+    }
+    return;
+  }
+
+  // struggle / advantage are pure local — no RPC
+  const category = $(cfg.kind).value;
+  if (!category) return showCustomMsg(msgId, 'Pick a category.');
+
+  if (name === 'struggle') {
+    draft.struggles.set(label, { label, category, severity: 2, isCustom: true });
+    updateStruggleCounter();
+  } else {
+    if (draft.advantages.size >= 12) {
+      return showCustomMsg(msgId, 'You already have 12 advantages.');
+    }
+    draft.advantages.set(label, { label, category, strength: 2, isCustom: true });
+    updateAdvantageCounter();
+  }
+  saveDraft();
+
+  if (name === 'struggle') renderStruggles();
+  else renderAdvantages();
+
+  closeCustomForm(name);
+  toast(`Added "${label}"`);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GEOCODING
+   ══════════════════════════════════════════════════════════════════════════ */
+async function geocodeCity(city, region, countryCode, countryName) {
+  const attempts = [
+    [city, region, countryName].filter(Boolean).join(', '),
+    [city, countryName].filter(Boolean).join(', '),
+    [city, region].filter(Boolean).join(', '),
+    city
+  ].filter((q, i, arr) => q && arr.indexOf(q) === i);
+
+  let lastError = null;
+
+  for (const q of attempts) {
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=3&q=${encodeURIComponent(q)}`;
+      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error('Location service unreachable.');
+      const rows = await res.json();
+      if (!rows.length) continue;
+
+      let best = rows[0];
+      if (countryCode) {
+        const match = rows.find(r => (r.address?.country_code || '').toLowerCase() === countryCode.toLowerCase());
+        if (match) best = match;
+      }
+
+      return {
+        lat: parseFloat(best.lat),
+        lng: parseFloat(best.lon),
+        displayName: best.display_name,
+        autoRegion: best.address?.state || best.address?.region || best.address?.province || '',
+        autoCountryCode: (best.address?.country_code || '').toUpperCase(),
+        autoCountryName: best.address?.country || ''
+      };
+    } catch (err) { lastError = err; }
+  }
+
+  throw lastError || new Error(
+    `We couldn't find “${city}”${countryName ? ' in ' + countryName : ''}. ` +
+    `Try adding the state or province — e.g. “Austin, Texas” or “Lagos, Lagos State”.`
+  );
 }
 
 async function reverseGeocode(lat, lng) {
-  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=${lat}&lon=${lng}&zoom=14`;
   const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
   if (!res.ok) return null;
   const data = await res.json();
   const a = data.address || {};
   return {
-    city: a.city || a.town || a.village || a.hamlet || a.county || '',
-    region: a.state || a.region || '',
-    country: a.country || 'United States'
+    city: a.city || a.town || a.village || a.hamlet || a.municipality || a.county || '',
+    region: a.state || a.region || a.province || a.county || '',
+    countryCode: (a.country_code || '').toUpperCase(),
+    countryName: a.country || ''
   };
 }
 
 $('#geoBtn').addEventListener('click', () => {
-  if (!navigator.geolocation) {
-    return showStepMsg('step1Msg', 'Your browser doesn’t support location lookup.');
-  }
+  if (!navigator.geolocation) return showStepMsg('step1Msg', 'Your browser doesn’t support location lookup.');
   const btn = $('#geoBtn');
   const originalHTML = btn.innerHTML;
   btn.disabled = true;
@@ -1266,19 +1653,34 @@ $('#geoBtn').addEventListener('click', () => {
         if (info) {
           draft.lat = pos.coords.latitude;
           draft.lng = pos.coords.longitude;
-          draft.city = info.city || draft.city;
-          draft.region = info.region || draft.region;
-          draft.country = info.country || 'United States';
-          $('#cityInput').value = draft.city;
-          $('#regionInput').value = draft.region;
-          $('#cityWrap').classList.add('is-ok');
+
+          if (info.city) {
+            draft.city = info.city;
+            $('#cityInput').value = info.city;
+            $('#cityWrap').classList.add('is-ok');
+          }
+          if (info.region && !$('#regionInput').value.trim()) {
+            draft.region = info.region;
+            $('#regionInput').value = info.region;
+          }
+
+          const mapped = COUNTRY_BY_CODE.get(info.countryCode);
+          if (mapped) setCountry(mapped.code);
+          else if (info.countryName) {
+            const guess = COUNTRY_BY_NAME.get(info.countryName.toLowerCase());
+            if (guess) setCountry(guess.code);
+          }
+
           saveDraft();
-          showStepMsg('step1Msg', `Located near ${escapeHTML(draft.city || 'you')}.`, 'ok');
+          const label = info.city
+            ? `Located near ${esc(info.city)}${mapped ? ', ' + esc(mapped.name) : ''}.`
+            : 'Position detected. Confirm your country and city below.';
+          showStepMsg('step1Msg', label, 'ok');
         } else {
           showStepMsg('step1Msg', 'Found your position but couldn’t read the city name. Please type it.');
         }
       } catch (err) {
-        showStepMsg('step1Msg', err.message);
+        showStepMsg('step1Msg', err.message || 'Location lookup failed.');
       } finally {
         btn.disabled = false;
         btn.innerHTML = originalHTML;
@@ -1288,9 +1690,9 @@ $('#geoBtn').addEventListener('click', () => {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
       const msgs = {
-        1: 'Location permission was denied. You can type your city instead.',
+        1: 'Location permission denied. You can type your country and city instead.',
         2: 'Your device couldn’t determine a location.',
-        3: 'Location lookup timed out. Try typing your city.'
+        3: 'Location lookup timed out. Try typing instead.'
       };
       showStepMsg('step1Msg', msgs[err.code] || 'Couldn’t get your location.');
     },
@@ -1298,12 +1700,22 @@ $('#geoBtn').addEventListener('click', () => {
   );
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Step validation + navigation
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   STEP VALIDATION
+   ══════════════════════════════════════════════════════════════════════════ */
 async function validateStep1() {
+  const country = draft.countryCode;
   const city = $('#cityInput').value.trim();
   const region = $('#regionInput').value.trim();
+
+  if (!country) {
+    $('#countryTrigger').classList.add('is-error');
+    $('#countryTrigger').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showStepMsg('step1Msg', 'Pick your country first.');
+    return false;
+  }
+  $('#countryTrigger').classList.remove('is-error');
+
   if (!city) {
     showStepMsg('step1Msg', 'We need a city to calculate distance.');
     $('#cityWrap').classList.add('is-error');
@@ -1311,17 +1723,27 @@ async function validateStep1() {
   }
   $('#cityWrap').classList.remove('is-error');
 
+  // Skip re-geocoding if coordinates already match the entered city
+  if (
+    draft.lat != null && draft.lng != null &&
+    draft.city.toLowerCase() === city.toLowerCase() &&
+    (draft.region || '').toLowerCase() === region.toLowerCase()
+  ) {
+    draft.city = city; draft.region = region;
+    saveDraft();
+    return true;
+  }
+
   const btn = $('#nextBtn');
-  const originalLabel = btn.innerHTML;
   btn.classList.add('is-loading');
   btn.disabled = true;
-
   try {
-    const { lat, lng } = await geocodeCity(city, region);
+    const info = await geocodeCity(city, region, country, draft.countryName);
     draft.city = city;
-    draft.region = region;
-    draft.lat = lat;
-    draft.lng = lng;
+    draft.region = region || info.autoRegion || '';
+    draft.lat = info.lat;
+    draft.lng = info.lng;
+    if (!region && info.autoRegion) $('#regionInput').value = info.autoRegion;
     saveDraft();
     clearStepMsg('step1Msg');
     return true;
@@ -1335,98 +1757,72 @@ async function validateStep1() {
 }
 
 function validateStep2() {
-  if (draft.nicheSlugs.size === 0) {
-    showStepMsg('step2Msg', 'Pick at least one niche.');
-    return false;
-  }
-  clearStepMsg('step2Msg');
-  return true;
+  if (draft.nicheSlugs.size === 0) { showStepMsg('step2Msg', 'Pick at least one niche.'); return false; }
+  clearStepMsg('step2Msg'); return true;
 }
-
 function validateStep3() {
-  if (draft.struggles.size === 0) {
-    showStepMsg('step3Msg', 'Pick at least one struggle — honesty here is what makes matches work.');
-    return false;
-  }
-  clearStepMsg('step3Msg');
-  return true;
+  if (draft.struggles.size === 0) { showStepMsg('step3Msg', 'Pick at least one struggle — honesty here is what makes matches work.'); return false; }
+  clearStepMsg('step3Msg'); return true;
 }
-
 function validateStep4() {
-  if (draft.advantages.size === 0) {
-    showStepMsg('step4Msg', 'Pick at least one thing you can bring to a collaboration.');
-    return false;
-  }
-  if (draft.availability.size === 0) {
-    showStepMsg('step4Msg', 'Pick at least one time window when you can meet.');
-    return false;
-  }
-  clearStepMsg('step4Msg');
-  return true;
+  if (draft.advantages.size === 0) { showStepMsg('step4Msg', 'Pick at least one thing you can bring to a collaboration.'); return false; }
+  if (draft.availability.size === 0) { showStepMsg('step4Msg', 'Pick at least one time window when you can meet.'); return false; }
+  clearStepMsg('step4Msg'); return true;
 }
 
-$('#backBtn').addEventListener('click', () => {
-  if (step > 0) setStep(step - 1);
-});
+$('#backBtn').addEventListener('click', () => { if (step > 0) setStep(step - 1); });
 
 $('#nextBtn').addEventListener('click', async () => {
-  if (step === 0) {
-    const ok = await validateStep1();
-    if (!ok) return;
-    setStep(1);
-    return;
-  }
-  if (step === 1) {
-    if (!validateStep2()) return;
-    setStep(2);
-    return;
-  }
-  if (step === 2) {
-    if (!validateStep3()) return;
-    setStep(3);
-    return;
-  }
-  if (step === 3) {
-    if (!validateStep4()) return;
-    await finishOnboarding();
-  }
+  if (step === 0) { if (!(await validateStep1())) return; setStep(1); return; }
+  if (step === 1) { if (!validateStep2()) return; setStep(2); return; }
+  if (step === 2) { if (!validateStep3()) return; setStep(3); return; }
+  if (step === 3) { if (!validateStep4()) return; await finishOnboarding(); }
 });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Finish — atomic RPC write, then completion overlay
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   FINISH
+   ══════════════════════════════════════════════════════════════════════════ */
 async function finishOnboarding() {
   const btn = $('#nextBtn');
   btn.classList.add('is-loading');
   btn.disabled = true;
 
+  // Strip non-server fields from struggles/advantages before sending
+  const cleanStruggles = [...draft.struggles.values()].map(s => ({
+    label: s.label, category: s.category, severity: s.severity
+  }));
+  const cleanAdvantages = [...draft.advantages.values()].map(a => ({
+    label: a.label, category: a.category, strength: a.strength
+  }));
+
   try {
     const { error } = await supabase.rpc('finish_onboarding', {
       p_city:         draft.city,
-      p_region:       draft.region,
-      p_country:      draft.country,
+      p_region:       draft.region || null,
+      p_country:      draft.countryName,
       p_lat:          draft.lat,
       p_lng:          draft.lng,
       p_niche_slugs:  [...draft.nicheSlugs],
-      p_struggles:    [...draft.struggles.values()],
-      p_advantages:   [...draft.advantages.values()],
+      p_struggles:    cleanStruggles,
+      p_advantages:   cleanAdvantages,
       p_availability: [...draft.availability]
     });
 
     if (error) throw error;
-
     clearDraft();
     showCompletion();
   } catch (err) {
     console.error('[TIMCRENET] finish_onboarding failed:', err);
-    const msg = (err && err.message) || String(err);
+    const msg = err?.message || String(err);
     let friendly = msg;
-    if (msg.includes('profile_missing'))
-      friendly = 'Your profile row is missing. Sign out and sign in again.';
-    else if (msg.includes('not_authenticated'))
-      friendly = 'Your session expired. Sign out and sign in again.';
-    else if (msg.includes('function') && msg.includes('does not exist'))
-      friendly = 'The finish_onboarding function is missing — run timcrenet_onboarding.sql in Supabase.';
+    if (msg.includes('country_required'))      friendly = 'Country is required — go back to step 1.';
+    else if (msg.includes('city_required'))    friendly = 'City is required — go back to step 1.';
+    else if (msg.includes('coordinates_required')) friendly = 'Coordinates missing — click "Auto-detect my location" or re-enter your city.';
+    else if (msg.includes('profile_missing'))  friendly = 'Your profile row is missing. Sign out and sign in again.';
+    else if (msg.includes('not_authenticated')) friendly = 'Your session expired. Sign out and sign in again.';
+    else if (msg.includes('check') && msg.includes('severity')) friendly = 'One of your custom struggles has an invalid severity.';
+    else if (msg.includes('check') && msg.includes('category')) friendly = 'One of your custom items has an unsupported category.';
+    else if (msg.includes('does not exist'))   friendly = 'Run timcrenet_global_fix.sql in Supabase first.';
     showStepMsg('step4Msg', friendly);
   } finally {
     btn.classList.remove('is-loading');
@@ -1434,55 +1830,49 @@ async function finishOnboarding() {
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Completion overlay
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   COMPLETION
+   ══════════════════════════════════════════════════════════════════════════ */
 function showCompletion() {
   const nicheLabels = [...draft.nicheSlugs]
     .map(slug => NICHES.find(n => n.slug === slug)?.label || slug)
     .filter(Boolean);
-
   const struggleLabels = [...draft.struggles.values()]
-    .sort((a,b) => b.severity - a.severity)
-    .slice(0, 4)
-    .map(s => s.label);
-
-  const advantageLabels = [...draft.advantages.values()]
-    .slice(0, 4)
-    .map(a => a.label);
-
+    .sort((a,b) => b.severity - a.severity).slice(0, 4).map(s => s.label);
+  const advantageLabels = [...draft.advantages.values()].slice(0, 4).map(a => a.label);
   const availLabels = [...draft.availability]
     .map(k => AVAILABILITY_SLOTS.find(s => s.key === k)?.label || k);
 
   const firstName = (currentProfile?.display_name || 'creator').split(' ')[0];
+  const flag = COUNTRY_BY_CODE.get(draft.countryCode)?.flag || '🌍';
 
-  $('#doneTitle').textContent = `You’re in, ${firstName}.`;
-  $('#doneSub').textContent   = `Your profile is live and the matcher is already scoring creators around ${draft.city}.`;
+  $('#doneTitle').textContent = `You're in, ${firstName}.`;
+  $('#doneSub').textContent   = `Your profile is live and the matcher is already scoring creators near ${draft.city}.`;
 
   $('#doneSummary').innerHTML = `
     <div class="done-row">
       <span class="k">Handle</span>
-      <span class="v">timcrenet/${escapeHTML(currentProfile?.handle || '')}</span>
+      <span class="v">timcrenet/${esc(currentProfile?.handle || '')}</span>
     </div>
     <div class="done-row">
       <span class="k">Location</span>
-      <span class="v">${escapeHTML(draft.city)}${draft.region ? ', ' + escapeHTML(draft.region) : ''}</span>
+      <span class="v">${flag} ${esc(draft.city)}${draft.region ? ', ' + esc(draft.region) : ''} · ${esc(draft.countryName)}</span>
     </div>
     <div class="done-row">
       <span class="k">Niches</span>
-      <div class="done-tags">${nicheLabels.map(n => `<span class="done-tag">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+      <div class="done-tags">${nicheLabels.map(n => `<span class="done-tag">${esc(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
     </div>
     <div class="done-row">
       <span class="k">You need</span>
-      <div class="done-tags">${struggleLabels.map(n => `<span class="done-tag need">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+      <div class="done-tags">${struggleLabels.map(n => `<span class="done-tag need">${esc(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
     </div>
     <div class="done-row">
       <span class="k">You bring</span>
-      <div class="done-tags">${advantageLabels.map(n => `<span class="done-tag give">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+      <div class="done-tags">${advantageLabels.map(n => `<span class="done-tag give">${esc(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
     </div>
     <div class="done-row">
       <span class="k">Free windows</span>
-      <div class="done-tags">${availLabels.map(n => `<span class="done-tag time">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+      <div class="done-tags">${availLabels.map(n => `<span class="done-tag time">${esc(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
     </div>
   `;
 
@@ -1491,26 +1881,33 @@ function showCompletion() {
   document.body.style.overflow = 'hidden';
 }
 
-$('#doneContinue').addEventListener('click', () => {
-  location.href = APP_URL;
-});
+$('#doneContinue').addEventListener('click', () => { location.href = APP_URL; });
 
-/* ────────────────────────────────────────────────────────────────────────
-   Prefill from existing profile (if any)
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   PREFILL
+   ══════════════════════════════════════════════════════════════════════════ */
 function prefillFromProfile() {
   if (!currentProfile) return;
-  $('#cityInput').value   = currentProfile.city   || draft.city   || '';
-  $('#regionInput').value = currentProfile.region || draft.region || '';
+  if (currentProfile.city)   { $('#cityInput').value   = currentProfile.city;   draft.city   = currentProfile.city; }
+  if (currentProfile.region) { $('#regionInput').value = currentProfile.region; draft.region = currentProfile.region; }
   if (currentProfile.lat != null) draft.lat = currentProfile.lat;
   if (currentProfile.lng != null) draft.lng = currentProfile.lng;
-  if (currentProfile.city)   draft.city   = currentProfile.city;
-  if (currentProfile.region) draft.region = currentProfile.region;
+
+  if (currentProfile.country) {
+    const m = COUNTRY_BY_NAME.get(currentProfile.country.toLowerCase());
+    if (m) setCountry(m.code);
+  }
+  if (draft.countryCode) {
+    const c = COUNTRY_BY_CODE.get(draft.countryCode);
+    if (c) setCountry(c.code);
+  }
+  if (draft.city)   $('#cityInput').value   = draft.city;
+  if (draft.region) $('#regionInput').value = draft.region;
 }
 
-/* ────────────────────────────────────────────────────────────────────────
-   Boot
-   ──────────────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   BOOT
+   ══════════════════════════════════════════════════════════════════════════ */
 (async function boot() {
   try {
     const ok = await guard();
@@ -1519,21 +1916,20 @@ function prefillFromProfile() {
     loadDraft();
     prefillFromProfile();
 
-    // Load niches from DB
     const { data: niches, error } = await supabase.rpc('list_niches');
     if (error) throw error;
-    NICHES = niches || [];
+    NICHES = (niches || []).map(n => ({
+      slug: n.slug, label: n.label, family: n.family,
+      is_custom: n.is_custom === true
+    }));
 
     if (!NICHES.length) {
-      showError(
-        'No niches in the database',
-        `<p>The <code>niches</code> reference table is empty. Run <code>timcrenet_onboarding.sql</code> in Supabase to seed it.</p>`,
-        `<button class="btn" onclick="location.reload()">Reload</button>`
-      );
+      showError('No niches in the database',
+        `<p>The <code>niches</code> table is empty. Run <code>timcrenet_onboarding.sql</code> in Supabase to seed it.</p>`,
+        `<button class="btn" onclick="location.reload()">Reload</button>`);
       return;
     }
 
-    // Render everything
     renderNiches();
     renderStruggles();
     renderAdvantages();
@@ -1544,20 +1940,15 @@ function prefillFromProfile() {
     $('#obShell').style.display = '';
   } catch (err) {
     console.error('[TIMCRENET onboarding boot]', err);
-    showError(
-      'Could not start onboarding',
-      `<p>${escapeHTML(err?.message || String(err))}</p>
-       <p>Check the browser console for full details. The most common cause is that one of the SQL files hasn’t been run in Supabase yet.</p>`,
+    showError('Could not start onboarding',
+      `<p>${esc(err?.message || String(err))}</p>
+       <p>Check the browser console for full details.</p>`,
       `<button class="btn" onclick="location.reload()">Reload</button>
-       <button class="btn" onclick="signOut()">Sign out</button>`
-    );
+       <button class="btn" onclick="signOut()">Sign out</button>`);
   }
 })();
 
-/* ────────────────────────────────────────────────────────────────────────
-   Session watcher
-   ──────────────────────────────────────────────────────────────────────── */
-supabase.auth.onAuthStateChange((event) => {
+supabase.auth.onAuthStateChange(event => {
   if (event === 'SIGNED_OUT') location.replace(SIGNIN_URL);
 });
 </script>
