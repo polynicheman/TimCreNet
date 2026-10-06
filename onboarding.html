@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0F" id="metaThemeColor" />
+<title>Set up your profile — TIMCRENET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOKENS
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
+  --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
+  --text:#F0F1F5; --text-2:#9698A6; --text-3:#5D5F70;
+  --primary:#FF6B3D; --primary-soft:rgba(255,107,61,.14); --primary-glow:rgba(255,107,61,.4);
+  --accent:#7C6BFF; --accent-soft:rgba(124,107,255,.14);
+  --success:#3DD68C; --success-soft:rgba(61,214,140,.13);
+  --warning:#FFB547; --warning-soft:rgba(255,181,71,.13);
+  --danger:#FF5A6E; --danger-soft:rgba(255,90,110,.13);
+  --radius-sm:10px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-full:999px;
+  --shadow-sm:0 4px 14px -8px rgba(0,0,0,.6);
+  --shadow-md:0 12px 32px -16px rgba(0,0,0,.7);
+  --shadow-lg:0 24px 60px -28px rgba(0,0,0,.9);
+  --grad-primary:linear-gradient(135deg,#FF6B3D 0%,#FF8F5C 40%,#FFB347 100%);
+  --grad-warm:linear-gradient(135deg,#FF6B3D 0%,#FF4D8F 100%);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#FAF9F7; --bg-elev:#FFFFFF; --surface:#FFFFFF; --surface-2:#F5F3F0; --surface-3:#EDEAE5;
+  --border:rgba(20,15,10,.08); --border-strong:rgba(20,15,10,.15);
+  --text:#0F0F12; --text-2:#5B5A66; --text-3:#8E8C99;
+  --primary:#E5552A; --primary-soft:rgba(229,85,42,.1); --primary-glow:rgba(229,85,42,.3);
+  --accent:#6A54F0; --accent-soft:rgba(106,84,240,.1);
+  --success:#119F68; --success-soft:rgba(17,159,104,.11);
+  --warning:#C28A0E; --warning-soft:rgba(194,138,14,.12);
+  --danger:#DC2F45; --danger-soft:rgba(220,47,69,.1);
+  --shadow-sm:0 4px 14px -8px rgba(30,20,10,.15);
+  --shadow-md:0 12px 32px -16px rgba(30,20,10,.18);
+  --shadow-lg:0 24px 60px -28px rgba(30,20,10,.22);
+  --grad-primary:linear-gradient(135deg,#E5552A 0%,#F0703F 40%,#D18B1F 100%);
+  --grad-warm:linear-gradient(135deg,#E5552A 0%,#D93D7A 100%);
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size:15px; line-height:1.5; letter-spacing:-.005em;
+  transition:background .3s ease,color .3s ease;
+  overscroll-behavior:none;
+}
+button,input,textarea,select{font:inherit;color:inherit;background:none;border:none;outline:none}
+button{cursor:pointer;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+::selection{background:var(--primary);color:#fff}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;
+  border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:var(--text-3);background-clip:content-box;border:3px solid transparent}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SHELL
+   ═══════════════════════════════════════════════════════════════════════════ */
+.ob-shell{
+  min-height:100dvh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  background:
+    radial-gradient(900px 520px at 15% -10%, var(--primary-soft), transparent 62%),
+    radial-gradient(760px 480px at 95% 108%, var(--accent-soft), transparent 60%),
+    var(--bg);
+}
+
+/* ─────────────── HEADER ─────────────── */
+.ob-head{
+  flex:none; position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(20px) saturate(1.3);
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border-bottom:1px solid var(--border);
+  padding:16px 28px;
+  display:flex; align-items:center; gap:20px;
+}
+.ob-brand{display:flex; align-items:center; gap:11px; flex:none}
+.ob-brand-mark{
+  width:38px; height:38px; border-radius:12px; flex:none;
+  background:var(--grad-primary); display:grid; place-items:center;
+  box-shadow:0 12px 28px -12px var(--primary-glow); position:relative;
+}
+.ob-brand-mark::after{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);
+  mix-blend-mode:overlay;
+}
+.ob-brand-mark svg{width:22px; height:22px; position:relative; z-index:1}
+.ob-brand-mark svg *{stroke:#fff; stroke-width:1.8; fill:none; stroke-linecap:round}
+.ob-brand-mark svg .node{fill:#fff; stroke:none}
+.ob-brand-name{
+  font-size:15.5px; font-weight:800; letter-spacing:1.1px;
+}
+.ob-progress-wrap{
+  flex:1; display:flex; flex-direction:column; gap:6px;
+  min-width:0; max-width:480px; margin:0 auto;
+}
+.ob-progress-meta{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:11.5px; font-weight:700; letter-spacing:.05em;
+}
+.ob-progress-meta .step-num{color:var(--text-2); text-transform:uppercase; letter-spacing:.1em}
+.ob-progress-meta .step-name{color:var(--text-3); text-transform:uppercase; letter-spacing:.1em}
+.ob-progress-bar{
+  height:5px; background:var(--surface-3); border-radius:20px; overflow:hidden;
+}
+.ob-progress-bar i{
+  display:block; height:100%; width:25%; border-radius:20px;
+  background:var(--grad-primary);
+  transition:width .5s cubic-bezier(.2,.8,.2,1);
+}
+.ob-head-actions{display:flex; gap:8px; flex:none}
+.icon-btn{
+  width:42px;height:42px;border-radius:12px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--border); background:var(--surface);
+  color:var(--text-2); overflow:hidden; position:relative;
+  transition:background .16s,color .16s,border-color .16s,transform .16s;
+}
+.icon-btn:hover{background:var(--surface-2); color:var(--text); border-color:var(--border-strong)}
+.icon-btn:active{transform:scale(.94)}
+.icon-btn svg{
+  width:19px;height:19px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  position:absolute;
+  transition:transform .5s cubic-bezier(.4,0,.2,1), opacity .3s;
+}
+#themeBtn .icon-sun{transform:rotate(0) scale(1);opacity:0}
+#themeBtn .icon-moon{transform:rotate(0) scale(1);opacity:1}
+[data-theme="light"] #themeBtn .icon-sun{opacity:1;transform:rotate(360deg) scale(1)}
+[data-theme="light"] #themeBtn .icon-moon{opacity:0;transform:rotate(-180deg) scale(.5)}
+
+/* ─────────────── MAIN ─────────────── */
+.ob-main{
+  display:flex; justify-content:center; padding:44px 28px 32px;
+  overflow-y:auto;
+}
+.ob-inner{width:100%; max-width:720px}
+
+.step{display:none; animation:fadeUp .4s cubic-bezier(.4,0,.2,1)}
+.step.is-active{display:block}
+@keyframes fadeUp{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:none}}
+
+.step-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--primary); background:var(--primary-soft);
+  padding:6px 12px; border-radius:var(--radius-full);
+  margin-bottom:18px;
+}
+.step-eyebrow i{width:5px; height:5px; border-radius:50%; background:var(--primary)}
+
+.step h1{
+  font-size:clamp(26px,3.6vw,38px); font-weight:800;
+  letter-spacing:-1.2px; line-height:1.15; margin-bottom:12px;
+}
+.step .lede{
+  font-size:15.5px; color:var(--text-2); line-height:1.6;
+  max-width:560px; font-weight:500; margin-bottom:34px;
+}
+.step h2.section-title{
+  font-size:19px; font-weight:800; letter-spacing:-.5px;
+  margin-bottom:8px;
+}
+.step .section-lede{
+  font-size:14px; color:var(--text-2); line-height:1.55;
+  font-weight:500; margin-bottom:20px; max-width:560px;
+}
+
+/* ─── fields ─── */
+.field{margin-bottom:18px; max-width:420px}
+.field label{
+  display:block; font-size:12px; font-weight:700; color:var(--text-2);
+  margin-bottom:8px; letter-spacing:.02em;
+}
+.input-wrap{
+  position:relative; display:flex; align-items:center;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  transition:border-color .16s, box-shadow .16s;
+}
+.input-wrap:focus-within{
+  border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft);
+}
+.input-wrap.is-error{border-color:var(--danger); box-shadow:0 0 0 3px var(--danger-soft)}
+.input-wrap.is-ok{border-color:var(--success)}
+.input-wrap > svg{
+  width:18px; height:18px; margin-left:15px; flex:none; color:var(--text-3);
+  stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+}
+.input-wrap input{
+  flex:1; padding:14px 15px; font-size:14.5px; font-weight:500; min-width:0;
+}
+.input-wrap input::placeholder{color:var(--text-3)}
+
+/* ─── geo button ─── */
+.geo-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 16px; border-radius:var(--radius-md);
+  font-size:13.5px; font-weight:600;
+  border:1px solid var(--border); background:var(--surface); color:var(--text-2);
+  transition:all .16s; margin-top:6px;
+}
+.geo-btn:hover{border-color:var(--primary); color:var(--primary); background:var(--primary-soft)}
+.geo-btn:disabled{opacity:.55; cursor:wait}
+.geo-btn svg{width:16px;height:16px;stroke-width:2.2;flex:none}
+
+/* ─── chips ─── */
+.chip-grid{display:flex; flex-wrap:wrap; gap:9px}
+.chip{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:11px 16px; border-radius:var(--radius-full);
+  font-size:13.5px; font-weight:600; color:var(--text-2);
+  border:1px solid var(--border); background:var(--surface);
+  transition:all .16s; min-height:44px; text-align:left;
+}
+.chip:hover{border-color:var(--border-strong); color:var(--text)}
+.chip.is-on{background:var(--primary-soft); border-color:var(--primary); color:var(--primary)}
+.chip.is-on::before{
+  content:""; width:7px; height:7px; border-radius:50%; background:var(--primary); flex:none;
+}
+.chip .sev-tag{
+  font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
+  padding:3px 8px; border-radius:6px; margin-left:auto; flex:none;
+  display:none;
+}
+.chip[data-sev="1"] .sev-tag{display:inline-block; background:var(--success-soft); color:var(--success)}
+.chip[data-sev="2"] .sev-tag{display:inline-block; background:var(--warning-soft); color:var(--warning)}
+.chip[data-sev="3"] .sev-tag{display:inline-block; background:var(--danger-soft);  color:var(--danger)}
+.chip[data-sev="1"].is-on{background:rgba(61,214,140,.1); border-color:var(--success); color:var(--text)}
+.chip[data-sev="2"].is-on{background:rgba(255,181,71,.12); border-color:var(--warning); color:var(--text)}
+.chip[data-sev="3"].is-on{background:rgba(255,90,110,.12); border-color:var(--danger); color:var(--text)}
+.chip[data-sev="0"]::before{display:none}
+.chip[data-sev="1"]::before{background:var(--success)}
+.chip[data-sev="2"]::before{background:var(--warning)}
+.chip[data-sev="3"]::before{background:var(--danger)}
+
+/* ─── section grouping ─── */
+.family-label{
+  font-size:10.5px; font-weight:800; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--text-3);
+  margin:22px 0 12px; display:flex; align-items:center; gap:12px;
+}
+.family-label:first-child{margin-top:0}
+.family-label::after{content:""; flex:1; height:1px; background:var(--border)}
+
+.counter{
+  margin-top:16px; font-size:12.5px; color:var(--text-3);
+  font-weight:600; letter-spacing:.02em;
+}
+.counter b{color:var(--text); font-weight:800; font-variant-numeric:tabular-nums}
+.counter.warn b{color:var(--warning)}
+.counter.ok b{color:var(--success)}
+
+.hint-box{
+  margin-top:22px; padding:14px 16px; border-radius:var(--radius-md);
+  background:var(--surface-2); border:1px solid var(--border);
+  font-size:12.5px; color:var(--text-2); line-height:1.55; font-weight:500;
+  display:flex; gap:10px; align-items:flex-start;
+}
+.hint-box svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--text-3);stroke-width:2.2}
+.hint-box b{color:var(--text)}
+
+/* ─── inline message ─── */
+.form-msg{
+  display:none; align-items:flex-start; gap:10px;
+  padding:12px 14px; border-radius:var(--radius-md);
+  font-size:13px; font-weight:600; line-height:1.5;
+  margin:18px 0;
+}
+.form-msg.is-visible{display:flex}
+.form-msg svg{width:17px;height:17px;flex:none;margin-top:1px;stroke-width:2.2}
+.form-msg.err{background:var(--danger-soft); color:var(--danger)}
+.form-msg.ok{background:var(--success-soft); color:var(--success)}
+.form-msg.info{background:var(--accent-soft); color:var(--accent)}
+
+/* ─────────────── FOOTER ─────────────── */
+.ob-foot{
+  flex:none; position:sticky; bottom:0; z-index:20;
+  background:color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter:blur(20px) saturate(1.3);
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border-top:1px solid var(--border);
+  padding:16px 28px;
+  display:flex; align-items:center; gap:14px;
+}
+.btn{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:13px 20px; border-radius:var(--radius-md);
+  font-size:14px; font-weight:700; letter-spacing:-.1px;
+  border:1px solid var(--border); background:var(--surface); color:var(--text-2);
+  transition:all .16s; min-height:48px; white-space:nowrap;
+}
+.btn:hover{background:var(--surface-2); color:var(--text); border-color:var(--border-strong)}
+.btn:active{transform:scale(.985)}
+.btn:disabled{opacity:.5; cursor:not-allowed; transform:none}
+.btn svg{width:17px;height:17px;stroke-width:2.2;flex:none;stroke-linecap:round;stroke-linejoin:round}
+.btn-primary{
+  background:var(--grad-warm); border-color:transparent; color:#fff;
+  box-shadow:0 14px 30px -14px var(--primary-glow);
+}
+.btn-primary:hover{color:#fff; filter:brightness(1.06); background:var(--grad-warm)}
+.btn-ghost{background:transparent; border-color:transparent}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn.is-loading{pointer-events:none; color:transparent}
+.btn.is-loading::after{
+  content:""; position:absolute; width:17px;height:17px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.35); border-top-color:#fff;
+  animation:spin .7s linear infinite;
+}
+.btn.is-loading.btn-ghost::after, .btn.is-loading:not(.btn-primary)::after{
+  border-color:var(--border-strong); border-top-color:var(--text-2);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ob-foot .spacer{flex:1}
+.ob-foot .foot-hint{
+  font-size:12px; color:var(--text-3); font-weight:600;
+  letter-spacing:.02em; max-width:320px; line-height:1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPLETION OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+.done-overlay{
+  position:fixed; inset:0; z-index:200;
+  display:none; align-items:center; justify-content:center; padding:32px;
+  background:
+    radial-gradient(900px 500px at 50% 0%, var(--primary-soft), transparent 65%),
+    radial-gradient(700px 400px at 50% 100%, var(--accent-soft), transparent 65%),
+    var(--bg);
+  overflow-y:auto;
+}
+.done-overlay.is-open{display:flex}
+.done-card{
+  width:100%; max-width:560px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-xl); padding:44px 36px;
+  box-shadow:var(--shadow-lg);
+  animation:fadeUp .5s cubic-bezier(.4,0,.2,1);
+}
+.done-mark{
+  width:80px; height:80px; border-radius:26px; margin:0 auto 26px;
+  background:var(--grad-primary); display:grid; place-items:center;
+  box-shadow:0 22px 48px -16px var(--primary-glow); position:relative;
+}
+.done-mark::after{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);
+  mix-blend-mode:overlay;
+}
+.done-mark svg{
+  width:42px; height:42px; stroke:#fff; stroke-width:2.6; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; position:relative; z-index:1;
+}
+.done-mark svg path{
+  stroke-dasharray:30; stroke-dashoffset:30;
+  animation:drawCheck .55s .15s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+.done-card h1{
+  font-size:26px; font-weight:800; letter-spacing:-.9px;
+  text-align:center; margin-bottom:10px;
+}
+.done-card > p{
+  font-size:14.5px; color:var(--text-2); line-height:1.6;
+  font-weight:500; text-align:center; margin-bottom:30px;
+}
+.done-summary{
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:var(--radius-md); padding:20px; margin-bottom:26px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.done-row{display:flex; flex-direction:column; gap:8px}
+.done-row .k{
+  font-size:10.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--text-3);
+}
+.done-row .v{
+  font-size:13.5px; font-weight:600; color:var(--text); line-height:1.5;
+}
+.done-tags{display:flex; flex-wrap:wrap; gap:6px}
+.done-tag{
+  font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:8px;
+  background:var(--primary-soft); color:var(--primary);
+  border:1px solid transparent;
+}
+.done-tag.need{background:var(--danger-soft);  color:var(--danger)}
+.done-tag.give{background:var(--success-soft); color:var(--success)}
+.done-tag.time{background:var(--warning-soft); color:var(--warning)}
+.done-actions{display:flex; flex-direction:column; gap:10px}
+.btn.full{width:100%}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOASTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+.toast-root{
+  position:fixed; bottom:26px; left:50%; transform:translateX(-50%);
+  z-index:300; display:flex; flex-direction:column; gap:10px; align-items:center;
+  pointer-events:none; max-width:calc(100vw - 32px);
+}
+.toast{
+  background:var(--surface-3); border:1px solid var(--border-strong);
+  padding:12px 20px; border-radius:var(--radius-md);
+  font-size:13px; font-weight:600; box-shadow:var(--shadow-lg);
+  display:flex; align-items:center; gap:10px; white-space:nowrap;
+  animation:toastIn .32s cubic-bezier(.2,.9,.3,1.2);
+}
+.toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4}
+.toast.err svg{color:var(--danger)}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADING / ERROR / CONFIG
+   ═══════════════════════════════════════════════════════════════════════════ */
+.loading-screen{
+  position:fixed; inset:0; z-index:400;
+  display:none; align-items:center; justify-content:center; flex-direction:column; gap:18px;
+  background:var(--bg);
+}
+.loading-screen.is-open{display:flex}
+.loading-spinner{
+  width:36px;height:36px;border-radius:50%;
+  border:3px solid var(--surface-3); border-top-color:var(--primary);
+  animation:spin .8s linear infinite;
+}
+.loading-screen p{font-size:13.5px; color:var(--text-3); font-weight:600}
+
+.error-screen{
+  position:fixed; inset:0; z-index:400;
+  display:none; align-items:center; justify-content:center; padding:32px;
+  background:var(--bg);
+}
+.error-screen.is-open{display:flex}
+.error-card{
+  max-width:560px; background:var(--surface); border:1px solid var(--danger);
+  border-radius:var(--radius-lg); padding:32px;
+}
+.error-card h2{font-size:19px; font-weight:800; color:var(--danger); margin-bottom:14px}
+.error-card p{font-size:13.5px; color:var(--text-2); line-height:1.65; margin-bottom:14px}
+.error-card code{
+  display:inline-block; background:var(--surface-2); border:1px solid var(--border);
+  padding:3px 8px; border-radius:6px; font-size:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.error-card .btn{margin-top:8px; margin-right:8px}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width:820px){
+  .ob-head{padding:14px 18px; gap:12px}
+  .ob-brand-name{display:none}
+  .ob-progress-meta .step-name{display:none}
+  .ob-main{padding:28px 18px 24px}
+  .ob-foot{padding:14px 18px; flex-wrap:wrap}
+  .ob-foot .foot-hint{display:none}
+  .ob-foot .spacer{display:none}
+  .ob-foot .btn{flex:1; min-width:0}
+  .step h1{font-size:24px}
+  .step .lede{font-size:14.5px; margin-bottom:26px}
+  .done-card{padding:34px 24px}
+  .done-card h1{font-size:22px}
+}
+@media (max-width:480px){
+  .chip{padding:10px 14px; font-size:13px; min-height:42px}
+  .family-label{font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     LOADING + ERROR
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-spinner"></div>
+  <p id="loadingMsg">Loading your setup…</p>
+</div>
+
+<div class="error-screen" id="errorScreen">
+  <div class="error-card">
+    <h2 id="errorTitle">Something went wrong</h2>
+    <p id="errorBody"></p>
+    <div id="errorActions"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     ONBOARDING SHELL
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="ob-shell" id="obShell" style="display:none">
+
+  <!-- ───────── HEADER ───────── -->
+  <header class="ob-head">
+    <div class="ob-brand">
+      <div class="ob-brand-mark">
+        <svg viewBox="0 0 32 32">
+          <circle class="node" cx="16" cy="16" r="3.6"/>
+          <circle cx="7"  cy="7.5" r="2.4"/><circle cx="25" cy="7.5" r="2.4"/>
+          <circle cx="7"  cy="24.5" r="2.4"/><circle cx="25" cy="24.5" r="2.4"/>
+          <path d="M8.9 9.1 13.2 13.5M23.1 9.1 18.8 13.5M8.9 22.9 13.2 18.5M23.1 22.9 18.8 18.5"/>
+        </svg>
+      </div>
+      <div class="ob-brand-name">TIMCRENET</div>
+    </div>
+
+    <div class="ob-progress-wrap">
+      <div class="ob-progress-meta">
+        <span class="step-num" id="progressNum">Step 1 of 4</span>
+        <span class="step-name" id="progressName">Location</span>
+      </div>
+      <div class="ob-progress-bar"><i id="progressFill"></i></div>
+    </div>
+
+    <div class="ob-head-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      </button>
+      <button class="icon-btn" id="signOutBtn" aria-label="Sign out" title="Sign out">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ───────── MAIN ───────── -->
+  <main class="ob-main">
+    <div class="ob-inner">
+
+      <!-- ══════════ STEP 1 · LOCATION ══════════ -->
+      <section class="step is-active" data-step="0">
+        <span class="step-eyebrow"><i></i>Step 1 · Location</span>
+        <h1>Where are you creating from?</h1>
+        <p class="lede">
+          Your city is used for distance scoring only. Nobody ever sees your
+          address — just <b>“2.1 km away”</b> on their feed.
+        </p>
+
+        <div class="field">
+          <label for="cityInput">City</label>
+          <div class="input-wrap" id="cityWrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <input id="cityInput" type="text" placeholder="Austin" autocomplete="address-level2" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="regionInput">State / Region <span style="color:var(--text-3);font-weight:500">— optional</span></label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            <input id="regionInput" type="text" placeholder="Texas" autocomplete="address-level1" />
+          </div>
+        </div>
+
+        <button class="geo-btn" id="geoBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          Use my current location
+        </button>
+
+        <div class="form-msg" id="step1Msg" role="status" aria-live="polite"></div>
+
+        <div class="hint-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+          <span>Only your city name and a distance in km are ever shared. Exact coordinates stay on the server and are used purely to compute proximity scores.</span>
+        </div>
+      </section>
+
+      <!-- ══════════ STEP 2 · NICHES ══════════ -->
+      <section class="step" data-step="1">
+        <span class="step-eyebrow"><i></i>Step 2 · Niches</span>
+        <h1>What do you make?</h1>
+        <p class="lede">
+          Pick up to <b>four</b>. Adjacent niches still score well — you don’t
+          have to be an exact twin to be a great match.
+        </p>
+
+        <div id="nicheGrid"></div>
+
+        <div class="counter" id="nicheCounter">Selected: <b>0</b> / 4</div>
+
+        <div class="form-msg" id="step2Msg" role="status" aria-live="polite"></div>
+      </section>
+
+      <!-- ══════════ STEP 3 · STRUGGLES ══════════ -->
+      <section class="step" data-step="2">
+        <span class="step-eyebrow"><i></i>Step 3 · Struggles</span>
+        <h1>What’s holding you back?</h1>
+        <p class="lede">
+          Tap once for <b>mild</b>, twice for <b>real</b>, three times for
+          <b>blocking</b>. Tap a fourth time to clear. This is exactly what the
+          matcher hunts for.
+        </p>
+
+        <div id="struggleGrid"></div>
+
+        <div class="counter" id="struggleCounter">Selected: <b>0</b></div>
+
+        <div class="form-msg" id="step3Msg" role="status" aria-live="polite"></div>
+
+        <div class="hint-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+          <span>Be honest — a <b>blocking</b> need (severity 3) carries three times the weight of a mild one when we score your fit against other creators.</span>
+        </div>
+      </section>
+
+      <!-- ══════════ STEP 4 · ADVANTAGES + TIME ══════════ -->
+      <section class="step" data-step="3">
+        <span class="step-eyebrow"><i></i>Step 4 · What you bring</span>
+        <h1>What can you offer?</h1>
+        <p class="lede">
+          Gear, space, skills, or just reliability. Someone within a few
+          kilometres needs exactly this.
+        </p>
+
+        <div id="advantageGrid"></div>
+
+        <div class="counter" id="advantageCounter">Selected: <b>0</b></div>
+
+        <h2 class="section-title" style="margin-top:44px">When can you meet?</h2>
+        <p class="section-lede">
+          Matches that share at least one time window score noticeably higher.
+        </p>
+        <div class="chip-grid" id="availabilityGrid"></div>
+
+        <div class="counter" id="availCounter">Selected: <b>0</b></div>
+
+        <div class="form-msg" id="step4Msg" role="status" aria-live="polite"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer class="ob-foot">
+    <button class="btn" id="backBtn" style="visibility:hidden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg>
+      Back
+    </button>
+    <div class="spacer"></div>
+    <div class="foot-hint" id="footHint">
+      Your progress saves automatically. You can close this tab and come back.
+    </div>
+    <button class="btn btn-primary" id="nextBtn">
+      <span id="nextLabel">Continue</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     COMPLETION OVERLAY
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="done-overlay" id="doneOverlay" aria-hidden="true">
+  <div class="done-card">
+    <div class="done-mark">
+      <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1 id="doneTitle">You’re all set</h1>
+    <p id="doneSub">Your TIMCRENET profile is live. The matcher is already scoring your neighbourhood.</p>
+    <div class="done-summary" id="doneSummary"></div>
+    <div class="done-actions">
+      <button class="btn btn-primary full" id="doneContinue">
+        Continue to TIMCRENET
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-root" id="toastRoot"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SCRIPT
+     ═══════════════════════════════════════════════════════════════════════════ -->
+<script type="module">
+/* ╔═══════════════════════════════════════════════════════════════════════╗
+   ║  TIMCRENET · onboarding.html                                            ║
+   ╚═══════════════════════════════════════════════════════════════════════╝ */
+
+/* ────────────────────────────────────────────────────────────────────────
+   Supabase credentials — must match index.html
+   ──────────────────────────────────────────────────────────────────────── */
+const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
+
+/* Where to send the user after onboarding finishes. */
+const APP_URL       = 'app.html';
+const SIGNIN_URL    = 'index.html';
+
+/* ────────────────────────────────────────────────────────────────────────
+   Import client
+   ──────────────────────────────────────────────────────────────────────── */
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+
+const supabase = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storageKey: 'timcrenet.auth'
+  },
+  global: { headers: { 'x-application-name': 'timcrenet-web' } }
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Helpers
+   ──────────────────────────────────────────────────────────────────────── */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const DRAFT_KEY = 'timcrenet.onboarding.draft';
+
+/* ────────────────────────────────────────────────────────────────────────
+   Theme
+   ──────────────────────────────────────────────────────────────────────── */
+(function initTheme() {
+  const saved = localStorage.getItem('timcrenet-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const theme = saved || (prefersLight ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', theme);
+  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
+})();
+
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Screens
+   ──────────────────────────────────────────────────────────────────────── */
+function showLoading(msg = 'Loading your setup…') {
+  $('#loadingMsg').textContent = msg;
+  $('#loadingScreen').classList.add('is-open');
+}
+function hideLoading() { $('#loadingScreen').classList.remove('is-open'); }
+
+function showError(title, bodyHTML, actionsHTML = '') {
+  hideLoading();
+  $('#errorTitle').textContent = title;
+  $('#errorBody').innerHTML = bodyHTML;
+  $('#errorActions').innerHTML = actionsHTML;
+  $('#errorScreen').classList.add('is-open');
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Toasts
+   ──────────────────────────────────────────────────────────────────────── */
+function toast(text, kind = 'ok') {
+  const el = document.createElement('div');
+  el.className = 'toast' + (kind === 'err' ? ' err' : '');
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
+    kind === 'err'
+      ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
+      : '<path d="M20 6 9 17l-5-5"/>'
+  }</svg><span>${text}</span>`;
+  $('#toastRoot').appendChild(el);
+  setTimeout(() => {
+    el.style.transition = 'opacity .3s, transform .3s';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    setTimeout(() => el.remove(), 320);
+  }, 2800);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Static catalogs
+   ──────────────────────────────────────────────────────────────────────── */
+const STRUGGLE_LIBRARY = [
+  { label:'No camera body',                 category:'equipment',  severity:3 },
+  { label:'No lighting kit',                category:'equipment',  severity:3 },
+  { label:'No microphone',                  category:'equipment',  severity:2 },
+  { label:'No editing computer',            category:'equipment',  severity:3 },
+  { label:'No editing software',            category:'equipment',  severity:2 },
+  { label:'No dedicated shooting space',    category:'space',      severity:3 },
+  { label:'No natural light',               category:'space',      severity:2 },
+  { label:'Bad room acoustics',             category:'space',      severity:2 },
+  { label:'Weak thumbnail design',          category:'skill',      severity:2 },
+  { label:'Cannot edit video',              category:'skill',      severity:3 },
+  { label:'Weak SEO / titles',              category:'skill',      severity:2 },
+  { label:'No colour grading skill',        category:'skill',      severity:2 },
+  { label:'Inconsistent upload schedule',   category:'time',       severity:2 },
+  { label:'Full-time job limits shoots',    category:'time',       severity:3 },
+  { label:'No time to edit',                category:'time',       severity:3 },
+  { label:'Fear of being on camera',        category:'confidence', severity:3 },
+  { label:'Perfectionism paralysis',        category:'confidence', severity:2 },
+  { label:'Cannot get started at all',      category:'knowledge',  severity:3 },
+  { label:'No idea what to film',           category:'knowledge',  severity:3 },
+  { label:'Content research takes forever', category:'knowledge',  severity:2 }
+];
+
+const ADVANTAGE_LIBRARY = [
+  { label:'Camera package',               category:'equipment' },
+  { label:'Lens collection',              category:'equipment' },
+  { label:'Lighting kit',                 category:'equipment' },
+  { label:'Full audio kit',               category:'equipment' },
+  { label:'Editing computer',             category:'equipment' },
+  { label:'Drone kit',                    category:'equipment' },
+  { label:'Gimbal / stabilizer',          category:'equipment' },
+  { label:'Dedicated studio room',        category:'space' },
+  { label:'Acoustic treatment',           category:'space' },
+  { label:'Large bright room',            category:'space' },
+  { label:'Quiet apartment',              category:'space' },
+  { label:'Premiere Pro editing',         category:'skill' },
+  { label:'DaVinci colour grading',       category:'skill' },
+  { label:'Motion graphics',              category:'skill' },
+  { label:'Thumbnail design',             category:'skill' },
+  { label:'YouTube SEO',                  category:'skill' },
+  { label:'Scriptwriting',                category:'skill' },
+  { label:'Interview hosting',            category:'skill' },
+  { label:'Product photography',          category:'skill' },
+  { label:'On-camera confidence',         category:'skill' },
+  { label:'Deep topic research',          category:'knowledge' },
+  { label:'Analytics & retention',        category:'knowledge' },
+  { label:'Reliable & punctual',          category:'attitude' },
+  { label:'Comfortable taking direction', category:'attitude' },
+  { label:'Fast learner',                 category:'attitude' },
+  { label:'Strong work ethic',            category:'attitude' }
+];
+
+const AVAILABILITY_SLOTS = [
+  { key:'weekday_morning',   label:'Weekday mornings' },
+  { key:'weekday_afternoon', label:'Weekday afternoons' },
+  { key:'weekday_evening',   label:'Weekday evenings' },
+  { key:'weekend_morning',   label:'Weekend mornings' },
+  { key:'weekend_afternoon', label:'Weekend afternoons' },
+  { key:'weekend_evening',   label:'Weekend evenings' }
+];
+
+const STRUGGLE_GROUPS = [
+  ['equipment', 'Equipment'],
+  ['space',     'Space'],
+  ['skill',     'Skills'],
+  ['time',      'Time'],
+  ['confidence','Confidence'],
+  ['knowledge', 'Knowledge']
+];
+
+const ADVANTAGE_GROUPS = [
+  ['equipment', 'Equipment'],
+  ['space',     'Space'],
+  ['skill',     'Skills'],
+  ['knowledge', 'Knowledge'],
+  ['attitude',  'Attitude & mindset']
+];
+
+/* ────────────────────────────────────────────────────────────────────────
+   Draft state
+   ──────────────────────────────────────────────────────────────────────── */
+const draft = {
+  city: '',
+  region: '',
+  country: 'United States',
+  lat: null,
+  lng: null,
+  nicheSlugs: new Set(),
+  struggles: new Map(),   // label → { label, category, severity }
+  advantages: new Map(),  // label → { label, category, strength }
+  availability: new Set()
+};
+
+function saveDraft() {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({
+      city: draft.city,
+      region: draft.region,
+      country: draft.country,
+      lat: draft.lat,
+      lng: draft.lng,
+      nicheSlugs: [...draft.nicheSlugs],
+      struggles: [...draft.struggles.values()],
+      advantages: [...draft.advantages.values()],
+      availability: [...draft.availability]
+    }));
+  } catch (e) { /* quota exceeded — silent */ }
+}
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    draft.city = d.city || '';
+    draft.region = d.region || '';
+    draft.country = d.country || 'United States';
+    draft.lat = d.lat ?? null;
+    draft.lng = d.lng ?? null;
+    (d.nicheSlugs || []).forEach(s => draft.nicheSlugs.add(s));
+    (d.struggles || []).forEach(s => draft.struggles.set(s.label, s));
+    (d.advantages || []).forEach(a => draft.advantages.set(a.label, a));
+    (d.availability || []).forEach(s => draft.availability.add(s));
+  } catch (e) { /* ignore malformed draft */ }
+}
+
+function clearDraft() {
+  try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Session + profile guard
+   ──────────────────────────────────────────────────────────────────────── */
+let currentUser   = null;
+let currentProfile = null;
+let NICHES = [];
+
+async function guard() {
+  showLoading();
+
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    location.replace(SIGNIN_URL);
+    return false;
+  }
+  currentUser = session.user;
+
+  const { data: profile, error } = await supabase
+    .from('profiles')
+    .select('id, handle, display_name, onboarded_at, city, region, lat, lng')
+    .eq('id', session.user.id)
+    .maybeSingle();
+
+  if (error) {
+    showError(
+      'Could not load your profile',
+      `<p>${escapeHTML(error.message)}</p>
+       <p>This usually means the <code>timcrenet_auth.sql</code> file hasn't been run in your Supabase project yet, or the database is temporarily unreachable.</p>`,
+      `<button class="btn" onclick="location.reload()">Try again</button>
+       <button class="btn" onclick="signOut()">Sign out</button>`
+    );
+    return false;
+  }
+
+  if (!profile) {
+    showError(
+      'Your profile row is missing',
+      `<p>We signed you in, but the row that stores your profile wasn't created. This usually means the <code>handle_new_user</code> trigger in <code>timcrenet_auth.sql</code> didn't fire.</p>
+       <p>Sign out and sign in again — the trigger will create it on next signup. If it still fails, re-run <code>timcrenet_auth.sql</code>.</p>`,
+      `<button class="btn" onclick="signOut()">Sign out</button>`
+    );
+    return false;
+  }
+
+  currentProfile = profile;
+
+  // Already onboarded → skip straight to the app.
+  if (profile.onboarded_at) {
+    location.replace(APP_URL);
+    return false;
+  }
+
+  return true;
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+window.signOut = async function () {
+  await supabase.auth.signOut();
+  location.replace(SIGNIN_URL);
+};
+
+$('#signOutBtn').addEventListener('click', () => window.signOut());
+
+/* ────────────────────────────────────────────────────────────────────────
+   Render helpers
+   ──────────────────────────────────────────────────────────────────────── */
+function renderNiches() {
+  const families = [...new Set(NICHES.map(n => n.family))];
+  $('#nicheGrid').innerHTML = families.map(fam => `
+    <div class="family-label">${escapeHTML(fam)}</div>
+    <div class="chip-grid">
+      ${NICHES.filter(n => n.family === fam).map(n => `
+        <button type="button" class="chip ${draft.nicheSlugs.has(n.slug) ? 'is-on' : ''}"
+                data-niche="${escapeHTML(n.slug)}">${escapeHTML(n.label)}</button>
+      `).join('')}
+    </div>
+  `).join('');
+  updateNicheCounter();
+}
+
+function renderStruggles() {
+  $('#struggleGrid').innerHTML = STRUGGLE_GROUPS.map(([key, label]) => {
+    const items = STRUGGLE_LIBRARY.filter(s => s.category === key);
+    if (!items.length) return '';
+    return `
+      <div class="family-label">${label}</div>
+      <div class="chip-grid">
+        ${items.map(s => {
+          const stored = draft.struggles.get(s.label);
+          const sev = stored ? stored.severity : 0;
+          return `
+            <button type="button" class="chip ${sev ? 'is-on' : ''}"
+                    data-struggle="${escapeHTML(s.label)}"
+                    data-category="${s.category}"
+                    data-sev="${sev}">
+              ${escapeHTML(s.label)}
+              <span class="sev-tag">${sevLabel(sev)}</span>
+            </button>
+          `;
+        }).join('')}
+      </div>`;
+  }).join('');
+  updateStruggleCounter();
+}
+
+function renderAdvantages() {
+  $('#advantageGrid').innerHTML = ADVANTAGE_GROUPS.map(([key, label]) => {
+    const items = ADVANTAGE_LIBRARY.filter(a => a.category === key);
+    if (!items.length) return '';
+    return `
+      <div class="family-label">${label}</div>
+      <div class="chip-grid">
+        ${items.map(a => `
+          <button type="button" class="chip ${draft.advantages.has(a.label) ? 'is-on' : ''}"
+                  data-advantage="${escapeHTML(a.label)}"
+                  data-category="${a.category}">${escapeHTML(a.label)}</button>
+        `).join('')}
+      </div>`;
+  }).join('');
+  updateAdvantageCounter();
+}
+
+function renderAvailability() {
+  $('#availabilityGrid').innerHTML = AVAILABILITY_SLOTS.map(s => `
+    <button type="button" class="chip ${draft.availability.has(s.key) ? 'is-on' : ''}"
+            data-slot="${s.key}">${escapeHTML(s.label)}</button>
+  `).join('');
+  updateAvailCounter();
+}
+
+function sevLabel(n) {
+  return n === 1 ? 'Mild' : n === 2 ? 'Real' : n === 3 ? 'Blocking' : '';
+}
+
+function updateNicheCounter() {
+  const el = $('#nicheCounter');
+  const n = draft.nicheSlugs.size;
+  el.innerHTML = `Selected: <b>${n}</b> / 4`;
+  el.className = 'counter' + (n >= 4 ? ' ok' : '');
+}
+function updateStruggleCounter() {
+  const el = $('#struggleCounter');
+  const n = draft.struggles.size;
+  el.innerHTML = `Selected: <b>${n}</b>`;
+  el.className = 'counter' + (n > 0 ? ' ok' : '');
+}
+function updateAdvantageCounter() {
+  const el = $('#advantageCounter');
+  const n = draft.advantages.size;
+  el.innerHTML = `Selected: <b>${n}</b>`;
+  el.className = 'counter' + (n > 0 ? ' ok' : '');
+}
+function updateAvailCounter() {
+  const el = $('#availCounter');
+  const n = draft.availability.size;
+  el.innerHTML = `Selected: <b>${n}</b>`;
+  el.className = 'counter' + (n > 0 ? ' ok' : '');
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Step navigation
+   ──────────────────────────────────────────────────────────────────────── */
+const STEPS = ['Location', 'Niches', 'Struggles', 'What you bring'];
+let step = 0;
+
+function setStep(next) {
+  step = Math.max(0, Math.min(3, next));
+  $$('.step').forEach(s => s.classList.toggle('is-active', +s.dataset.step === step));
+
+  const pct = ((step + 1) / 4) * 100;
+  $('#progressFill').style.width = pct + '%';
+  $('#progressNum').textContent = `Step ${step + 1} of 4`;
+  $('#progressName').textContent = STEPS[step];
+
+  $('#backBtn').style.visibility = step === 0 ? 'hidden' : 'visible';
+
+  const labels = ['Continue', 'Continue', 'Continue', 'Finish'];
+  $('#nextLabel').textContent = labels[step];
+
+  const hints = [
+    'Your progress saves automatically. You can close this tab and come back.',
+    'Pick between 1 and 4 niches.',
+    'At least one struggle helps the matcher find the right partner.',
+    'At least one thing you bring, and one time window.'
+  ];
+  $('#footHint').textContent = hints[step];
+
+  document.querySelector('.ob-main').scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelector('.ob-main').scrollTop = 0;
+  window.scrollTo({ top: 0 });
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Inline messages
+   ──────────────────────────────────────────────────────────────────────── */
+function showStepMsg(id, text, kind = 'err') {
+  const el = $('#' + id);
+  el.className = `form-msg is-visible ${kind}`;
+  const icon = kind === 'err'
+    ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
+    : kind === 'ok'
+      ? '<path d="M20 6 9 17l-5-5"/>'
+      : '<circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/>';
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${icon}</svg><span>${text}</span>`;
+}
+function clearStepMsg(id) {
+  const el = $('#' + id);
+  if (!el) return;
+  el.className = 'form-msg';
+  el.innerHTML = '';
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Interaction — niches
+   ──────────────────────────────────────────────────────────────────────── */
+$('#nicheGrid').addEventListener('click', e => {
+  const chip = e.target.closest('[data-niche]');
+  if (!chip) return;
+  const slug = chip.dataset.niche;
+  if (draft.nicheSlugs.has(slug)) {
+    draft.nicheSlugs.delete(slug);
+    chip.classList.remove('is-on');
+  } else {
+    if (draft.nicheSlugs.size >= 4) {
+      toast('Four niches max', 'err');
+      return;
+    }
+    draft.nicheSlugs.add(slug);
+    chip.classList.add('is-on');
+  }
+  updateNicheCounter();
+  saveDraft();
+  clearStepMsg('step2Msg');
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Interaction — struggles (tap cycles 0 → 1 → 2 → 3 → 0)
+   ──────────────────────────────────────────────────────────────────────── */
+$('#struggleGrid').addEventListener('click', e => {
+  const chip = e.target.closest('[data-struggle]');
+  if (!chip) return;
+  const label = chip.dataset.struggle;
+  const category = chip.dataset.category;
+  const current = +(chip.dataset.sev || 0);
+  const next = (current + 1) % 4;
+
+  chip.dataset.sev = next;
+  chip.classList.toggle('is-on', next > 0);
+  chip.querySelector('.sev-tag').textContent = sevLabel(next);
+
+  if (next === 0) draft.struggles.delete(label);
+  else draft.struggles.set(label, { label, category, severity: next });
+
+  updateStruggleCounter();
+  saveDraft();
+  clearStepMsg('step3Msg');
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Interaction — advantages
+   ──────────────────────────────────────────────────────────────────────── */
+$('#advantageGrid').addEventListener('click', e => {
+  const chip = e.target.closest('[data-advantage]');
+  if (!chip) return;
+  const label = chip.dataset.advantage;
+  const category = chip.dataset.category;
+  if (draft.advantages.has(label)) {
+    draft.advantages.delete(label);
+    chip.classList.remove('is-on');
+  } else {
+    if (draft.advantages.size >= 12) {
+      toast('Twelve is plenty', 'err');
+      return;
+    }
+    draft.advantages.set(label, { label, category, strength: 2 });
+    chip.classList.add('is-on');
+  }
+  updateAdvantageCounter();
+  saveDraft();
+  clearStepMsg('step4Msg');
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Interaction — availability
+   ──────────────────────────────────────────────────────────────────────── */
+$('#availabilityGrid').addEventListener('click', e => {
+  const chip = e.target.closest('[data-slot]');
+  if (!chip) return;
+  const slot = chip.dataset.slot;
+  if (draft.availability.has(slot)) {
+    draft.availability.delete(slot);
+    chip.classList.remove('is-on');
+  } else {
+    draft.availability.add(slot);
+    chip.classList.add('is-on');
+  }
+  updateAvailCounter();
+  saveDraft();
+  clearStepMsg('step4Msg');
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Geocoding
+   ──────────────────────────────────────────────────────────────────────── */
+async function geocodeCity(city, region) {
+  const q = [city, region, 'USA'].filter(Boolean).join(', ');
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error('Location service unreachable.');
+  const rows = await res.json();
+  if (!rows.length) {
+    throw new Error(`We couldn’t find “${city}”. Try adding the state — e.g. “Austin, Texas”.`);
+  }
+  return { lat: parseFloat(rows[0].lat), lng: parseFloat(rows[0].lon), displayName: rows[0].display_name };
+}
+
+async function reverseGeocode(lat, lng) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const a = data.address || {};
+  return {
+    city: a.city || a.town || a.village || a.hamlet || a.county || '',
+    region: a.state || a.region || '',
+    country: a.country || 'United States'
+  };
+}
+
+$('#geoBtn').addEventListener('click', () => {
+  if (!navigator.geolocation) {
+    return showStepMsg('step1Msg', 'Your browser doesn’t support location lookup.');
+  }
+  const btn = $('#geoBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Locating…`;
+  clearStepMsg('step1Msg');
+
+  navigator.geolocation.getCurrentPosition(
+    async pos => {
+      try {
+        const info = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
+        if (info) {
+          draft.lat = pos.coords.latitude;
+          draft.lng = pos.coords.longitude;
+          draft.city = info.city || draft.city;
+          draft.region = info.region || draft.region;
+          draft.country = info.country || 'United States';
+          $('#cityInput').value = draft.city;
+          $('#regionInput').value = draft.region;
+          $('#cityWrap').classList.add('is-ok');
+          saveDraft();
+          showStepMsg('step1Msg', `Located near ${escapeHTML(draft.city || 'you')}.`, 'ok');
+        } else {
+          showStepMsg('step1Msg', 'Found your position but couldn’t read the city name. Please type it.');
+        }
+      } catch (err) {
+        showStepMsg('step1Msg', err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+      }
+    },
+    err => {
+      btn.disabled = false;
+      btn.innerHTML = originalHTML;
+      const msgs = {
+        1: 'Location permission was denied. You can type your city instead.',
+        2: 'Your device couldn’t determine a location.',
+        3: 'Location lookup timed out. Try typing your city.'
+      };
+      showStepMsg('step1Msg', msgs[err.code] || 'Couldn’t get your location.');
+    },
+    { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 }
+  );
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Step validation + navigation
+   ──────────────────────────────────────────────────────────────────────── */
+async function validateStep1() {
+  const city = $('#cityInput').value.trim();
+  const region = $('#regionInput').value.trim();
+  if (!city) {
+    showStepMsg('step1Msg', 'We need a city to calculate distance.');
+    $('#cityWrap').classList.add('is-error');
+    return false;
+  }
+  $('#cityWrap').classList.remove('is-error');
+
+  const btn = $('#nextBtn');
+  const originalLabel = btn.innerHTML;
+  btn.classList.add('is-loading');
+  btn.disabled = true;
+
+  try {
+    const { lat, lng } = await geocodeCity(city, region);
+    draft.city = city;
+    draft.region = region;
+    draft.lat = lat;
+    draft.lng = lng;
+    saveDraft();
+    clearStepMsg('step1Msg');
+    return true;
+  } catch (err) {
+    showStepMsg('step1Msg', err.message);
+    return false;
+  } finally {
+    btn.classList.remove('is-loading');
+    btn.disabled = false;
+  }
+}
+
+function validateStep2() {
+  if (draft.nicheSlugs.size === 0) {
+    showStepMsg('step2Msg', 'Pick at least one niche.');
+    return false;
+  }
+  clearStepMsg('step2Msg');
+  return true;
+}
+
+function validateStep3() {
+  if (draft.struggles.size === 0) {
+    showStepMsg('step3Msg', 'Pick at least one struggle — honesty here is what makes matches work.');
+    return false;
+  }
+  clearStepMsg('step3Msg');
+  return true;
+}
+
+function validateStep4() {
+  if (draft.advantages.size === 0) {
+    showStepMsg('step4Msg', 'Pick at least one thing you can bring to a collaboration.');
+    return false;
+  }
+  if (draft.availability.size === 0) {
+    showStepMsg('step4Msg', 'Pick at least one time window when you can meet.');
+    return false;
+  }
+  clearStepMsg('step4Msg');
+  return true;
+}
+
+$('#backBtn').addEventListener('click', () => {
+  if (step > 0) setStep(step - 1);
+});
+
+$('#nextBtn').addEventListener('click', async () => {
+  if (step === 0) {
+    const ok = await validateStep1();
+    if (!ok) return;
+    setStep(1);
+    return;
+  }
+  if (step === 1) {
+    if (!validateStep2()) return;
+    setStep(2);
+    return;
+  }
+  if (step === 2) {
+    if (!validateStep3()) return;
+    setStep(3);
+    return;
+  }
+  if (step === 3) {
+    if (!validateStep4()) return;
+    await finishOnboarding();
+  }
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Finish — atomic RPC write, then completion overlay
+   ──────────────────────────────────────────────────────────────────────── */
+async function finishOnboarding() {
+  const btn = $('#nextBtn');
+  btn.classList.add('is-loading');
+  btn.disabled = true;
+
+  try {
+    const { error } = await supabase.rpc('finish_onboarding', {
+      p_city:         draft.city,
+      p_region:       draft.region,
+      p_country:      draft.country,
+      p_lat:          draft.lat,
+      p_lng:          draft.lng,
+      p_niche_slugs:  [...draft.nicheSlugs],
+      p_struggles:    [...draft.struggles.values()],
+      p_advantages:   [...draft.advantages.values()],
+      p_availability: [...draft.availability]
+    });
+
+    if (error) throw error;
+
+    clearDraft();
+    showCompletion();
+  } catch (err) {
+    console.error('[TIMCRENET] finish_onboarding failed:', err);
+    const msg = (err && err.message) || String(err);
+    let friendly = msg;
+    if (msg.includes('profile_missing'))
+      friendly = 'Your profile row is missing. Sign out and sign in again.';
+    else if (msg.includes('not_authenticated'))
+      friendly = 'Your session expired. Sign out and sign in again.';
+    else if (msg.includes('function') && msg.includes('does not exist'))
+      friendly = 'The finish_onboarding function is missing — run timcrenet_onboarding.sql in Supabase.';
+    showStepMsg('step4Msg', friendly);
+  } finally {
+    btn.classList.remove('is-loading');
+    btn.disabled = false;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Completion overlay
+   ──────────────────────────────────────────────────────────────────────── */
+function showCompletion() {
+  const nicheLabels = [...draft.nicheSlugs]
+    .map(slug => NICHES.find(n => n.slug === slug)?.label || slug)
+    .filter(Boolean);
+
+  const struggleLabels = [...draft.struggles.values()]
+    .sort((a,b) => b.severity - a.severity)
+    .slice(0, 4)
+    .map(s => s.label);
+
+  const advantageLabels = [...draft.advantages.values()]
+    .slice(0, 4)
+    .map(a => a.label);
+
+  const availLabels = [...draft.availability]
+    .map(k => AVAILABILITY_SLOTS.find(s => s.key === k)?.label || k);
+
+  const firstName = (currentProfile?.display_name || 'creator').split(' ')[0];
+
+  $('#doneTitle').textContent = `You’re in, ${firstName}.`;
+  $('#doneSub').textContent   = `Your profile is live and the matcher is already scoring creators around ${draft.city}.`;
+
+  $('#doneSummary').innerHTML = `
+    <div class="done-row">
+      <span class="k">Handle</span>
+      <span class="v">timcrenet/${escapeHTML(currentProfile?.handle || '')}</span>
+    </div>
+    <div class="done-row">
+      <span class="k">Location</span>
+      <span class="v">${escapeHTML(draft.city)}${draft.region ? ', ' + escapeHTML(draft.region) : ''}</span>
+    </div>
+    <div class="done-row">
+      <span class="k">Niches</span>
+      <div class="done-tags">${nicheLabels.map(n => `<span class="done-tag">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+    </div>
+    <div class="done-row">
+      <span class="k">You need</span>
+      <div class="done-tags">${struggleLabels.map(n => `<span class="done-tag need">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+    </div>
+    <div class="done-row">
+      <span class="k">You bring</span>
+      <div class="done-tags">${advantageLabels.map(n => `<span class="done-tag give">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+    </div>
+    <div class="done-row">
+      <span class="k">Free windows</span>
+      <div class="done-tags">${availLabels.map(n => `<span class="done-tag time">${escapeHTML(n)}</span>`).join('') || '<span class="v">—</span>'}</div>
+    </div>
+  `;
+
+  $('#doneOverlay').classList.add('is-open');
+  $('#doneOverlay').setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+$('#doneContinue').addEventListener('click', () => {
+  location.href = APP_URL;
+});
+
+/* ────────────────────────────────────────────────────────────────────────
+   Prefill from existing profile (if any)
+   ──────────────────────────────────────────────────────────────────────── */
+function prefillFromProfile() {
+  if (!currentProfile) return;
+  $('#cityInput').value   = currentProfile.city   || draft.city   || '';
+  $('#regionInput').value = currentProfile.region || draft.region || '';
+  if (currentProfile.lat != null) draft.lat = currentProfile.lat;
+  if (currentProfile.lng != null) draft.lng = currentProfile.lng;
+  if (currentProfile.city)   draft.city   = currentProfile.city;
+  if (currentProfile.region) draft.region = currentProfile.region;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   Boot
+   ──────────────────────────────────────────────────────────────────────── */
+(async function boot() {
+  try {
+    const ok = await guard();
+    if (!ok) return;
+
+    loadDraft();
+    prefillFromProfile();
+
+    // Load niches from DB
+    const { data: niches, error } = await supabase.rpc('list_niches');
+    if (error) throw error;
+    NICHES = niches || [];
+
+    if (!NICHES.length) {
+      showError(
+        'No niches in the database',
+        `<p>The <code>niches</code> reference table is empty. Run <code>timcrenet_onboarding.sql</code> in Supabase to seed it.</p>`,
+        `<button class="btn" onclick="location.reload()">Reload</button>`
+      );
+      return;
+    }
+
+    // Render everything
+    renderNiches();
+    renderStruggles();
+    renderAdvantages();
+    renderAvailability();
+    setStep(0);
+
+    hideLoading();
+    $('#obShell').style.display = '';
+  } catch (err) {
+    console.error('[TIMCRENET onboarding boot]', err);
+    showError(
+      'Could not start onboarding',
+      `<p>${escapeHTML(err?.message || String(err))}</p>
+       <p>Check the browser console for full details. The most common cause is that one of the SQL files hasn’t been run in Supabase yet.</p>`,
+      `<button class="btn" onclick="location.reload()">Reload</button>
+       <button class="btn" onclick="signOut()">Sign out</button>`
+    );
+  }
+})();
+
+/* ────────────────────────────────────────────────────────────────────────
+   Session watcher
+   ──────────────────────────────────────────────────────────────────────── */
+supabase.auth.onAuthStateChange((event) => {
+  if (event === 'SIGNED_OUT') location.replace(SIGNIN_URL);
+});
+</script>
+</body>
+</html>
