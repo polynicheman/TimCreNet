@@ -292,7 +292,6 @@ svg{display:block;max-width:100%}
 .card-actions{display:flex;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap}
 .card-actions .spacer{flex:1}
 
-/* ── POST CARD ─────────────────────────────────────────────────────────── */
 .post-card .card-body{gap:12px}
 .post-title{font-size:17px;font-weight:800;letter-spacing:-.4px;line-height:1.3;color:var(--text)}
 .post-body{
@@ -301,7 +300,6 @@ svg{display:block;max-width:100%}
 }
 .post-card .card-head{align-items:center}
 
-/* ── POSTS FILTER ──────────────────────────────────────────────────────── */
 .posts-filter{display:flex;gap:6px;flex-wrap:wrap}
 .posts-filter .chip{
   display:inline-flex;align-items:center;gap:6px;
@@ -313,7 +311,6 @@ svg{display:block;max-width:100%}
 .posts-filter .chip:hover{border-color:var(--border-strong);color:var(--text)}
 .posts-filter .chip.is-active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
 
-/* ── HERO ──────────────────────────────────────────────────────────────── */
 .hero{
   background:
     radial-gradient(900px 300px at 10% -40%, var(--primary-soft), transparent 65%),
@@ -396,7 +393,6 @@ svg{display:block;max-width:100%}
 .toggle.on::after{transform:translateX(20px);background:#fff}
 .range{accent-color:var(--primary);flex:1;min-width:0;max-width:180px}
 
-/* ── MESSAGES ── */
 .messages-layout{display:grid;grid-template-columns:320px 1fr;height:100%;overflow:hidden}
 .convo-sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg-elev);overflow:hidden}
 .convo-head{flex:none;padding:18px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:12px}
@@ -474,7 +470,6 @@ svg{display:block;max-width:100%}
 .empty-chat h3{font-size:16px;color:var(--text-2);font-weight:700;margin-bottom:6px}
 .empty-chat p{font-size:13px;max-width:320px;line-height:1.55}
 
-/* ── COLLABS ── */
 .collab-card{
   background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
   padding:20px;display:flex;flex-direction:column;gap:14px;
@@ -496,7 +491,6 @@ svg{display:block;max-width:100%}
 .avatar-stack .avatar{margin-left:-10px;border:2.5px solid var(--surface)}
 .avatar-stack .avatar:first-child{margin-left:0}
 
-/* ── NOTIFICATIONS ── */
 .notif{
   display:flex;gap:14px;padding:16px;border-radius:var(--radius-md);
   background:var(--surface);border:1px solid var(--border);margin-bottom:10px;
@@ -511,7 +505,6 @@ svg{display:block;max-width:100%}
 .notif .body b{font-weight:700}
 .notif .body time{font-size:11.5px;color:var(--text-3);display:block;margin-top:5px;font-weight:500}
 
-/* ── MAP ── */
 .map-shell{
   position:relative;border-radius:var(--radius-lg);overflow:hidden;
   border:1px solid var(--border);height:520px;background:#0D0E14;
@@ -560,7 +553,6 @@ svg{display:block;max-width:100%}
 .legend-row{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--text-2);font-weight:500}
 .legend-swatch{width:12px;height:12px;border-radius:4px;flex:none}
 
-/* ── SHEET ── */
 .sheet-backdrop{
   position:fixed;inset:0;background:rgba(4,5,10,.72);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
@@ -581,7 +573,6 @@ svg{display:block;max-width:100%}
 .sheet-foot{flex:none;padding:16px 22px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--surface);flex-wrap:wrap}
 .sheet-foot .btn{flex:1;min-width:0}
 
-/* ── USER LIST ── */
 .user-list{display:flex;flex-direction:column;gap:10px}
 .user-list .user-row{
   display:flex;align-items:center;gap:12px;
@@ -592,7 +583,6 @@ svg{display:block;max-width:100%}
 .user-list .user-row .info b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .user-list .user-row .info span{display:block;font-size:12px;color:var(--text-3);margin-top:2px;font-weight:500}
 
-/* ── TOAST ── */
 .toast-root{
   position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
   z-index:300;display:flex;flex-direction:column;gap:10px;align-items:center;
@@ -608,7 +598,6 @@ svg{display:block;max-width:100%}
 .toast.err svg{color:var(--danger)}
 @keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
 
-/* ── BOOT + ERROR ── */
 .boot{
   position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;
   flex-direction:column;gap:20px;
@@ -769,7 +758,7 @@ svg{display:block;max-width:100%}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
         For you
       </button>
-      <button class="nav-item" data-nav="posts" type="button">
+      <button class="nav-item" onclick="location.href='social.html'" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
         Posts
         <span class="badge soft" id="postsBadge">0</span>
@@ -778,7 +767,7 @@ svg{display:block;max-width:100%}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-3 6-4-4 6-3Z"/></svg>
         Explore
       </button>
-      <button class="nav-item" data-nav="map" type="button">
+      <button class="nav-item" onclick="location.href='map.html'" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
         Nearby
       </button>
@@ -809,9 +798,9 @@ svg{display:block;max-width:100%}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
         Profile
       </button>
-      <button class="nav-item" data-nav="settings" type="button">
+      <button class="nav-item" onclick="location.href='account.html'" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>
-        Settings
+        Account
       </button>
     </nav>
 
@@ -875,7 +864,7 @@ svg{display:block;max-width:100%}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
     <span>Feed</span>
   </button>
-  <button class="tab-item" data-nav="posts" type="button">
+  <button class="tab-item" onclick="location.href='social.html'" type="button">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
     <span>Posts</span>
   </button>
@@ -910,7 +899,7 @@ svg{display:block;max-width:100%}
 
 <script type="module">
 /* ══════════════════════════════════════════════════════════════════════════
-   TIMCRENET · app.html — Posts + Follows
+   TIMCRENET · app.html — Posts + Follows + external page links
    ══════════════════════════════════════════════════════════════════════════ */
 
 const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
@@ -1034,19 +1023,16 @@ const state = {
   followedIds: new Set(),
   searchQuery: '',
   maxKm: 60,
-  // messages
   conversations: [],
   activeConvId: null,
   activeMessages: [],
   messageChannel: null,
+  subscribedConvId: null,
   mobileShowThread: false,
-  // collabs
   collabs: [],
-  // notifications
   notifications: [],
-  // posts
   posts: [],
-  postScope: 'all' // 'all' | 'following'
+  postScope: 'all'
 };
 
 const VIEW_META = {
@@ -1081,7 +1067,6 @@ const VIEW_META = {
     state.me = profile;
     paintSidebar(profile);
 
-    // Load saved + followed
     try {
       const { data: saved } = await supabase.rpc('my_saves');
       state.savedIds = new Set(saved || []);
@@ -1093,11 +1078,9 @@ const VIEW_META = {
       state.followedIds = new Set(followed || []);
     } catch(e){ console.warn('my_following_ids:', e); }
 
-    // Load feed
     $('#bootText').textContent = 'Ranking creators near you…';
     await loadFeed();
 
-    // Async loads
     loadPosts().catch(e => console.warn('posts:', e));
     loadConversations().catch(e => console.warn('convos:', e));
     loadCollabs().catch(e => console.warn('collabs:', e));
@@ -1108,13 +1091,31 @@ const VIEW_META = {
     $('#app').style.display = '';
     $('#tabbar').style.display = '';
 
-    navigate('home');
+    const params = new URLSearchParams(location.search);
+    const qv = params.get('v');
+    const qu = params.get('u');
+
+    if (qu) {
+      setTimeout(async () => {
+        try { await openCreator(qu); } catch(e){ console.warn('openCreator from URL:', e); }
+      }, 200);
+    }
+
+    if (qv && VIEW_META[qv]) {
+      navigate(qv);
+    } else {
+      navigate('home');
+    }
+
+    if (qv || qu) {
+      try { history.replaceState(null, '', location.pathname); } catch(e){}
+    }
   } catch(err){
     console.error('[TIMCRENET boot]', err);
     const msg = err?.message || String(err);
     let friendly = msg;
     if (msg.includes('match_feed') || (msg.includes('function') && msg.includes('does not exist')))
-      friendly = 'A backend function is missing. Run the SQL scripts (app_fix, messaging, posts_follows) in Supabase.';
+      friendly = 'A backend function is missing. Run the SQL scripts (app_fix, messaging, posts_follows, final) in Supabase.';
     fatal('Could not start TIMCRENET',
       `<p>${esc(friendly)}</p>
        <p style="font-size:12px;color:var(--text-3)">Full: <code>${esc(msg.slice(0,200))}</code></p>`,
@@ -1181,15 +1182,6 @@ function reasonChips(c){
   if ((c.availability??0)>=85) out.push('Schedule overlap');
   if ((c.niche??0)>=88) out.push('Same niche');
   return out.slice(0,4);
-}
-
-function followBtn(userId, small=false){
-  if (!userId || userId === state.me.id) return '';
-  const isFollowing = state.followedIds.has(userId);
-  return `<button class="btn ${small?'sm ':''}${isFollowing?'is-following':''}"
-            data-action="follow" data-id="${esc(userId)}" type="button">
-    ${isFollowing ? 'Following' : 'Follow'}
-  </button>`;
 }
 
 function creatorCard(c){
@@ -1305,6 +1297,9 @@ function renderPosts(){
         <button class="btn btn-primary" id="newPostBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
           Write a post
+        </button>
+        <button class="btn" onclick="location.href='social.html'" type="button">
+          Open full Posts page →
         </button>
         <div class="posts-filter">
           <button type="button" class="chip ${state.postScope==='all'?'is-active':''}" data-post-scope="all">Everyone</button>
@@ -1527,11 +1522,9 @@ function renderMap(){
         <h2>Around you</h2>
         <span class="count">${inRange.length} in ${state.maxKm} km</span>
         <div class="spacer"></div>
-        <label style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-2);max-width:280px;font-weight:600">
-          Radius
-          <input class="range" type="range" min="5" max="100" value="${state.maxKm}" id="radiusRange"/>
-          <b style="color:var(--text);min-width:52px;text-align:right" id="radiusLabel">${state.maxKm} km</b>
-        </label>
+        <button class="btn sm" onclick="location.href='map.html'" type="button">
+          Open real map →
+        </button>
       </div>
       <div class="map-shell">
         <div class="map-canvas"></div>
@@ -1572,20 +1565,6 @@ function renderMap(){
         }).join('')}
       </div>
     </div>`;
-
-  const range = $('#radiusRange');
-  if (range) {
-    let t;
-    range.addEventListener('input', e => {
-      $('#radiusLabel').textContent = e.target.value + ' km';
-      clearTimeout(t);
-      t = setTimeout(async () => {
-        state.maxKm = Number(e.target.value);
-        try { await loadFeed(); renderMap(); }
-        catch(err){ toast(err.message || 'Refresh failed', 'err'); }
-      }, 500);
-    });
-  }
 }
 
 function renderSaved(){
@@ -1746,6 +1725,12 @@ function wireChatPane(convo){
   if (send) send.addEventListener('click', sendMessage);
   const back = $('[data-back-to-list]');
   if (back) back.addEventListener('click', () => {
+    // Tear down the subscription when leaving the thread
+    if (state.messageChannel) {
+      try { supabase.removeChannel(state.messageChannel); } catch(e){}
+      state.messageChannel = null;
+    }
+    state.subscribedConvId = null;
     state.mobileShowThread = false;
     state.activeConvId = null;
     renderMessages();
@@ -1800,46 +1785,87 @@ async function scrollChatToBottom(){
   if (list) list.scrollTop = list.scrollHeight;
 }
 
+/* ── FIX: only tear down when actually switching conversations ── */
 async function openConversation(convId){
+  // If we're switching conversations, tear down the old channel first
+  if (state.subscribedConvId && state.subscribedConvId !== convId) {
+    if (state.messageChannel) {
+      try { await supabase.removeChannel(state.messageChannel); } catch(e){}
+      state.messageChannel = null;
+    }
+    state.subscribedConvId = null;
+  }
   state.activeConvId = convId;
   state.mobileShowThread = true;
-  if (state.messageChannel) {
-    try { await supabase.removeChannel(state.messageChannel); } catch(e){}
-    state.messageChannel = null;
-  }
   renderMessages();
 }
 
+/* ── FIX: guard against duplicate subscriptions ── */
 function subscribeToConversation(convId){
+  // If we're already subscribed to this exact conversation, do nothing.
+  if (state.subscribedConvId === convId && state.messageChannel) return;
+
+  // Clean up any previous channel first
   if (state.messageChannel) {
     try { supabase.removeChannel(state.messageChannel); } catch(e){}
+    state.messageChannel = null;
   }
+
+  state.subscribedConvId = convId;
+
+  // Unique channel name so Supabase never merges with a stale one
+  const channelName = 'msg-' + convId + '-' + Math.random().toString(36).slice(2, 8);
+
   state.messageChannel = supabase
-    .channel('messages:' + convId)
+    .channel(channelName)
     .on('postgres_changes', {
       event: 'INSERT', schema: 'public', table: 'messages',
       filter: `conversation_id=eq.${convId}`
     }, async (payload) => {
       const m = payload.new;
+
+      // Ignore our own messages — we already showed them optimistically
       if (m.sender_id === state.me.id) return;
+
+      // Ignore messages for a conversation the user has navigated away from
+      if (state.activeConvId !== convId) return;
+
+      // Deduplicate — never push the same message twice
+      if (state.activeMessages.some(x => x.id === m.id)) return;
+
       const { data: prof } = await supabase
         .from('profiles')
         .select('handle, display_name, initials, avatar_seed')
         .eq('id', m.sender_id)
         .maybeSingle();
+
       state.activeMessages.push({
-        id: m.id, sender_id: m.sender_id,
+        id: m.id,
+        sender_id: m.sender_id,
         sender_handle: prof?.handle || '',
         sender_display_name: prof?.display_name || '',
         sender_initials: prof?.initials || '',
         sender_avatar_seed: prof?.avatar_seed || prof?.handle || '',
-        body: m.body, kind: m.kind, created_at: m.created_at
+        body: m.body,
+        kind: m.kind,
+        created_at: m.created_at
       });
       paintMessages();
       await scrollChatToBottom();
-      loadConversations().catch(()=>{});
+
+      // Debounced refresh — prevents the sidebar from thrashing on rapid bursts
+      scheduleConversationsRefresh();
     })
     .subscribe();
+}
+
+/* Global debouncer so bursts of incoming messages only trigger one refresh */
+let _convRefreshTimer = null;
+function scheduleConversationsRefresh(){
+  clearTimeout(_convRefreshTimer);
+  _convRefreshTimer = setTimeout(() => {
+    loadConversations().catch(()=>{});
+  }, 500);
 }
 
 async function sendMessage(){
@@ -1878,7 +1904,7 @@ async function sendMessage(){
     paintMessages();
     return;
   }
-  loadConversations().catch(()=>{});
+  scheduleConversationsRefresh();
 }
 
 /* ─── COLLABS ─────────────────────────────────────────────────────────── */
@@ -2107,7 +2133,6 @@ async function renderProfile(){
     if (error) throw error;
     if (!data) throw new Error('Profile not found');
     el.innerHTML = profileBodyHTML(data, { isSelf: true });
-    // Load user's own posts on profile
     loadMyProfilePosts();
   } catch(err){
     el.innerHTML = `<div class="empty"><h3>Could not load profile</h3><p>${esc(err.message)}</p></div>`;
@@ -2200,6 +2225,9 @@ function profileBodyHTML(p, opts = {}){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
         Re-run onboarding
       </button>
+      <button class="btn" onclick="location.href='account.html'" type="button">
+        Account settings →
+      </button>
     </div>` : ''}`;
 }
 
@@ -2236,8 +2264,8 @@ function renderSettings(){
       <div class="section-head"><h2>Account</h2></div>
       <div class="setting-panel">
         <div class="setting">
-          <div class="info"><b>Edit profile</b><span>Re-run onboarding to update your details.</span></div>
-          <button class="btn sm" onclick="location.href='onboarding.html'" type="button">Re-run</button>
+          <div class="info"><b>Full account settings</b><span>Edit profile, block list, data export, and delete account.</span></div>
+          <button class="btn sm" onclick="location.href='account.html'" type="button">Open →</button>
         </div>
         <div class="setting">
           <div class="info"><b>Sign out</b><span>End your session on this device.</span></div>
@@ -2433,7 +2461,6 @@ document.addEventListener('click', async e => {
       if (data) state.savedIds.add(id); else state.savedIds.delete(id);
       updateSavedBadge();
       toast(data ? 'Saved' : 'Removed');
-      // Update UI in place
       render();
       if (sheet.classList.contains('is-open')){
         const foot = sheetFoot.querySelector('[data-action="save"]');
@@ -2450,16 +2477,13 @@ document.addEventListener('click', async e => {
 
   if (action === 'follow'){
     if (id === state.me.id){ toast('Cannot follow yourself', 'err'); return; }
-    const wasFollowing = state.followedIds.has(id);
     act.classList.add('is-loading');
     try {
       const { data, error } = await supabase.rpc('toggle_follow', { target: id });
       if (error) throw error;
       if (data) state.followedIds.add(id); else state.followedIds.delete(id);
       toast(data ? 'Following' : 'Unfollowed');
-      // Re-render everything since follow state appears in many places
       render();
-      // Update sheet button if open
       if (sheet.classList.contains('is-open')){
         const foot = sheetFoot.querySelector('[data-action="follow"]');
         if (foot){
@@ -2547,6 +2571,8 @@ $('#refreshBtn').addEventListener('click', refreshFeed);
 
 async function doSignOut(){
   if (state.messageChannel){ try { await supabase.removeChannel(state.messageChannel); } catch(e){} }
+  state.messageChannel = null;
+  state.subscribedConvId = null;
   await supabase.auth.signOut();
   location.href = SIGNIN_URL;
 }
