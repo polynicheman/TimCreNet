@@ -67,15 +67,12 @@ svg{display:block;max-width:100%}
 ::-webkit-scrollbar-thumb:hover{background:var(--text-3);background-clip:content-box;border:3px solid transparent}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 
-/* ── app shell ── */
 .app{display:flex;height:100dvh;overflow:hidden}
-
 .sidebar{
   width:var(--sidebar-w);flex:none;
   background:var(--bg-elev);border-right:1px solid var(--border);
   display:flex;flex-direction:column;
   padding:22px 14px 14px;overflow-y:auto;
-  transition:background .3s ease,border-color .3s ease;
 }
 .brand{display:flex;align-items:center;gap:11px;padding:4px 10px 20px}
 .brand-mark{
@@ -93,7 +90,7 @@ svg{display:block;max-width:100%}
 .brand-mark svg .node{fill:#fff;stroke:none}
 .brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
 .brand-text b{font-size:15.5px;font-weight:800;letter-spacing:-.5px}
-.brand-text span{font-size:10.5px;color:var(--text-3);letter-spacing:.02em;font-weight:500}
+.brand-text span{font-size:10.5px;color:var(--text-3);font-weight:500}
 
 .nav{display:flex;flex-direction:column;gap:2px;padding-top:4px}
 .nav-label{font-size:10.5px;letter-spacing:.09em;color:var(--text-3);font-weight:700;
@@ -126,11 +123,8 @@ svg{display:block;max-width:100%}
   transition:transform .18s cubic-bezier(.4,0,.2,1);
   position:relative;overflow:hidden;
 }
-.scout-btn::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.28),transparent 55%);
-  pointer-events:none;
-}
+.scout-btn::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.28),transparent 55%);pointer-events:none}
 .scout-btn:hover{transform:translateY(-1px)}
 .scout-btn:active{transform:scale(.98)}
 .scout-btn:disabled{opacity:.6;cursor:wait}
@@ -171,7 +165,6 @@ svg{display:block;max-width:100%}
   display:flex;align-items:center;gap:10px;
   background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius-full);padding:9px 16px;min-width:260px;max-width:360px;
-  transition:border-color .16s,box-shadow .16s;
 }
 .searchbox:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
 .searchbox svg{width:16px;height:16px;color:var(--text-3);flex:none;stroke-width:2.2}
@@ -203,65 +196,52 @@ svg{display:block;max-width:100%}
 [data-theme="light"] .theme-btn .icon-sun{opacity:1;transform:rotate(360deg) scale(1)}
 [data-theme="light"] .theme-btn .icon-moon{opacity:0;transform:rotate(-180deg) scale(.5)}
 
-.viewport{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;-webkit-overflow-scrolling:touch}
-.view{display:none;padding:28px;max-width:1160px;margin:0 auto;animation:fadeUp .35s cubic-bezier(.4,0,.2,1)}
+.viewport{flex:1;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.view{display:none;padding:28px;max-width:1160px;margin:0 auto;animation:fadeUp .35s cubic-bezier(.4,0,.2,1);width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .view.is-active{display:block}
+.view.no-pad.is-active{display:flex;padding:0;max-width:none;overflow:hidden;flex-direction:column}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-/* ── avatars ── */
 .avatar{
   border-radius:14px;flex:none;display:grid;place-items:center;
   font-weight:800;color:#fff;letter-spacing:-.5px;
   position:relative;overflow:hidden;
   text-shadow:0 1px 6px rgba(0,0,0,.35);
 }
-.avatar::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);
-  mix-blend-mode:overlay;
-}
+.avatar::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);mix-blend-mode:overlay}
 .avatar.lg{width:92px;height:92px;border-radius:28px;font-size:30px}
 .avatar.md{width:52px;height:52px;border-radius:16px;font-size:18px}
 .avatar.sm{width:40px;height:40px;border-radius:13px;font-size:14px}
 .avatar.xs{width:30px;height:30px;border-radius:10px;font-size:11.5px}
 
-/* ── buttons ── */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
   padding:9px 16px;border-radius:11px;font-size:13px;font-weight:600;
   border:1px solid var(--border);background:var(--surface);
-  color:var(--text-2);transition:all .16s;white-space:nowrap;
-  min-height:38px;
+  color:var(--text-2);transition:all .16s;white-space:nowrap;min-height:38px;
 }
 .btn:hover{background:var(--surface-2);color:var(--text);border-color:var(--border-strong)}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn svg{width:15px;height:15px;stroke-width:2.2;flex:none;stroke-linecap:round;stroke-linejoin:round}
-.btn-primary{
-  background:var(--grad-warm);border-color:transparent;color:#fff;
-  box-shadow:0 10px 22px -12px var(--primary-glow);
-}
+.btn-primary{background:var(--grad-warm);border-color:transparent;color:#fff;box-shadow:0 10px 22px -12px var(--primary-glow)}
 .btn-primary:hover{color:#fff;filter:brightness(1.06)}
 .btn.sm{padding:7px 13px;font-size:12.5px;border-radius:9px;min-height:34px}
 .btn.full{width:100%}
 .btn.is-saved{background:var(--primary-soft);border-color:transparent;color:var(--primary)}
+.btn.is-following{background:var(--surface-2);border-color:var(--border-strong);color:var(--text-2)}
+.btn.is-following:hover{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.btn.is-following:hover::after{content:"Unfollow";position:absolute}
 .btn.is-loading{pointer-events:none;color:transparent;position:relative}
 .btn.is-loading::after{
   content:"";position:absolute;width:15px;height:15px;border-radius:50%;
-  border:2px solid rgba(255,255,255,.35);border-top-color:#fff;
-  animation:spin .7s linear infinite;
+  border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;
 }
-.btn:not(.btn-primary).is-loading::after{
-  border-color:var(--border-strong);border-top-color:var(--text-2);
-}
+.btn:not(.btn-primary).is-loading::after{border-color:var(--border-strong);border-top-color:var(--text-2)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── tags / chips ── */
-.tag{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:5px 11px;border-radius:8px;font-size:11.5px;font-weight:600;
-  border:1px solid transparent;white-space:nowrap;
-}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:8px;font-size:11.5px;font-weight:600;border:1px solid transparent;white-space:nowrap}
 .tag-need{background:var(--danger-soft);color:var(--danger)}
 .tag-give{background:var(--success-soft);color:var(--success)}
 .tag-niche{background:var(--accent-soft);color:var(--accent)}
@@ -270,13 +250,9 @@ svg{display:block;max-width:100%}
 .tag-sev-3{box-shadow:inset 0 0 0 1px currentColor}
 .tag-row{display:flex;flex-wrap:wrap;gap:6px}
 .tag-block{display:flex;flex-direction:column;gap:8px}
-.tag-label{
-  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--text-3);display:flex;align-items:center;gap:8px;
-}
+.tag-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:8px}
 .tag-label::after{content:"";flex:1;height:1px;background:var(--border)}
 
-/* ── cards ── */
 .feed{display:flex;flex-direction:column;gap:16px}
 .card{
   background:var(--surface);border:1px solid var(--border);
@@ -284,10 +260,8 @@ svg{display:block;max-width:100%}
   transition:border-color .2s,transform .2s,box-shadow .2s;
   position:relative;overflow:hidden;
 }
-.card::before{
-  content:"";position:absolute;inset:0 auto auto 0;height:2px;width:100%;
-  background:var(--grad-primary);opacity:0;transition:opacity .25s;
-}
+.card::before{content:"";position:absolute;inset:0 auto auto 0;height:2px;width:100%;
+  background:var(--grad-primary);opacity:0;transition:opacity .25s}
 @media (hover:hover){
   .card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:var(--shadow-md)}
   .card:hover::before{opacity:1}
@@ -318,7 +292,28 @@ svg{display:block;max-width:100%}
 .card-actions{display:flex;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap}
 .card-actions .spacer{flex:1}
 
-/* ── hero ── */
+/* ── POST CARD ─────────────────────────────────────────────────────────── */
+.post-card .card-body{gap:12px}
+.post-title{font-size:17px;font-weight:800;letter-spacing:-.4px;line-height:1.3;color:var(--text)}
+.post-body{
+  font-size:14.5px;line-height:1.65;color:var(--text);
+  white-space:pre-wrap;word-wrap:break-word;font-weight:500;
+}
+.post-card .card-head{align-items:center}
+
+/* ── POSTS FILTER ──────────────────────────────────────────────────────── */
+.posts-filter{display:flex;gap:6px;flex-wrap:wrap}
+.posts-filter .chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:20px;
+  font-size:12.5px;font-weight:600;color:var(--text-2);
+  border:1px solid var(--border);background:var(--surface);
+  cursor:pointer;transition:all .16s;
+}
+.posts-filter .chip:hover{border-color:var(--border-strong);color:var(--text)}
+.posts-filter .chip.is-active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
+
+/* ── HERO ──────────────────────────────────────────────────────────────── */
 .hero{
   background:
     radial-gradient(900px 300px at 10% -40%, var(--primary-soft), transparent 65%),
@@ -327,17 +322,15 @@ svg{display:block;max-width:100%}
   border:1px solid var(--border);border-radius:var(--radius-xl);
   padding:28px;margin-bottom:26px;position:relative;overflow:hidden;
 }
-.hero::after{
-  content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;
-  background:var(--grad-primary);opacity:.08;border-radius:50%;filter:blur(40px);
-  pointer-events:none;
-}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;
+  background:var(--grad-primary);opacity:.08;border-radius:50%;filter:blur(40px);pointer-events:none}
 .hero h2{font-size:24px;font-weight:800;letter-spacing:-.7px;margin-bottom:8px}
 .hero p{color:var(--text-2);font-size:14px;max-width:620px;line-height:1.6;font-weight:500}
 .hero p b{color:var(--text);font-weight:700}
 .hero-stats{display:flex;gap:32px;margin-top:22px;flex-wrap:wrap}
 .hero-stat b{display:block;font-size:24px;font-weight:800;letter-spacing:-.6px;font-variant-numeric:tabular-nums}
 .hero-stat span{font-size:11.5px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.hero-actions{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
 .section{margin-bottom:32px}
 .section-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
@@ -356,7 +349,6 @@ svg{display:block;max-width:100%}
 
 .grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
 
-/* ── profile blocks ── */
 .profile-hero{display:flex;gap:20px;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--border)}
 .profile-hero .info{flex:1;min-width:0}
 .profile-hero h2{font-size:24px;font-weight:800;letter-spacing:-.7px}
@@ -366,6 +358,8 @@ svg{display:block;max-width:100%}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;text-align:center}
 .stat b{display:block;font-size:20px;font-weight:800;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
 .stat span{font-size:10.5px;color:var(--text-3);font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+.stat.clickable{cursor:pointer;transition:border-color .16s}
+.stat.clickable:hover{border-color:var(--border-strong)}
 
 .detail-block{margin-bottom:26px}
 .detail-block h3{
@@ -382,11 +376,7 @@ svg{display:block;max-width:100%}
 .bar{height:6px;border-radius:20px;background:var(--surface-3);overflow:hidden}
 .bar-fill{height:100%;border-radius:20px;background:var(--grad-primary);transition:width .6s cubic-bezier(.2,.8,.2,1)}
 
-.inv-item{
-  display:flex;gap:12px;align-items:center;
-  padding:13px 14px;border-radius:var(--radius-md);
-  background:var(--surface);border:1px solid var(--border);margin-bottom:9px;
-}
+.inv-item{display:flex;gap:12px;align-items:center;padding:13px 14px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);margin-bottom:9px}
 .inv-item .icon{width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;background:var(--surface-2);color:var(--text-2)}
 .inv-item .icon svg{width:18px;height:18px;stroke-width:1.9}
 .inv-item .info{flex:1;min-width:0}
@@ -394,27 +384,183 @@ svg{display:block;max-width:100%}
 .inv-item .info span{display:block;font-size:12px;color:var(--text-3);margin-top:2px;font-weight:500}
 .inv-item .terms{font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;flex:none}
 
-/* ── settings ── */
 .setting-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:10px 22px;margin-bottom:22px}
 .setting{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
 .setting:last-child{border-bottom:none}
 .setting .info{flex:1;min-width:0}
 .setting .info b{display:block;font-size:13.5px;font-weight:700}
 .setting .info span{display:block;font-size:12.5px;color:var(--text-3);margin-top:3px;line-height:1.5;font-weight:500}
-.toggle{
-  width:48px;height:28px;border-radius:20px;background:var(--surface-3);
-  position:relative;flex:none;transition:background .22s;border:1px solid var(--border);
-  cursor:pointer;
-}
-.toggle::after{
-  content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;
-  background:var(--text-3);transition:transform .22s cubic-bezier(.4,0,.2,1),background .22s;
-}
+.toggle{width:48px;height:28px;border-radius:20px;background:var(--surface-3);position:relative;flex:none;transition:background .22s;border:1px solid var(--border);cursor:pointer}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:var(--text-3);transition:transform .22s cubic-bezier(.4,0,.2,1),background .22s}
 .toggle.on{background:var(--primary);border-color:var(--primary)}
 .toggle.on::after{transform:translateX(20px);background:#fff}
 .range{accent-color:var(--primary);flex:1;min-width:0;max-width:180px}
 
-/* ── sheet ── */
+/* ── MESSAGES ── */
+.messages-layout{display:grid;grid-template-columns:320px 1fr;height:100%;overflow:hidden}
+.convo-sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg-elev);overflow:hidden}
+.convo-head{flex:none;padding:18px 20px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:12px}
+.convo-head h2{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.convo-head .searchbox{min-width:0;max-width:none;padding:8px 14px}
+.convo-scroll{flex:1;overflow-y:auto;padding:8px}
+.convo-item{
+  display:flex;gap:12px;padding:12px;border-radius:14px;
+  cursor:pointer;transition:background .16s;width:100%;text-align:left;
+  align-items:center;border:1px solid transparent;position:relative;
+}
+.convo-item:hover{background:var(--surface-2)}
+.convo-item.is-active{background:var(--primary-soft);border-color:var(--primary)}
+.convo-item .info{flex:1;min-width:0}
+.convo-item .top{display:flex;align-items:baseline;gap:8px}
+.convo-item .top b{font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.convo-item .top time{margin-left:auto;font-size:11px;color:var(--text-3);flex:none}
+.convo-item .preview{font-size:12.5px;color:var(--text-3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.convo-item .unread{
+  position:absolute;right:14px;bottom:12px;
+  background:var(--primary);color:#fff;font-size:10px;font-weight:800;
+  min-width:18px;height:18px;border-radius:20px;display:grid;place-items:center;padding:0 5px;
+}
+.convo-item .group-badge{font-size:9.5px;font-weight:800;letter-spacing:.05em;
+  background:var(--accent-soft);color:var(--accent);padding:2px 6px;border-radius:6px;margin-left:2px}
+
+.chat-pane{display:flex;flex-direction:column;overflow:hidden;background:var(--surface)}
+.chat-head{flex:none;display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--bg-elev)}
+.chat-head .info{flex:1;min-width:0}
+.chat-head .info b{display:block;font-size:14.5px;font-weight:800;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-head .info span{display:block;font-size:12px;color:var(--text-3);font-weight:500}
+.back-btn{display:none}
+
+.msg-list{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:4px}
+.day-sep{align-self:center;font-size:10.5px;font-weight:700;color:var(--text-3);
+  background:var(--surface-2);padding:5px 14px;border-radius:20px;margin:16px 0;
+  text-transform:uppercase;letter-spacing:.08em}
+.msg{display:flex;gap:10px;max-width:74%;margin-top:4px}
+.msg.first{margin-top:16px}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.msg .bubble{
+  background:var(--surface-2);padding:11px 15px;border-radius:18px;
+  border-top-left-radius:6px;font-size:14px;line-height:1.5;
+  word-wrap:break-word;font-weight:500;
+}
+.msg.me .bubble{background:var(--grad-warm);color:#fff;border-top-left-radius:18px;border-top-right-radius:6px;box-shadow:0 8px 20px -12px var(--primary-glow)}
+.msg.first .bubble{border-top-left-radius:18px}
+.msg.first.me .bubble{border-top-right-radius:18px}
+.msg-meta{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-3);margin-top:5px;padding:0 4px;font-weight:500}
+.msg.me .msg-meta{justify-content:flex-end}
+.msg-col{display:flex;flex-direction:column;min-width:0}
+
+.composer{flex:none;border-top:1px solid var(--border);padding:14px 20px;display:flex;flex-direction:column;gap:10px;background:var(--bg-elev)}
+.composer-row{display:flex;align-items:flex-end;gap:10px}
+.composer textarea{
+  flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:12px 16px;resize:none;
+  font-size:14px;max-height:130px;min-height:46px;line-height:1.45;
+  font-family:inherit;font-weight:500;
+}
+.composer textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.send-btn{
+  width:46px;height:46px;border-radius:14px;flex:none;
+  background:var(--grad-warm);color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 22px -12px var(--primary-glow);
+  transition:transform .16s;
+}
+.send-btn:hover{transform:scale(1.05)}
+.send-btn:active{transform:scale(.94)}
+.send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.send-btn svg{width:18px;height:18px;stroke-width:2.2}
+
+.empty-chat{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--text-3)}
+.empty-chat svg{width:56px;height:56px;opacity:.3;margin-bottom:18px;stroke-width:1.5}
+.empty-chat h3{font-size:16px;color:var(--text-2);font-weight:700;margin-bottom:6px}
+.empty-chat p{font-size:13px;max-width:320px;line-height:1.55}
+
+/* ── COLLABS ── */
+.collab-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:20px;display:flex;flex-direction:column;gap:14px;
+  transition:border-color .2s,transform .2s;
+}
+@media (hover:hover){.collab-card:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:var(--shadow-sm)}}
+.collab-top{display:flex;align-items:center;gap:12px}
+.collab-top .info{flex:1;min-width:0}
+.collab-top .info b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.2px}
+.collab-top .info span{font-size:12px;color:var(--text-3);font-weight:500}
+.status-pill{font-size:10.5px;font-weight:800;padding:5px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.07em;flex:none}
+.status-proposed{background:var(--warning-soft);color:var(--warning)}
+.status-active{background:var(--success-soft);color:var(--success)}
+.status-completed{background:var(--surface-3);color:var(--text-2)}
+.status-cancelled{background:var(--danger-soft);color:var(--danger)}
+.progress-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-3);font-weight:600}
+.progress-row .bar{flex:1}
+.avatar-stack{display:flex}
+.avatar-stack .avatar{margin-left:-10px;border:2.5px solid var(--surface)}
+.avatar-stack .avatar:first-child{margin-left:0}
+
+/* ── NOTIFICATIONS ── */
+.notif{
+  display:flex;gap:14px;padding:16px;border-radius:var(--radius-md);
+  background:var(--surface);border:1px solid var(--border);margin-bottom:10px;
+  transition:border-color .16s;
+}
+.notif:hover{border-color:var(--border-strong)}
+.notif.unread{border-color:color-mix(in srgb,var(--primary) 35%,var(--border));background:linear-gradient(90deg,var(--primary-soft),transparent 55%),var(--surface)}
+.notif .icon{width:40px;height:40px;border-radius:13px;flex:none;display:grid;place-items:center}
+.notif .icon svg{width:18px;height:18px;stroke-width:2}
+.notif .body{flex:1;min-width:0}
+.notif .body p{font-size:13.5px;line-height:1.55;font-weight:500}
+.notif .body b{font-weight:700}
+.notif .body time{font-size:11.5px;color:var(--text-3);display:block;margin-top:5px;font-weight:500}
+
+/* ── MAP ── */
+.map-shell{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--border);height:520px;background:#0D0E14;
+}
+[data-theme="light"] .map-shell{background:#EFEDE9}
+.map-canvas{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,107,61,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,107,61,.06) 1px,transparent 1px),
+    radial-gradient(700px 400px at 50% 50%,rgba(255,107,61,.1),transparent 70%);
+  background-size:44px 44px,44px 44px,100% 100%;
+}
+.map-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed rgba(255,107,61,.3);pointer-events:none}
+.map-pin{
+  position:absolute;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:pointer;transition:transform .22s cubic-bezier(.4,0,.2,1);z-index:2;
+}
+.map-pin:hover{transform:translate(-50%,-50%) scale(1.14);z-index:9}
+.map-pin .pin-dot{
+  width:40px;height:40px;border-radius:14px;display:grid;place-items:center;
+  font-size:13px;font-weight:800;color:#fff;
+  border:2.5px solid var(--bg);box-shadow:0 10px 24px -8px rgba(0,0,0,.8);
+  text-shadow:0 1px 5px rgba(0,0,0,.4);
+}
+.map-pin .pin-label{
+  font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;
+  background:var(--surface);border:1px solid var(--border);color:var(--text-2);
+  white-space:nowrap;opacity:0;transition:opacity .22s;
+  box-shadow:var(--shadow-sm);
+}
+.map-pin:hover .pin-label{opacity:1}
+.me-pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5}
+.me-pin .core{width:20px;height:20px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);
+  box-shadow:0 0 0 8px var(--primary-soft),0 0 20px var(--primary-glow)}
+.me-pin .halo{position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--primary);
+  animation:halo 2.4s infinite;pointer-events:none}
+@keyframes halo{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.map-legend{
+  position:absolute;left:16px;bottom:16px;z-index:10;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:14px;
+  padding:13px 15px;display:flex;flex-direction:column;gap:9px;
+}
+.legend-row{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--text-2);font-weight:500}
+.legend-swatch{width:12px;height:12px;border-radius:4px;flex:none}
+
+/* ── SHEET ── */
 .sheet-backdrop{
   position:fixed;inset:0;background:rgba(4,5,10,.72);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
@@ -422,7 +568,7 @@ svg{display:block;max-width:100%}
 }
 .sheet-backdrop.is-open{opacity:1;pointer-events:auto}
 .sheet{
-  position:fixed;top:0;right:0;height:100dvh;width:min(580px,100vw);
+  position:fixed;top:0;right:0;height:100dvh;width:min(600px,100vw);
   background:var(--bg-elev);border-left:1px solid var(--border);
   z-index:101;transform:translateX(102%);
   transition:transform .36s cubic-bezier(.32,.72,0,1);
@@ -435,7 +581,18 @@ svg{display:block;max-width:100%}
 .sheet-foot{flex:none;padding:16px 22px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--surface);flex-wrap:wrap}
 .sheet-foot .btn{flex:1;min-width:0}
 
-/* ── toast ── */
+/* ── USER LIST ── */
+.user-list{display:flex;flex-direction:column;gap:10px}
+.user-list .user-row{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:var(--radius-md);
+  background:var(--surface);border:1px solid var(--border);
+}
+.user-list .user-row .info{flex:1;min-width:0}
+.user-list .user-row .info b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-list .user-row .info span{display:block;font-size:12px;color:var(--text-3);margin-top:2px;font-weight:500}
+
+/* ── TOAST ── */
 .toast-root{
   position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
   z-index:300;display:flex;flex-direction:column;gap:10px;align-items:center;
@@ -445,33 +602,27 @@ svg{display:block;max-width:100%}
   background:var(--surface-3);border:1px solid var(--border-strong);
   color:var(--text);padding:12px 20px;border-radius:14px;font-size:13px;font-weight:600;
   box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;
-  animation:toastIn .32s cubic-bezier(.2,.9,.3,1.2);white-space:nowrap;max-width:100%;
+  animation:toastIn .32s cubic-bezier(.2,.9,.3,1.2);white-space:nowrap;
 }
 .toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4}
 .toast.err svg{color:var(--danger)}
 @keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:none}}
 
-/* ── boot / error ── */
+/* ── BOOT + ERROR ── */
 .boot{
-  position:fixed;inset:0;z-index:500;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;
+  position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:20px;
   background:
     radial-gradient(900px 500px at 50% 0%, var(--primary-soft), transparent 65%),
     radial-gradient(700px 400px at 50% 100%, var(--accent-soft), transparent 65%),
     var(--bg);
 }
-.boot-mark{
-  width:64px;height:64px;border-radius:20px;flex:none;
-  background:var(--grad-primary);display:grid;place-items:center;
-  box-shadow:0 18px 42px -14px var(--primary-glow);
-  position:relative;animation:bootPulse 2s ease-in-out infinite;
-}
+.boot-mark{width:64px;height:64px;border-radius:20px;flex:none;background:var(--grad-primary);
+  display:grid;place-items:center;box-shadow:0 18px 42px -14px var(--primary-glow);
+  position:relative;animation:bootPulse 2s ease-in-out infinite}
 @keyframes bootPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.boot-mark::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);
-  mix-blend-mode:overlay;
-}
+.boot-mark::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);mix-blend-mode:overlay}
 .boot-mark svg{width:36px;height:36px;position:relative;z-index:1}
 .boot-mark svg *{stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round}
 .boot-mark svg .node{fill:#fff;stroke:none}
@@ -486,10 +637,8 @@ svg{display:block;max-width:100%}
 .error-card code{display:inline-block;background:var(--surface-2);border:1px solid var(--border);padding:3px 8px;border-radius:6px;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
 .error-card .btn{margin-top:8px;margin-right:8px}
 
-/* ── tabbar mobile ── */
 .tabbar{display:none}
 
-/* ── responsive ── */
 @media (max-width:900px){
   :root{--sidebar-w:0px;--topbar-h:62px}
   .app{height:calc(100dvh - var(--tabbar-h))}
@@ -504,7 +653,6 @@ svg{display:block;max-width:100%}
   .card{padding:17px;border-radius:18px}
   .hero{padding:20px;border-radius:22px}
   .hero h2{font-size:20px}
-  .hero-stats{gap:20px}
   .tabbar{
     display:flex;position:fixed;bottom:0;left:0;right:0;height:var(--tabbar-h);
     background:color-mix(in srgb,var(--bg-elev) 94%,transparent);
@@ -520,13 +668,11 @@ svg{display:block;max-width:100%}
   }
   .tab-item svg{width:22px;height:22px;stroke-width:1.9}
   .tab-item.is-active{color:var(--primary)}
-  .tab-item.is-active svg{stroke-width:2.3}
-  .sheet{
-    top:auto;bottom:0;right:0;left:0;
-    width:100vw;height:auto;max-height:92dvh;
-    border-left:none;border-top:1px solid var(--border);
-    border-radius:22px 22px 0 0;transform:translateY(102%);
-  }
+  .tab-item .badge{position:absolute;top:8px;right:calc(50% - 22px);
+    background:var(--primary);color:#fff;font-size:9px;font-weight:800;
+    min-width:16px;height:16px;border-radius:20px;display:grid;place-items:center;padding:0 4px}
+  .sheet{top:auto;bottom:0;right:0;left:0;width:100vw;height:auto;max-height:92dvh;
+    border-left:none;border-top:1px solid var(--border);border-radius:22px 22px 0 0;transform:translateY(102%)}
   .sheet.is-open{transform:translateY(0)}
   .sheet::before{content:"";display:block;width:40px;height:4px;border-radius:20px;background:var(--border-strong);margin:10px auto 0}
   .sheet-head{padding-top:12px}
@@ -542,6 +688,11 @@ svg{display:block;max-width:100%}
   .card-actions{gap:7px}
   .card-actions .btn{flex:1;justify-content:center;min-width:0}
   .hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+  .messages-layout{grid-template-columns:1fr}
+  .messages-layout.show-thread .convo-sidebar{display:none}
+  .messages-layout:not(.show-thread) .chat-pane{display:none}
+  .back-btn{display:grid}
 }
 @media (max-width:640px){
   .view{padding:14px 14px 26px}
@@ -556,10 +707,14 @@ svg{display:block;max-width:100%}
   .section-head h2{font-size:15px}
   .avatar.md{width:48px;height:48px;border-radius:15px;font-size:17px}
   .toast-root{bottom:calc(var(--tabbar-h) + 14px)}
-  .inv-item{padding:11px 12px;gap:11px}
-  .sheet-body{padding:20px}
-  .sheet-foot{padding:14px 18px;flex-wrap:wrap}
-  .sheet-foot .btn{flex:1;min-width:130px}
+  .msg-list{padding:16px}
+  .msg{max-width:86%}
+  .msg .bubble{padding:10px 14px;font-size:13.5px}
+  .composer{padding:12px 14px}
+  .map-shell{height:400px}
+  .map-pin .pin-dot{width:36px;height:36px;border-radius:12px;font-size:12px}
+  .post-title{font-size:16px}
+  .post-body{font-size:14px}
 }
 @media (max-width:400px){
   .topbar{padding:9px 12px;gap:8px}
@@ -573,7 +728,6 @@ svg{display:block;max-width:100%}
 </head>
 <body>
 
-<!-- BOOT -->
 <div class="boot" id="bootScreen">
   <div class="boot-mark">
     <svg viewBox="0 0 32 32">
@@ -586,7 +740,6 @@ svg{display:block;max-width:100%}
   <div class="boot-text" id="bootText">Running the matcher…</div>
 </div>
 
-<!-- ERROR -->
 <div class="error-screen" id="errorScreen">
   <div class="error-card">
     <h2 id="errorTitle">Something went wrong</h2>
@@ -595,7 +748,6 @@ svg{display:block;max-width:100%}
   </div>
 </div>
 
-<!-- APP -->
 <div class="app" id="app" style="display:none">
 
   <aside class="sidebar">
@@ -608,10 +760,7 @@ svg{display:block;max-width:100%}
           <path d="M6.5 6.9 10.1 10.2M17.5 6.9 13.9 10.2M6.5 17.1 10.1 13.8M17.5 17.1 13.9 13.8"/>
         </svg>
       </div>
-      <div class="brand-text">
-        <b>TIMCRENET</b>
-        <span>Time · Create · Network</span>
-      </div>
+      <div class="brand-text"><b>TIMCRENET</b><span>Time · Create · Network</span></div>
     </div>
 
     <nav class="nav" id="navDesktop">
@@ -620,9 +769,18 @@ svg{display:block;max-width:100%}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
         For you
       </button>
+      <button class="nav-item" data-nav="posts" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+        Posts
+        <span class="badge soft" id="postsBadge">0</span>
+      </button>
       <button class="nav-item" data-nav="explore" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-3 6-4-4 6-3Z"/></svg>
         Explore
+      </button>
+      <button class="nav-item" data-nav="map" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Nearby
       </button>
       <button class="nav-item" data-nav="saved" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
@@ -634,10 +792,16 @@ svg{display:block;max-width:100%}
       <button class="nav-item" data-nav="messages" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
         Messages
+        <span class="badge" id="messagesBadge" style="display:none">0</span>
       </button>
       <button class="nav-item" data-nav="collabs" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="8" r="2.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15 14.5a5 5 0 0 1 6.5 5"/></svg>
         Collabs
+      </button>
+      <button class="nav-item" data-nav="notifications" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8.5a6 6 0 1 0-12 0c0 7-2.5 8.5-2.5 8.5h17S18 15.5 18 8.5"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+        Activity
+        <span class="badge" id="notifBadge" style="display:none">0</span>
       </button>
 
       <div class="nav-label">You</div>
@@ -693,10 +857,13 @@ svg{display:block;max-width:100%}
 
     <div class="viewport" id="viewport">
       <section class="view is-active" id="view-home"></section>
+      <section class="view" id="view-posts"></section>
       <section class="view" id="view-explore"></section>
+      <section class="view" id="view-map"></section>
       <section class="view" id="view-saved"></section>
-      <section class="view" id="view-messages"></section>
+      <section class="view no-pad" id="view-messages"></section>
       <section class="view" id="view-collabs"></section>
+      <section class="view" id="view-notifications"></section>
       <section class="view" id="view-profile"></section>
       <section class="view" id="view-settings"></section>
     </div>
@@ -708,13 +875,18 @@ svg{display:block;max-width:100%}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
     <span>Feed</span>
   </button>
-  <button class="tab-item" data-nav="explore" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-3 6-4-4 6-3Z"/></svg>
-    <span>Explore</span>
+  <button class="tab-item" data-nav="posts" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span>Posts</span>
   </button>
-  <button class="tab-item" data-nav="saved" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
-    <span>Saved</span>
+  <button class="tab-item" data-nav="messages" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+    <span>Chats</span>
+    <span class="badge" id="tabMsgBadge" style="display:none">0</span>
+  </button>
+  <button class="tab-item" data-nav="collabs" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="8" r="2.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15 14.5a5 5 0 0 1 6.5 5"/></svg>
+    <span>Collabs</span>
   </button>
   <button class="tab-item" data-nav="profile" type="button">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
@@ -737,9 +909,9 @@ svg{display:block;max-width:100%}
 <div class="toast-root" id="toastRoot"></div>
 
 <script type="module">
-/* ╔══════════════════════════════════════════════════════════════════════╗
-   ║  TIMCRENET · app.html                                                 ║
-   ╚══════════════════════════════════════════════════════════════════════╝ */
+/* ══════════════════════════════════════════════════════════════════════════
+   TIMCRENET · app.html — Posts + Follows
+   ══════════════════════════════════════════════════════════════════════════ */
 
 const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
@@ -761,22 +933,17 @@ function fatal(title, html, actions = '') {
 }
 
 if (!urlLooksValid || !keyLooksValid) {
-  fatal('Supabase credentials not set',
-    '<p>Open app.html, find the script at the bottom, and paste your URL and anon key.</p>');
+  fatal('Supabase credentials not set', '<p>Open app.html and paste your URL + anon key.</p>');
   throw new Error('invalid config');
 }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
 
 const supabase = createClient(trimmedUrl, trimmedKey, {
-  auth: {
-    persistSession: true, autoRefreshToken: true,
-    detectSessionInUrl: false, storageKey: 'timcrenet.auth'
-  },
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'timcrenet.auth' },
   global: { headers: { 'x-application-name': 'timcrenet-web' } }
 });
 
-/* ── helpers ── */
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m =>
@@ -785,21 +952,16 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, m =>
 function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function avatarStyle(seed){
   const h = hashStr(String(seed || 'x'));
-  const a = h % 360;
-  const b = (a + 55 + (h>>3)%110) % 360;
-  const c = (a + 210 + (h>>7)%90) % 360;
-  const ang = h % 360;
+  const a = h % 360, b = (a+55+(h>>3)%110)%360, c = (a+210+(h>>7)%90)%360, ang = h%360;
   return `background:conic-gradient(from ${ang}deg, hsl(${a} 72% 58%), hsl(${b} 70% 54%), hsl(${c} 74% 60%), hsl(${a} 72% 58%));`;
 }
-function avatarHTML(seed, initials, size = 'md') {
+function avatarHTML(seed, initials, size='md'){
   return `<div class="avatar ${size}" style="${avatarStyle(seed)}">${esc(initials || '··')}</div>`;
 }
-function ringSVG(score, size = 58, stroke = 5) {
-  const s = Math.max(0, Math.min(100, Number(score) || 0));
-  const r = (size - stroke) / 2;
-  const c = 2 * Math.PI * r;
-  const off = c * (1 - s / 100);
-  const col = s >= 88 ? 'var(--success)' : s >= 74 ? 'var(--secondary)' : 'var(--warning)';
+function ringSVG(score, size=58, stroke=5){
+  const s = Math.max(0, Math.min(100, Number(score)||0));
+  const r = (size-stroke)/2, c = 2*Math.PI*r, off = c*(1-s/100);
+  const col = s>=88?'var(--success)':s>=74?'var(--secondary)':'var(--warning)';
   return `<svg class="ring" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
     <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--surface-3)" stroke-width="${stroke}"/>
     <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col}" stroke-width="${stroke}"
@@ -808,12 +970,35 @@ function ringSVG(score, size = 58, stroke = 5) {
     <text x="50%" y="53%" text-anchor="middle" dominant-baseline="middle" font-size="${Math.round(size*0.3)}" font-weight="800">${s}</text>
   </svg>`;
 }
+function timeAgo(iso){
+  if (!iso) return '';
+  const d = new Date(iso), s = Math.floor((Date.now() - d.getTime())/1000);
+  if (s < 60) return 'just now';
+  const m = Math.floor(s/60); if (m < 60) return m + 'm';
+  const h = Math.floor(m/60); if (h < 24) return h + 'h';
+  const dd = Math.floor(h/24); if (dd < 7) return dd + 'd';
+  return d.toLocaleDateString(undefined, {month:'short', day:'numeric'});
+}
+function timeShort(iso){
+  if (!iso) return '';
+  return new Date(iso).toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+}
+function dayKey(iso){ return new Date(iso).toDateString(); }
+function dayLabel(iso){
+  const d = new Date(iso);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const yesterday = new Date(today); yesterday.setDate(yesterday.getDate()-1);
+  const dd = new Date(d); dd.setHours(0,0,0,0);
+  if (dd.getTime() === today.getTime()) return 'Today';
+  if (dd.getTime() === yesterday.getTime()) return 'Yesterday';
+  return d.toLocaleDateString(undefined, {month:'long', day:'numeric', year:'numeric'});
+}
 
-function toast(text, kind = 'ok') {
+function toast(text, kind='ok'){
   const el = document.createElement('div');
-  el.className = 'toast' + (kind === 'err' ? ' err' : '');
+  el.className = 'toast' + (kind==='err'?' err':'');
   el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
-    kind === 'err'
+    kind==='err'
       ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
       : '<path d="M20 6 9 17l-5-5"/>'
   }</svg><span>${esc(text)}</span>`;
@@ -826,43 +1011,59 @@ function toast(text, kind = 'ok') {
   }, 2600);
 }
 
-/* ── theme ── */
-(function initTheme() {
+(function initTheme(){
   const saved = localStorage.getItem('timcrenet-theme');
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
   const theme = saved || (prefersLight ? 'light' : 'dark');
   document.documentElement.setAttribute('data-theme', theme);
-  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
+  $('#metaThemeColor').setAttribute('content', theme==='light' ? '#FAF9F7' : '#0A0B0F');
 })();
 $('#themeBtn').addEventListener('click', () => {
   const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('timcrenet-theme', next);
-  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+  $('#metaThemeColor').setAttribute('content', next==='light' ? '#FAF9F7' : '#0A0B0F');
 });
 
-/* ── state ── */
+/* ─── state ───────────────────────────────────────────────────────────── */
 const state = {
   view: 'home',
   me: null,
   feed: [],
   savedIds: new Set(),
+  followedIds: new Set(),
   searchQuery: '',
-  maxKm: 60
+  maxKm: 60,
+  // messages
+  conversations: [],
+  activeConvId: null,
+  activeMessages: [],
+  messageChannel: null,
+  mobileShowThread: false,
+  // collabs
+  collabs: [],
+  // notifications
+  notifications: [],
+  // posts
+  posts: [],
+  postScope: 'all' // 'all' | 'following'
 };
 
 const VIEW_META = {
-  home:     { title:'For you',    sub:'Creators near you whose gaps match your strengths' },
-  explore:  { title:'Explore',    sub:'Search by name, skill, niche or city' },
-  saved:    { title:'Saved',      sub:'Creators you bookmarked for later' },
-  messages: { title:'Messages',   sub:'Direct chats and group pods' },
-  collabs:  { title:'Collabs',    sub:'Active and proposed partnerships' },
-  profile:  { title:'Profile',    sub:'Your struggles, advantages, gear and time' },
-  settings: { title:'Settings',   sub:'Privacy, matching and appearance' }
+  home:          { title:'For you',    sub:'Creators near you whose gaps match your strengths' },
+  posts:         { title:'Posts',      sub:'What creators are sharing right now' },
+  explore:       { title:'Explore',    sub:'Search by name, skill, niche or city' },
+  map:           { title:'Nearby',     sub:'Everyone within reach, plotted' },
+  saved:         { title:'Saved',      sub:'Creators you bookmarked for later' },
+  messages:      { title:'Messages',   sub:'Direct chats and group pods' },
+  collabs:       { title:'Collabs',    sub:'Active and proposed partnerships' },
+  notifications: { title:'Activity',   sub:'Matches, messages, collabs, sessions' },
+  profile:       { title:'Profile',    sub:'Your struggles, advantages, gear and time' },
+  settings:      { title:'Settings',   sub:'Privacy, matching and appearance' }
 };
 
-/* ── boot ── */
-(async function boot() {
+/* ─── boot ────────────────────────────────────────────────────────────── */
+(async function boot(){
   try {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) { location.href = SIGNIN_URL; return; }
@@ -880,14 +1081,27 @@ const VIEW_META = {
     state.me = profile;
     paintSidebar(profile);
 
+    // Load saved + followed
     try {
       const { data: saved } = await supabase.rpc('my_saves');
       state.savedIds = new Set(saved || []);
-    } catch (e) { console.warn('my_saves failed:', e); }
-
+    } catch(e){ console.warn('my_saves:', e); }
     updateSavedBadge();
+
+    try {
+      const { data: followed } = await supabase.rpc('my_following_ids');
+      state.followedIds = new Set(followed || []);
+    } catch(e){ console.warn('my_following_ids:', e); }
+
+    // Load feed
     $('#bootText').textContent = 'Ranking creators near you…';
     await loadFeed();
+
+    // Async loads
+    loadPosts().catch(e => console.warn('posts:', e));
+    loadConversations().catch(e => console.warn('convos:', e));
+    loadCollabs().catch(e => console.warn('collabs:', e));
+    loadNotifications().catch(e => console.warn('notifs:', e));
 
     $('#bootScreen').classList.add('is-hidden');
     setTimeout(() => { $('#bootScreen').style.display = 'none'; }, 420);
@@ -895,25 +1109,21 @@ const VIEW_META = {
     $('#tabbar').style.display = '';
 
     navigate('home');
-  } catch (err) {
+  } catch(err){
     console.error('[TIMCRENET boot]', err);
     const msg = err?.message || String(err);
     let friendly = msg;
-    if (msg.includes('function') && msg.includes('does not exist'))
-      friendly = 'The match engine functions are missing. Run timcrenet_app.sql in Supabase.';
-    else if (msg.includes('relation') && msg.includes('does not exist'))
-      friendly = 'A required table is missing. Run timcrenet_app.sql in Supabase.';
-    fatal('Could not start TIMCRENET', `
-      <p>${esc(friendly)}</p>
-      <p style="font-size:12px;color:var(--text-3)">Full error: <code>${esc(msg.slice(0,200))}</code></p>
-    `, `
-      <button class="btn" onclick="location.reload()">Reload</button>
-      <button class="btn" onclick="location.href='index.html'">Sign out</button>
-    `);
+    if (msg.includes('match_feed') || (msg.includes('function') && msg.includes('does not exist')))
+      friendly = 'A backend function is missing. Run the SQL scripts (app_fix, messaging, posts_follows) in Supabase.';
+    fatal('Could not start TIMCRENET',
+      `<p>${esc(friendly)}</p>
+       <p style="font-size:12px;color:var(--text-3)">Full: <code>${esc(msg.slice(0,200))}</code></p>`,
+      `<button class="btn" onclick="location.reload()">Reload</button>
+       <button class="btn" onclick="location.href='index.html'">Sign out</button>`);
   }
 })();
 
-function paintSidebar(profile) {
+function paintSidebar(profile){
   const el = $('#meAvatarSide');
   el.style.cssText = avatarStyle(profile.avatar_seed || profile.handle);
   el.textContent = profile.initials || (profile.display_name?.[0] || '·').toUpperCase();
@@ -921,11 +1131,10 @@ function paintSidebar(profile) {
   $('#meMetaSide').textContent = [profile.city, profile.region].filter(Boolean).join(', ') || '—';
   $('#meRelSide').textContent = Number(profile.reliability ?? 5).toFixed(1);
 }
-function updateSavedBadge() {
-  $('#savedBadge').textContent = state.savedIds.size;
-}
+function updateSavedBadge(){ $('#savedBadge').textContent = state.savedIds.size; }
+function updatePostsBadge(){ $('#postsBadge').textContent = state.posts.length; }
 
-async function loadFeed() {
+async function loadFeed(){
   const { data, error } = await supabase.rpc('match_feed', {
     viewer: state.me.id, max_km: state.maxKm, min_score: 0, lim: 60
   });
@@ -933,8 +1142,8 @@ async function loadFeed() {
   state.feed = data || [];
 }
 
-/* ── nav ── */
-function navigate(view) {
+/* ─── nav ─────────────────────────────────────────────────────────────── */
+function navigate(view){
   state.view = view;
   $$('.view').forEach(v => v.classList.remove('is-active'));
   const el = $('#view-' + view);
@@ -945,42 +1154,51 @@ function navigate(view) {
   $('#viewSub').textContent = meta.sub;
   $('#globalSearchWrap').style.display = (view === 'home' || view === 'explore') ? 'flex' : 'none';
   render();
-  $('#viewport').scrollTop = 0;
 }
 
-function render() {
-  switch (state.view) {
-    case 'home':     return renderHome();
-    case 'explore':  return renderExplore();
-    case 'saved':    return renderSaved();
-    case 'messages': return renderPlaceholder('messages');
-    case 'collabs':  return renderPlaceholder('collabs');
-    case 'profile':  return renderProfile();
-    case 'settings': return renderSettings();
+function render(){
+  switch(state.view){
+    case 'home':          return renderHome();
+    case 'posts':         return renderPosts();
+    case 'explore':       return renderExplore();
+    case 'map':           return renderMap();
+    case 'saved':         return renderSaved();
+    case 'messages':      return renderMessages();
+    case 'collabs':       return renderCollabs();
+    case 'notifications': return renderNotifications();
+    case 'profile':       return renderProfile();
+    case 'settings':      return renderSettings();
   }
 }
 
-/* ── renderers ── */
-function reasonChips(c) {
+/* ─── shared card components ──────────────────────────────────────────── */
+function reasonChips(c){
   const out = [];
-  if ((c.proximity ?? 0) >= 80 && c.distance_km != null) out.push(`${c.distance_km.toFixed(1)} km away`);
-  if ((c.equipment ?? 0) >= 85) out.push('Gear you need');
-  if ((c.complementary ?? 0) >= 85) out.push('Skills that fit');
-  if ((c.space ?? 0) >= 85) out.push('Space you can use');
-  if ((c.availability ?? 0) >= 85) out.push('Schedule overlap');
-  if ((c.niche ?? 0) >= 88) out.push('Same niche');
-  return out.slice(0, 4);
+  if ((c.proximity??0)>=80 && c.distance_km!=null) out.push(`${c.distance_km.toFixed(1)} km away`);
+  if ((c.equipment??0)>=85) out.push('Gear you need');
+  if ((c.complementary??0)>=85) out.push('Skills that fit');
+  if ((c.space??0)>=85) out.push('Space you can use');
+  if ((c.availability??0)>=85) out.push('Schedule overlap');
+  if ((c.niche??0)>=88) out.push('Same niche');
+  return out.slice(0,4);
 }
 
-function creatorCard(c) {
+function followBtn(userId, small=false){
+  if (!userId || userId === state.me.id) return '';
+  const isFollowing = state.followedIds.has(userId);
+  return `<button class="btn ${small?'sm ':''}${isFollowing?'is-following':''}"
+            data-action="follow" data-id="${esc(userId)}" type="button">
+    ${isFollowing ? 'Following' : 'Follow'}
+  </button>`;
+}
+
+function creatorCard(c){
   const isSaved = state.savedIds.has(c.profile_id);
-  const needs = (c.needs || []).slice(0, 4).map(n =>
-    `<span class="tag tag-need">${esc(n)}</span>`).join('');
-  const gives = (c.gives || []).slice(0, 4).map(a =>
-    `<span class="tag tag-give">${esc(a)}</span>`).join('');
-  const niches = (c.niches || []).slice(0, 3).map(n =>
-    `<span class="tag tag-niche">${esc(n)}</span>`).join('');
-  const reasons = reasonChips(c).map(r => `<span class="reason">${esc(r)}</span>`).join('');
+  const isFollowing = state.followedIds.has(c.profile_id);
+  const needs = (c.needs||[]).slice(0,4).map(n=>`<span class="tag tag-need">${esc(n)}</span>`).join('');
+  const gives = (c.gives||[]).slice(0,4).map(a=>`<span class="tag tag-give">${esc(a)}</span>`).join('');
+  const niches = (c.niches||[]).slice(0,3).map(n=>`<span class="tag tag-niche">${esc(n)}</span>`).join('');
+  const reasons = reasonChips(c).map(r=>`<span class="reason">${esc(r)}</span>`).join('');
 
   return `<article class="card">
     <div class="card-head">
@@ -991,55 +1209,225 @@ function creatorCard(c) {
           <span class="handle">@${esc(c.handle)}</span>
         </div>
         <div class="meta">
-          <span>${esc([c.city, c.region].filter(Boolean).join(', ') || 'Location hidden')}</span>
-          ${c.distance_km != null ? `<span class="sep"></span><span>${c.distance_km.toFixed(1)} km away</span>` : ''}
+          <span>${esc([c.city,c.region].filter(Boolean).join(', ')||'Location hidden')}</span>
+          ${c.distance_km!=null?`<span class="sep"></span><span>${c.distance_km.toFixed(1)} km</span>`:''}
           <span class="sep"></span>
-          <span>★ ${Number(c.reliability ?? 5).toFixed(1)}</span>
+          <span>★ ${Number(c.reliability??5).toFixed(1)}</span>
         </div>
       </div>
       <div class="ring-wrap">${ringSVG(c.score)}<span class="ring-cap">Match</span></div>
     </div>
     <div class="card-body">
-      ${niches ? `<div class="tag-row">${niches}</div>` : ''}
-      <div class="tag-block">
-        <span class="tag-label">Needs a hand with</span>
-        <div class="tag-row">${needs || '<span class="tag tag-neutral">Nothing declared</span>'}</div>
-      </div>
-      <div class="tag-block">
-        <span class="tag-label">Brings to the table</span>
-        <div class="tag-row">${gives || '<span class="tag tag-neutral">Nothing declared yet</span>'}</div>
-      </div>
+      ${niches?`<div class="tag-row">${niches}</div>`:''}
+      <div class="tag-block"><span class="tag-label">Needs a hand with</span>
+        <div class="tag-row">${needs||'<span class="tag tag-neutral">Nothing declared</span>'}</div></div>
+      <div class="tag-block"><span class="tag-label">Brings to the table</span>
+        <div class="tag-row">${gives||'<span class="tag tag-neutral">Nothing declared yet</span>'}</div></div>
       <div class="reasons">
         <span class="reasons-label">Why you fit</span>
-        ${reasons || '<span class="reason">Early signal</span>'}
+        ${reasons||'<span class="reason">Early signal</span>'}
       </div>
     </div>
     <div class="card-actions">
       <button class="btn btn-primary" data-action="view" data-id="${esc(c.profile_id)}" type="button">View profile</button>
       <button class="btn" data-action="message" data-id="${esc(c.profile_id)}" type="button">Say hi</button>
       <div class="spacer"></div>
-      <button class="btn ${isSaved ? 'is-saved' : ''}" data-action="save" data-id="${esc(c.profile_id)}" type="button">
-        <svg viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
-        ${isSaved ? 'Saved' : 'Save'}
+      <button class="btn ${isFollowing?'is-following':''}" data-action="follow" data-id="${esc(c.profile_id)}" type="button">
+        ${isFollowing ? 'Following' : 'Follow'}
+      </button>
+      <button class="btn ${isSaved?'is-saved':''}" data-action="save" data-id="${esc(c.profile_id)}" type="button">
+        <svg viewBox="0 0 24 24" fill="${isSaved?'currentColor':'none'}" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+        ${isSaved?'Saved':'Save'}
       </button>
     </div>
   </article>`;
 }
 
-function renderHome() {
+/* ─── POST CARD ───────────────────────────────────────────────────────── */
+function postCard(p){
+  const isMine = p.author_id === state.me.id;
+  const isFollowing = state.followedIds.has(p.author_id);
+
+  return `<article class="card post-card">
+    <div class="card-head">
+      <button type="button" data-action="view" data-id="${esc(p.author_id)}" style="background:none;border:none;padding:0;cursor:pointer">
+        ${avatarHTML(p.author_avatar_seed || p.author_handle, p.author_initials, 'md')}
+      </button>
+      <div class="who">
+        <div class="name-row">
+          <h3>${esc(p.author_display_name)}</h3>
+          <span class="handle">@${esc(p.author_handle)}</span>
+        </div>
+        <div class="meta">
+          ${[p.author_city, p.author_region].filter(Boolean).length
+            ? `<span>${esc([p.author_city, p.author_region].filter(Boolean).join(', '))}</span><span class="sep"></span>` : ''}
+          <span>${esc(timeAgo(p.created_at))}</span>
+        </div>
+      </div>
+      ${!isMine ? `<button class="btn sm ${isFollowing?'is-following':''}"
+        data-action="follow" data-id="${esc(p.author_id)}" type="button">
+        ${isFollowing ? 'Following' : 'Follow'}
+      </button>` : ''}
+    </div>
+    <div class="card-body">
+      ${p.title ? `<h3 class="post-title">${esc(p.title)}</h3>` : ''}
+      <p class="post-body">${esc(p.body)}</p>
+    </div>
+    <div class="card-actions">
+      <button class="btn sm" data-action="view" data-id="${esc(p.author_id)}" type="button">View profile</button>
+      ${!isMine ? `<button class="btn sm" data-action="message" data-id="${esc(p.author_id)}" type="button">Say hi</button>` : ''}
+      <div class="spacer"></div>
+      ${isMine ? `<button class="btn sm" data-action="delete-post" data-post-id="${esc(p.id)}" type="button"
+                    style="color:var(--danger);border-color:var(--danger-soft)">Delete</button>` : ''}
+    </div>
+  </article>`;
+}
+
+/* ─── POSTS VIEW ──────────────────────────────────────────────────────── */
+async function loadPosts(){
+  const fn = state.postScope === 'following' ? 'following_posts' : 'all_posts';
+  const { data, error } = await supabase.rpc(fn, { p_lim: 100 });
+  if (error) throw error;
+  state.posts = data || [];
+  updatePostsBadge();
+  if (state.view === 'posts') renderPosts();
+}
+
+function renderPosts(){
+  const posts = state.posts;
+  const total = posts.length;
+
+  $('#view-posts').innerHTML = `
+    <div class="hero">
+      <h2>Posts</h2>
+      <p>What creators are sharing right now. Text-only — no images, no video.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="newPostBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+          Write a post
+        </button>
+        <div class="posts-filter">
+          <button type="button" class="chip ${state.postScope==='all'?'is-active':''}" data-post-scope="all">Everyone</button>
+          <button type="button" class="chip ${state.postScope==='following'?'is-active':''}" data-post-scope="following">Following</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>${total}</b><span>${state.postScope==='following'?'In your feed':'Total posts'}</span></div>
+        <div class="hero-stat"><b>${state.followedIds.size}</b><span>Following</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>${state.postScope==='following' ? 'From creators you follow' : 'From everyone'}</h2>
+        <span class="count">${total}</span>
+        <div class="spacer"></div>
+        <button class="btn sm" id="refreshPostsBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          Refresh
+        </button>
+      </div>
+      <div class="feed">
+        ${total
+          ? posts.map(postCard).join('')
+          : `<div class="empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/></svg>
+              <h3>${state.postScope==='following' ? 'No posts from creators you follow' : 'No posts yet'}</h3>
+              <p>${state.postScope==='following'
+                ? 'Follow more creators, or tap "Everyone" to see the global feed.'
+                : 'Be the first to share something — tap "Write a post" above.'}</p>
+            </div>`}
+      </div>
+    </div>`;
+
+  const nb = $('#newPostBtn');
+  if (nb) nb.addEventListener('click', openPostComposer);
+
+  const rb = $('#refreshPostsBtn');
+  if (rb) rb.addEventListener('click', async () => {
+    rb.classList.add('is-loading'); rb.disabled = true;
+    try {
+      await loadPosts();
+      renderPosts();
+      toast('Posts refreshed');
+    } catch(err){ toast(err.message || 'Refresh failed', 'err'); }
+    finally { rb.classList.remove('is-loading'); rb.disabled = false; }
+  });
+
+  $$('[data-post-scope]').forEach(el => {
+    el.addEventListener('click', async () => {
+      if (state.postScope === el.dataset.postScope) return;
+      state.postScope = el.dataset.postScope;
+      try { await loadPosts(); renderPosts(); }
+      catch(err){ toast(err.message, 'err'); }
+    });
+  });
+}
+
+function openPostComposer(){
+  openSheet('Write a post', `
+    <div class="field" style="margin-bottom:16px;max-width:none">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:8px">Title <span style="color:var(--text-3);font-weight:500">— optional</span></label>
+      <input id="postTitle" type="text" placeholder="A headline…" maxlength="140"
+        style="width:100%;padding:13px 15px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:14.5px;color:var(--text)"/>
+    </div>
+    <div class="field" style="margin-bottom:16px;max-width:none">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:8px">Body</label>
+      <textarea id="postBody" rows="8" placeholder="What do you want to share?" maxlength="4000"
+        style="width:100%;padding:13px 15px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:14.5px;color:var(--text);resize:vertical;font-family:inherit"></textarea>
+      <div style="font-size:11.5px;color:var(--text-3);margin-top:6px" id="postCount">0 / 4000</div>
+    </div>
+    <p style="font-size:12.5px;color:var(--text-3);line-height:1.55">Text-only — no images or video. Visible to every creator who can see your profile.</p>
+  `, `
+    <button class="btn" id="postCancel" type="button">Cancel</button>
+    <button class="btn btn-primary" id="postSubmit" type="button">Publish</button>`);
+
+  const ta = $('#postBody');
+  ta.addEventListener('input', () => {
+    $('#postCount').textContent = ta.value.length + ' / 4000';
+  });
+  setTimeout(() => ta.focus(), 60);
+
+  $('#postCancel').addEventListener('click', closeSheet);
+
+  $('#postSubmit').addEventListener('click', async () => {
+    const title = $('#postTitle').value.trim();
+    const body = ta.value.trim();
+    if (body.length < 1) return toast('Write something first', 'err');
+
+    const btn = $('#postSubmit');
+    btn.classList.add('is-loading'); btn.disabled = true;
+    try {
+      const { error } = await supabase.rpc('create_post', { p_title: title || null, p_body: body });
+      if (error) throw error;
+      toast('Posted');
+      closeSheet();
+      state.postScope = 'all';
+      await loadPosts();
+      if (state.view === 'posts') renderPosts();
+    } catch(err){
+      const msg = err?.message || String(err);
+      if (msg.includes('body_required')) toast('Write something first', 'err');
+      else if (msg.includes('body_too_long')) toast('Too long (max 4000)', 'err');
+      else if (msg.includes('title_too_long')) toast('Title too long (max 140)', 'err');
+      else toast(msg, 'err');
+    } finally {
+      btn.classList.remove('is-loading'); btn.disabled = false;
+    }
+  });
+}
+
+/* ─── HOME ────────────────────────────────────────────────────────────── */
+function renderHome(){
   const list = state.feed;
   const total = list.length;
-  const strong = list.filter(c => (c.score ?? 0) >= 85).length;
-  const within10 = list.filter(c => c.distance_km != null && c.distance_km <= 10).length;
+  const strong = list.filter(c => (c.score??0)>=85).length;
+  const within10 = list.filter(c => c.distance_km!=null && c.distance_km<=10).length;
 
   $('#view-home').innerHTML = `
     <div class="hero">
       <h2>Hey ${esc(state.me.display_name.split(' ')[0])} 👋</h2>
-      <p>
-        Scanned everyone within <b>${state.maxKm} km</b> of
-        ${esc([state.me.city, state.me.region].filter(Boolean).join(', ') || 'you')}
-        and found <b>${total} creators</b>. ${strong} score above 85 — those are worth messaging first.
-      </p>
+      <p>Scanned everyone within <b>${state.maxKm} km</b> of ${esc([state.me.city,state.me.region].filter(Boolean).join(', ')||'you')} and found <b>${total} creators</b>. ${strong} score above 85.</p>
       <div class="hero-stats">
         <div class="hero-stat"><b>${total}</b><span>Nearby</span></div>
         <div class="hero-stat"><b>${strong}</b><span>Strong fits</span></div>
@@ -1047,7 +1435,6 @@ function renderHome() {
         <div class="hero-stat"><b>${state.savedIds.size}</b><span>Saved</span></div>
       </div>
     </div>
-
     <div class="section">
       <div class="section-head">
         <h2>Top picks for you</h2>
@@ -1059,48 +1446,43 @@ function renderHome() {
         </button>
       </div>
       <div class="feed">
-        ${total
-          ? list.map(creatorCard).join('')
-          : `<div class="empty">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-              <h3>No creators in range yet</h3>
-              <p>Widen your radius in Settings, or invite creators to join TIMCRENET.</p>
-            </div>`}
+        ${total ? list.map(creatorCard).join('') : `
+          <div class="empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <h3>No creators in range yet</h3>
+            <p>Widen your radius in Settings or invite creators to join.</p>
+          </div>`}
       </div>
-    </div>
-  `;
-
+    </div>`;
   const btn = $('#refreshInline');
   if (btn) btn.addEventListener('click', refreshFeed);
 }
 
-function renderExplore() {
+function renderExplore(){
   const q = state.searchQuery.trim().toLowerCase();
   const results = state.feed.filter(c => {
     if (!q) return true;
-    const hay = [
-      c.display_name, c.handle, c.city, c.region,
-      ...(c.niches || []), ...(c.needs || []), ...(c.gives || [])
-    ].join(' ').toLowerCase();
+    const hay = [c.display_name,c.handle,c.city,c.region,...(c.niches||[]),...(c.needs||[]),...(c.gives||[])].join(' ').toLowerCase();
     return hay.includes(q);
   });
-
   $('#view-explore').innerHTML = `
     <div class="section">
       <div class="section-head">
-        <h2>${q ? `Results for “${esc(state.searchQuery)}”` : 'Everyone nearby'}</h2>
+        <h2>${q?`Results for “${esc(state.searchQuery)}”`:'Everyone nearby'}</h2>
         <span class="count">${results.length}</span>
       </div>
       <div class="grid-2">
-        ${results.length ? results.map(c => `
+        ${results.length ? results.map(c => {
+          const isFollowing = state.followedIds.has(c.profile_id);
+          return `
           <article class="card" style="padding:18px">
             <div class="card-head">
-              ${avatarHTML(c.avatar_seed || c.handle, c.initials, 'sm')}
+              ${avatarHTML(c.avatar_seed||c.handle, c.initials, 'sm')}
               <div class="who">
                 <div class="name-row"><h3>${esc(c.display_name)}</h3></div>
                 <div class="meta">
                   <span>@${esc(c.handle)}</span>
-                  ${c.distance_km != null ? `<span class="sep"></span><span>${c.distance_km.toFixed(1)} km</span>` : ''}
+                  ${c.distance_km!=null?`<span class="sep"></span><span>${c.distance_km.toFixed(1)} km</span>`:''}
                 </div>
               </div>
               <div class="ring-wrap">${ringSVG(c.score, 48, 4)}</div>
@@ -1112,18 +1494,101 @@ function renderExplore() {
             <div class="card-actions" style="margin-top:14px;padding-top:12px">
               <button class="btn sm btn-primary" data-action="view" data-id="${esc(c.profile_id)}" type="button">View</button>
               <button class="btn sm" data-action="message" data-id="${esc(c.profile_id)}" type="button">Say hi</button>
+              <button class="btn sm ${isFollowing?'is-following':''}" data-action="follow" data-id="${esc(c.profile_id)}" type="button">
+                ${isFollowing ? 'Following' : 'Follow'}
+              </button>
             </div>
-          </article>
-        `).join('') : `<div class="empty" style="grid-column:1/-1">
-          <h3>No creators found</h3>
-          <p>Try a different skill, gear name or city.</p>
-        </div>`}
+          </article>`;
+        }).join('')
+        : `<div class="empty" style="grid-column:1/-1"><h3>No creators found</h3><p>Try a different search.</p></div>`}
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-function renderSaved() {
+function renderMap(){
+  const inRange = state.feed.filter(c => c.distance_km!=null && c.distance_km <= state.maxKm);
+  const others = state.feed.filter(c => c.distance_km == null);
+
+  const pins = inRange.map((c, i) => {
+    const n = inRange.length;
+    const angle = (i / Math.max(1,n)) * Math.PI * 2;
+    const r = Math.min(48, (c.distance_km / Math.max(1,state.maxKm)) * 48);
+    const x = 50 + Math.cos(angle) * r;
+    const y = 50 + Math.sin(angle) * r;
+    return `<button class="map-pin" style="left:${x}%;top:${y}%" data-action="view" data-id="${esc(c.profile_id)}" type="button">
+      <span class="pin-dot" style="${avatarStyle(c.avatar_seed||c.handle)}">${esc(c.initials||'·')}</span>
+      <span class="pin-label">${esc(c.display_name.split(' ')[0])} · ${c.score}%</span>
+    </button>`;
+  }).join('');
+
+  $('#view-map').innerHTML = `
+    <div class="section">
+      <div class="section-head">
+        <h2>Around you</h2>
+        <span class="count">${inRange.length} in ${state.maxKm} km</span>
+        <div class="spacer"></div>
+        <label style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-2);max-width:280px;font-weight:600">
+          Radius
+          <input class="range" type="range" min="5" max="100" value="${state.maxKm}" id="radiusRange"/>
+          <b style="color:var(--text);min-width:52px;text-align:right" id="radiusLabel">${state.maxKm} km</b>
+        </label>
+      </div>
+      <div class="map-shell">
+        <div class="map-canvas"></div>
+        <div class="map-ring" style="width:${state.maxKm*7.4}px;height:${state.maxKm*7.4}px"></div>
+        <div class="map-ring" style="width:${state.maxKm*3.7}px;height:${state.maxKm*3.7}px"></div>
+        <div class="me-pin"><div class="halo"></div><div class="core"></div></div>
+        ${pins}
+        <div class="map-legend">
+          <div class="legend-row"><span class="legend-swatch" style="background:var(--success)"></span>88%+ fit</div>
+          <div class="legend-row"><span class="legend-swatch" style="background:var(--secondary)"></span>74–87% fit</div>
+          <div class="legend-row"><span class="legend-swatch" style="background:var(--warning)"></span>Below 74%</div>
+          ${others.length?`<div class="legend-row" style="opacity:.7">${others.length} without coordinates</div>`:''}
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-head"><h2>Closest to you</h2><span class="count">${Math.min(inRange.length,5)}</span></div>
+      <div class="feed">
+        ${inRange.slice().sort((a,b)=>a.distance_km-b.distance_km).slice(0,5).map(c => {
+          const isFollowing = state.followedIds.has(c.profile_id);
+          return `
+          <article class="card" style="padding:16px">
+            <div class="card-head">
+              ${avatarHTML(c.avatar_seed||c.handle, c.initials, 'sm')}
+              <div class="who">
+                <div class="name-row"><h3>${esc(c.display_name)}</h3><span class="handle">@${esc(c.handle)}</span></div>
+                <div class="meta"><span>${esc(c.city||'')}</span><span class="sep"></span><span>${c.distance_km.toFixed(1)} km</span></div>
+              </div>
+              <div class="ring-wrap">${ringSVG(c.score, 48, 4)}</div>
+            </div>
+            <div class="card-actions" style="margin-top:14px;padding-top:12px">
+              <button class="btn sm btn-primary" data-action="view" data-id="${esc(c.profile_id)}" type="button">View profile</button>
+              <button class="btn sm ${isFollowing?'is-following':''}" data-action="follow" data-id="${esc(c.profile_id)}" type="button">
+                ${isFollowing ? 'Following' : 'Follow'}
+              </button>
+            </div>
+          </article>`;
+        }).join('')}
+      </div>
+    </div>`;
+
+  const range = $('#radiusRange');
+  if (range) {
+    let t;
+    range.addEventListener('input', e => {
+      $('#radiusLabel').textContent = e.target.value + ' km';
+      clearTimeout(t);
+      t = setTimeout(async () => {
+        state.maxKm = Number(e.target.value);
+        try { await loadFeed(); renderMap(); }
+        catch(err){ toast(err.message || 'Refresh failed', 'err'); }
+      }, 500);
+    });
+  }
+}
+
+function renderSaved(){
   const saved = state.feed.filter(c => state.savedIds.has(c.profile_id));
   $('#view-saved').innerHTML = `
     <div class="section">
@@ -1140,57 +1605,537 @@ function renderSaved() {
               <p>Tap "Save" on any creator to keep them here for later.</p>
             </div>`}
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-function renderPlaceholder(kind) {
-  const config = {
-    messages: {
-      icon:'<path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/>',
-      title:'Messages coming next',
-      body:'Direct chats and group pods wired to Supabase Realtime. No images, no video — just text, agreements and shoot proposals.'
-    },
-    collabs: {
-      icon:'<circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="8" r="2.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15 14.5a5 5 0 0 1 6.5 5"/>',
-      title:'Collabs coming next',
-      body:'Track everything you build with other creators: shared gear, shared space, shoot dates, and signed agreements.'
+/* ─── MESSAGES ────────────────────────────────────────────────────────── */
+async function loadConversations(){
+  const { data, error } = await supabase.rpc('my_conversations');
+  if (error) throw error;
+  state.conversations = data || [];
+  updateMessagesBadge();
+  if (state.view === 'messages') renderMessages();
+}
+
+function updateMessagesBadge(){
+  const total = state.conversations.reduce((sum, c) => sum + (c.unread_count || 0), 0);
+  ['#messagesBadge', '#tabMsgBadge'].forEach(sel => {
+    const el = $(sel);
+    if (!el) return;
+    if (total > 0) { el.style.display = ''; el.textContent = total > 99 ? '99+' : total; }
+    else el.style.display = 'none';
+  });
+}
+
+function convDisplay(c){
+  if (c.kind === 'group') return { name: c.name || 'Group', initials: (c.name||'G').slice(0,2).toUpperCase() };
+  return {
+    name: c.other_display_name || 'Unknown',
+    initials: c.other_initials || '??',
+    avatar_seed: c.other_avatar_seed || c.other_handle
+  };
+}
+
+async function renderMessages(){
+  const convs = state.conversations;
+  const active = state.activeConvId ? convs.find(c => c.conversation_id === state.activeConvId) : null;
+
+  const convoList = convs.length ? convs.map(c => {
+    const d = convDisplay(c);
+    const preview = c.last_message
+      ? (c.last_sender === state.me.id ? 'You: ' : '') + c.last_message
+      : 'No messages yet';
+    return `<button type="button" class="convo-item ${c.conversation_id===state.activeConvId?'is-active':''}" data-convo="${esc(c.conversation_id)}">
+      ${avatarHTML(d.avatar_seed || c.other_handle || d.name, d.initials, 'sm')}
+      <div class="info">
+        <div class="top">
+          <b>${esc(d.name)}</b>
+          ${c.kind==='group'?'<span class="group-badge">Group</span>':''}
+          <time>${esc(timeAgo(c.last_at))}</time>
+        </div>
+        <div class="preview">${esc(preview)}</div>
+      </div>
+      ${c.unread_count>0?`<span class="unread">${c.unread_count}</span>`:''}
+    </button>`;
+  }).join('') : `<div style="padding:32px 16px;text-align:center;color:var(--text-3);font-size:13px">
+      <p style="margin-bottom:8px">No conversations yet.</p>
+      <p>Tap "Say hi" on any creator to start one.</p>
+    </div>`;
+
+  const chatPaneHTML = active ? chatPane(active) : `
+    <div class="empty-chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+      <h3>Select a conversation</h3>
+      <p>Pick a chat from the left, or say hi to someone new from the feed.</p>
+    </div>`;
+
+  $('#view-messages').innerHTML = `
+    <div class="messages-layout ${state.mobileShowThread?'show-thread':''}" id="msgLayout">
+      <div class="convo-sidebar">
+        <div class="convo-head">
+          <h2>Messages</h2>
+          <div class="searchbox" style="min-width:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input placeholder="Search conversations" id="convoSearch"/>
+          </div>
+        </div>
+        <div class="convo-scroll" id="convoScroll">${convoList}</div>
+      </div>
+      <div class="chat-pane" id="chatPane">${chatPaneHTML}</div>
+    </div>`;
+
+  $$('[data-convo]').forEach(el => {
+    el.addEventListener('click', () => openConversation(el.dataset.convo));
+  });
+
+  const search = $('#convoSearch');
+  if (search) {
+    search.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      $$('#convoScroll .convo-item').forEach(item => {
+        const t = item.textContent.toLowerCase();
+        item.style.display = q && !t.includes(q) ? 'none' : '';
+      });
+    });
+  }
+
+  if (active) {
+    wireChatPane(active);
+    await scrollChatToBottom();
+  }
+}
+
+function chatPane(convo){
+  const d = convDisplay(convo);
+  return `
+    <div class="chat-head">
+      <button class="icon-btn back-btn" data-back-to-list type="button" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      ${avatarHTML(d.avatar_seed || convo.other_handle || d.name, d.initials, 'sm')}
+      <div class="info">
+        <b>${esc(d.name)}</b>
+        <span>${convo.kind==='group'?'Group pod':'Direct chat'}</span>
+      </div>
+    </div>
+    <div class="msg-list" id="msgList">
+      <div style="text-align:center;padding:40px;color:var(--text-3);font-size:13px">Loading messages…</div>
+    </div>
+    <div class="composer">
+      <div class="composer-row">
+        <textarea id="msgInput" rows="1" placeholder="Write a message… (text only)"></textarea>
+        <button class="send-btn" id="sendBtn" type="button" aria-label="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function wireChatPane(convo){
+  const ta = $('#msgInput');
+  if (ta) {
+    ta.addEventListener('input', () => {
+      ta.style.height = 'auto';
+      ta.style.height = Math.min(ta.scrollHeight, 130) + 'px';
+    });
+    ta.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+  }
+  const send = $('#sendBtn');
+  if (send) send.addEventListener('click', sendMessage);
+  const back = $('[data-back-to-list]');
+  if (back) back.addEventListener('click', () => {
+    state.mobileShowThread = false;
+    state.activeConvId = null;
+    renderMessages();
+  });
+  loadMessages(convo.conversation_id).catch(err => console.error('loadMessages:', err));
+}
+
+async function loadMessages(convId){
+  const { data, error } = await supabase.rpc('conversation_messages', { p_conv: convId, p_lim: 200 });
+  if (error) throw error;
+  state.activeMessages = data || [];
+  paintMessages();
+  await supabase.rpc('mark_conversation_read', { p_conv: convId }).catch(()=>{});
+  const c = state.conversations.find(x => x.conversation_id === convId);
+  if (c) { c.unread_count = 0; updateMessagesBadge(); }
+  subscribeToConversation(convId);
+}
+
+function paintMessages(){
+  const list = $('#msgList');
+  if (!list) return;
+  const msgs = state.activeMessages;
+  if (!msgs.length) {
+    list.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-3);font-size:13px">No messages yet — say hi!</div>`;
+    return;
+  }
+  let lastDay = '';
+  let lastSender = null;
+  list.innerHTML = msgs.map((m) => {
+    const isMe = m.sender_id === state.me.id;
+    const day = dayKey(m.created_at);
+    const daySep = day !== lastDay ? `<div class="day-sep">${esc(dayLabel(m.created_at))}</div>` : '';
+    lastDay = day;
+    const first = lastSender !== m.sender_id;
+    lastSender = m.sender_id;
+    const avatar = !isMe && first
+      ? avatarHTML(m.sender_avatar_seed || m.sender_handle, m.sender_initials, 'xs')
+      : (!isMe ? '<div style="width:30px;flex:none"></div>' : '');
+    return `${daySep}
+      <div class="msg ${isMe?'me':''} ${first?'first':''}">
+        ${avatar}
+        <div class="msg-col">
+          <div class="bubble">${esc(m.body)}</div>
+          <div class="msg-meta"><span>${esc(timeShort(m.created_at))}</span>${isMe?'<span>✓</span>':''}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function scrollChatToBottom(){
+  const list = $('#msgList');
+  if (list) list.scrollTop = list.scrollHeight;
+}
+
+async function openConversation(convId){
+  state.activeConvId = convId;
+  state.mobileShowThread = true;
+  if (state.messageChannel) {
+    try { await supabase.removeChannel(state.messageChannel); } catch(e){}
+    state.messageChannel = null;
+  }
+  renderMessages();
+}
+
+function subscribeToConversation(convId){
+  if (state.messageChannel) {
+    try { supabase.removeChannel(state.messageChannel); } catch(e){}
+  }
+  state.messageChannel = supabase
+    .channel('messages:' + convId)
+    .on('postgres_changes', {
+      event: 'INSERT', schema: 'public', table: 'messages',
+      filter: `conversation_id=eq.${convId}`
+    }, async (payload) => {
+      const m = payload.new;
+      if (m.sender_id === state.me.id) return;
+      const { data: prof } = await supabase
+        .from('profiles')
+        .select('handle, display_name, initials, avatar_seed')
+        .eq('id', m.sender_id)
+        .maybeSingle();
+      state.activeMessages.push({
+        id: m.id, sender_id: m.sender_id,
+        sender_handle: prof?.handle || '',
+        sender_display_name: prof?.display_name || '',
+        sender_initials: prof?.initials || '',
+        sender_avatar_seed: prof?.avatar_seed || prof?.handle || '',
+        body: m.body, kind: m.kind, created_at: m.created_at
+      });
+      paintMessages();
+      await scrollChatToBottom();
+      loadConversations().catch(()=>{});
+    })
+    .subscribe();
+}
+
+async function sendMessage(){
+  const ta = $('#msgInput');
+  if (!ta) return;
+  const body = ta.value.trim();
+  if (!body) return;
+  if (!state.activeConvId) return;
+
+  ta.value = '';
+  ta.style.height = 'auto';
+
+  const optimistic = {
+    id: 'temp-' + Date.now(),
+    sender_id: state.me.id,
+    sender_handle: state.me.handle,
+    sender_display_name: state.me.display_name,
+    sender_initials: state.me.initials || '',
+    sender_avatar_seed: state.me.avatar_seed || state.me.handle,
+    body, kind: 'text', created_at: new Date().toISOString()
+  };
+  state.activeMessages.push(optimistic);
+  paintMessages();
+  await scrollChatToBottom();
+
+  const { error } = await supabase.from('messages').insert({
+    conversation_id: state.activeConvId,
+    sender_id: state.me.id,
+    body,
+    kind: 'text'
+  });
+
+  if (error) {
+    toast(error.message || 'Send failed', 'err');
+    state.activeMessages = state.activeMessages.filter(m => m.id !== optimistic.id);
+    paintMessages();
+    return;
+  }
+  loadConversations().catch(()=>{});
+}
+
+/* ─── COLLABS ─────────────────────────────────────────────────────────── */
+async function loadCollabs(){
+  const { data, error } = await supabase.rpc('my_collabs');
+  if (error) throw error;
+  state.collabs = data || [];
+  if (state.view === 'collabs') renderCollabs();
+}
+
+function renderCollabs(){
+  const list = state.collabs;
+  const statusLabel = {proposed:'Proposed', active:'In progress', completed:'Wrapped', cancelled:'Cancelled'};
+
+  $('#view-collabs').innerHTML = `
+    <div class="hero">
+      <h2>Your collaborations</h2>
+      <p>Everything you're building with other creators — agreements, shared assets, and the next shoot.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>${list.filter(c=>c.status==='active').length}</b><span>In progress</span></div>
+        <div class="hero-stat"><b>${list.filter(c=>c.status==='proposed').length}</b><span>Proposed</span></div>
+        <div class="hero-stat"><b>${list.filter(c=>c.status==='completed').length}</b><span>Wrapped</span></div>
+        <div class="hero-stat"><b>${list.length}</b><span>Total</span></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-head"><h2>All collaborations</h2><span class="count">${list.length}</span></div>
+      <div class="grid-2">
+        ${list.length ? list.map(k => {
+          const people = (k.participants||[]);
+          const stack = `<div class="avatar-stack">${people.slice(0,4).map(p =>
+            avatarHTML(p.avatar_seed || p.handle, p.initials, 'xs')).join('')}</div>`;
+          const names = people.map(p => p.display_name.split(' ')[0]).join(', ');
+          return `<article class="collab-card">
+            <div class="collab-top">
+              ${stack}
+              <div class="info">
+                <b>${esc(k.title)}</b>
+                <span>${esc(names)}</span>
+              </div>
+              <span class="status-pill status-${k.status}">${statusLabel[k.status]||k.status}</span>
+            </div>
+            ${k.summary?`<p style="font-size:13px;color:var(--text-2);line-height:1.55;font-weight:500">${esc(k.summary)}</p>`:''}
+            <div class="progress-row">
+              <div class="bar"><div class="bar-fill" style="width:${k.progress}%"></div></div>
+              <span>${k.progress}%</span>
+            </div>
+            ${(k.shared||[]).length?`<div class="tag-row">${k.shared.slice(0,4).map(s=>`<span class="tag tag-neutral">${esc(s.label)}</span>`).join('')}</div>`:''}
+            ${k.next_step?`<div style="font-size:12.5px;color:var(--text-3);display:flex;align-items:center;gap:8px;font-weight:500">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:14px;height:14px;flex:none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              ${esc(k.next_step)}
+            </div>`:''}
+            <div class="card-actions" style="margin-top:auto;padding-top:14px">
+              <button class="btn sm btn-primary" data-collab-open="${esc(k.id)}" type="button">Open</button>
+              ${k.agreement_signed?'<span class="tag tag-give" style="margin-left:auto">Signed</span>':'<span class="tag tag-space" style="margin-left:auto">Awaiting</span>'}
+            </div>
+          </article>`;
+        }).join('') : `<div class="empty" style="grid-column:1/-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="8" r="2.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15 14.5a5 5 0 0 1 6.5 5"/></svg>
+          <h3>No collabs yet</h3>
+          <p>Start one from a creator's profile.</p>
+        </div>`}
+      </div>
+    </div>`;
+
+  $$('[data-collab-open]').forEach(btn => {
+    btn.addEventListener('click', () => openCollabSheet(btn.dataset.collabOpen));
+  });
+}
+
+async function openCollabSheet(id){
+  const k = state.collabs.find(c => c.id === id);
+  if (!k) return;
+  openSheet(k.title, collabBody(k), `
+    <button class="btn btn-primary" id="collabChatBtn" type="button">Open chat</button>
+    <button class="btn" id="collabAdvance" type="button">Advance</button>
+  `);
+
+  const adv = $('#collabAdvance');
+  if (adv) adv.addEventListener('click', async () => {
+    const nextProgress = Math.min(100, (k.progress||0) + 25);
+    const nextStatus = nextProgress >= 100 ? 'completed' : (k.status === 'proposed' ? 'active' : k.status);
+    const { error } = await supabase.rpc('update_collab', {
+      p_id: k.id, p_progress: nextProgress, p_status: nextStatus,
+      p_next_step: null, p_agreement: null
+    });
+    if (error) return toast(error.message, 'err');
+    toast('Progress updated');
+    await loadCollabs();
+    closeSheet();
+  });
+
+  const chat = $('#collabChatBtn');
+  if (chat) chat.addEventListener('click', async () => {
+    closeSheet();
+    const partner = (k.participants || []).find(p => p.id !== state.me.id);
+    if (!partner) return toast('No partner to chat with', 'err');
+    await startDM(partner.id);
+  });
+}
+
+function collabBody(k){
+  const participants = k.participants || [];
+  const shared = k.shared || [];
+  const statusLabel = {proposed:'Proposed', active:'In progress', completed:'Wrapped', cancelled:'Cancelled'};
+  return `
+    <div class="detail-block">
+      <h3>Status</h3>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px">
+        <span class="status-pill status-${k.status}">${statusLabel[k.status]||k.status}</span>
+        ${k.agreement_signed?'<span class="tag tag-give">Agreement signed</span>':'<span class="tag tag-space">Agreement pending</span>'}
+      </div>
+      ${k.summary?`<p style="font-size:13.5px;color:var(--text-2);line-height:1.6;font-weight:500">${esc(k.summary)}</p>`:''}
+      <div class="progress-row" style="margin-top:16px">
+        <div class="bar"><div class="bar-fill" style="width:${k.progress}%"></div></div>
+        <span style="font-size:12px;color:var(--text-3);font-weight:700">${k.progress}%</span>
+      </div>
+    </div>
+    <div class="detail-block">
+      <h3>Participants</h3>
+      ${participants.map(p => `
+        <div class="inv-item">
+          ${avatarHTML(p.avatar_seed||p.handle, p.initials, 'sm')}
+          <div class="info"><b>${esc(p.display_name)}</b><span>@${esc(p.handle)} · ${esc(p.role||'partner')}</span></div>
+        </div>`).join('')}
+    </div>
+    ${shared.length?`
+    <div class="detail-block">
+      <h3>Shared assets</h3>
+      <div class="tag-row">${shared.map(s => `<span class="tag tag-neutral">${esc(s.label)}</span>`).join('')}</div>
+    </div>`:''}
+    ${k.next_step?`
+    <div class="detail-block">
+      <h3>Next up</h3>
+      <p style="font-size:13.5px;color:var(--text-2);font-weight:500">${esc(k.next_step)}</p>
+    </div>`:''}`;
+}
+
+/* ─── NOTIFICATIONS ───────────────────────────────────────────────────── */
+async function loadNotifications(){
+  const { data, error } = await supabase.rpc('my_notifications');
+  if (error) throw error;
+  state.notifications = data || [];
+  updateNotifBadge();
+  if (state.view === 'notifications') renderNotifications();
+}
+
+function updateNotifBadge(){
+  const n = state.notifications.filter(x => !x.read).length;
+  const el = $('#notifBadge');
+  if (!el) return;
+  if (n > 0) { el.style.display = ''; el.textContent = n > 99 ? '99+' : n; }
+  else el.style.display = 'none';
+}
+
+function notifIcon(kind){
+  const map = {
+    message: { svg:'<path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/>', bg:'var(--accent-soft)', fg:'var(--accent)' },
+    collab:  { svg:'<circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="8" r="2.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15 14.5a5 5 0 0 1 6.5 5"/>', bg:'var(--success-soft)', fg:'var(--success)' },
+    match:   { svg:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>', bg:'var(--primary-soft)', fg:'var(--primary)' },
+    system:  { svg:'<circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/>', bg:'var(--surface-2)', fg:'var(--text-2)' }
+  };
+  return map[kind] || map.system;
+}
+
+function renderNotifications(){
+  const list = state.notifications;
+  $('#view-notifications').innerHTML = `
+    <div class="section">
+      <div class="section-head">
+        <h2>Activity</h2>
+        <span class="count">${list.length}</span>
+        <div class="spacer"></div>
+        ${list.some(n=>!n.read)?`<button class="btn sm" id="markAllRead" type="button">Mark all read</button>`:''}
+      </div>
+      ${list.length ? list.map(n => {
+        const ic = notifIcon(n.kind);
+        return `<div class="notif ${!n.read?'unread':''}" data-notif="${esc(n.id)}" data-link-kind="${esc(n.link_kind||'')}" data-link-id="${esc(n.link_id||'')}">
+          <div class="icon" style="background:${ic.bg};color:${ic.fg}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${ic.svg}</svg>
+          </div>
+          <div class="body">
+            <p><b>${esc(n.title)}</b>${n.body?`<br>${esc(n.body)}`:''}</p>
+            <time>${esc(timeAgo(n.created_at))}</time>
+          </div>
+        </div>`;
+      }).join('') : `<div class="empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8.5a6 6 0 1 0-12 0c0 7-2.5 8.5-2.5 8.5h17S18 15.5 18 8.5"/></svg>
+        <h3>Nothing yet</h3>
+        <p>Matches, messages, and collab invites will show up here.</p>
+      </div>`}
+    </div>`;
+
+  const mark = $('#markAllRead');
+  if (mark) mark.addEventListener('click', async () => {
+    const { error } = await supabase.rpc('mark_notifications_read');
+    if (error) return toast(error.message, 'err');
+    state.notifications.forEach(n => n.read = true);
+    renderNotifications();
+    updateNotifBadge();
+    toast('All caught up');
+  });
+
+  $$('[data-notif]').forEach(el => el.addEventListener('click', async () => {
+    const kind = el.dataset.linkKind;
+    const id = el.dataset.linkId;
+    if (kind === 'conversation' && id) {
+      const c = state.conversations.find(x => x.conversation_id === id);
+      if (c) { openConversation(id); navigate('messages'); return; }
+      await startDM(id);
+      navigate('messages');
+    } else if (kind === 'collab' && id) {
+      navigate('collabs');
+      setTimeout(() => openCollabSheet(id), 100);
     }
-  }[kind];
-
-  $('#view-' + kind).innerHTML = `
-    <div class="empty" style="padding:80px 32px;max-width:640px;margin:0 auto">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${config.icon}</svg>
-      <h3 style="font-size:22px;color:var(--text);letter-spacing:-.6px;margin-bottom:10px">${config.title}</h3>
-      <p style="max-width:480px;font-size:14px">${config.body}</p>
-    </div>
-  `;
+    el.classList.remove('unread');
+  }));
 }
 
-async function renderProfile() {
+/* ─── PROFILE ─────────────────────────────────────────────────────────── */
+async function renderProfile(){
   const el = $('#view-profile');
   el.innerHTML = `<div class="empty"><h3>Loading…</h3></div>`;
   try {
     const { data, error } = await supabase.rpc('get_profile', { target: state.me.id });
     if (error) throw error;
     if (!data) throw new Error('Profile not found');
-    el.innerHTML = profileBodyHTML(data);
-  } catch (err) {
+    el.innerHTML = profileBodyHTML(data, { isSelf: true });
+    // Load user's own posts on profile
+    loadMyProfilePosts();
+  } catch(err){
     el.innerHTML = `<div class="empty"><h3>Could not load profile</h3><p>${esc(err.message)}</p></div>`;
   }
 }
 
-function profileBodyHTML(p) {
+async function loadMyProfilePosts(){
+  try {
+    const { data } = await supabase.rpc('user_posts', { p_user: state.me.id, p_lim: 10 });
+    const holder = $('#profilePostsHolder');
+    if (!holder) return;
+    if (!data || !data.length) {
+      holder.innerHTML = `<div class="empty" style="padding:24px"><h3>No posts yet</h3><p>Write your first post from the Posts page.</p></div>`;
+      return;
+    }
+    holder.innerHTML = data.map(postCard).join('');
+  } catch(e){
+    console.warn('user_posts:', e);
+  }
+}
+
+function profileBodyHTML(p, opts = {}){
   if (!p) return `<div class="empty"><h3>Profile unavailable</h3></div>`;
-  const niches = (p.niches || []).map(n => `<span class="tag tag-niche">${esc(n.label)}</span>`).join('') || '<span class="tag tag-neutral">None</span>';
-  const needs = (p.struggles || []).map(s =>
-    `<span class="tag tag-need ${s.severity === 3 ? 'tag-sev-3' : ''}">${esc(s.label)}</span>`).join('')
-    || '<span class="tag tag-neutral">Nothing declared</span>';
-  const gives = (p.advantages || []).map(a => `<span class="tag tag-give">${esc(a.label)}</span>`).join('')
-    || '<span class="tag tag-neutral">Nothing declared</span>';
-  const avail = (p.availability || []).map(slot =>
-    `<span class="tag tag-neutral">${esc(slot.replace(/_/g,' '))}</span>`).join('')
-    || '<span class="tag tag-neutral">Not set</span>';
+  const isSelf = opts.isSelf || p.id === state.me.id;
+  const niches = (p.niches||[]).map(n=>`<span class="tag tag-niche">${esc(n.label)}</span>`).join('') || '<span class="tag tag-neutral">None</span>';
+  const needs = (p.struggles||[]).map(s=>`<span class="tag tag-need ${s.severity===3?'tag-sev-3':''}">${esc(s.label)}</span>`).join('') || '<span class="tag tag-neutral">Nothing declared</span>';
+  const gives = (p.advantages||[]).map(a=>`<span class="tag tag-give">${esc(a.label)}</span>`).join('') || '<span class="tag tag-neutral">Nothing declared</span>';
+  const avail = (p.availability||[]).map(slot=>`<span class="tag tag-neutral">${esc(slot.replace(/_/g,' '))}</span>`).join('') || '<span class="tag tag-neutral">Not set</span>';
 
   const gear = (p.equipment && p.equipment.length)
     ? p.equipment.map(e => `
@@ -1199,7 +2144,7 @@ function profileBodyHTML(p) {
         <div class="info"><b>${esc(e.name)}</b><span>${esc(e.category)} · ${esc(e.condition)}</span></div>
         <span class="terms tag tag-give">${esc(String(e.share_terms||'').replace(/_/g,' '))}</span>
       </div>`).join('')
-    : `<div class="empty" style="padding:28px"><h3>No equipment yet</h3><p>Re-run onboarding to add gear.</p></div>`;
+    : `<div class="empty" style="padding:28px"><h3>No equipment yet</h3></div>`;
 
   const spaces = (p.spaces && p.spaces.length)
     ? p.spaces.map(s => `
@@ -1208,7 +2153,14 @@ function profileBodyHTML(p) {
         <div class="info"><b>${esc(s.name)}</b><span>${esc(s.light_grade)} light · ${esc(s.sound_grade)} sound</span></div>
         <span class="terms tag tag-space">${esc(String(s.share_terms||'').replace(/_/g,' '))}</span>
       </div>`).join('')
-    : `<div class="empty" style="padding:28px"><h3>No space listed</h3><p>Re-run onboarding to add a shooting space.</p></div>`;
+    : `<div class="empty" style="padding:28px"><h3>No space listed</h3></div>`;
+
+  const followState = isSelf ? '' : `
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn ${p.is_following?'is-following':'btn-primary'}" data-action="follow" data-id="${esc(p.id)}" type="button" id="profileFollowBtn">
+        ${p.is_following ? 'Following' : 'Follow'}
+      </button>
+    </div>`;
 
   return `
     <div class="profile-hero">
@@ -1217,40 +2169,49 @@ function profileBodyHTML(p) {
         <h2>${esc(p.display_name)}</h2>
         <div class="handle">@${esc(p.handle)}</div>
         <div class="meta">
-          <span>${esc([p.city, p.region].filter(Boolean).join(', ') || 'Location hidden')}</span>
-          ${p.country ? `<span class="sep"></span><span>${esc(p.country)}</span>` : ''}
+          <span>${esc([p.city,p.region].filter(Boolean).join(', ')||'Location hidden')}</span>
+          ${p.country?`<span class="sep"></span><span>${esc(p.country)}</span>`:''}
         </div>
+        ${followState}
       </div>
     </div>
     <div class="stat-strip">
-      <div class="stat"><b>${Number(p.reliability ?? 5).toFixed(1)}</b><span>Reliability</span></div>
-      <div class="stat"><b>${p.collab_count ?? 0}</b><span>Collabs</span></div>
-      <div class="stat"><b>${(p.equipment||[]).length}</b><span>Gear</span></div>
-      <div class="stat"><b>${(p.spaces||[]).length}</b><span>Spaces</span></div>
+      <div class="stat"><b>${Number(p.reliability??5).toFixed(1)}</b><span>Reliability</span></div>
+      <div class="stat"><b>${p.collab_count??0}</b><span>Collabs</span></div>
+      <div class="stat"><b>${p.follower_count??0}</b><span>Followers</span></div>
+      <div class="stat"><b>${p.following_count??0}</b><span>Following</span></div>
+      <div class="stat"><b>${p.post_count??0}</b><span>Posts</span></div>
     </div>
+
+    <div class="detail-block">
+      <h3>Recent posts</h3>
+      <div id="profilePostsHolder" class="feed"><div class="empty" style="padding:24px"><p>Loading posts…</p></div></div>
+    </div>
+
     <div class="detail-block"><h3>Niches</h3><div class="tag-row">${niches}</div></div>
     <div class="detail-block"><h3>Needs a hand with</h3><div class="tag-row">${needs}</div></div>
     <div class="detail-block"><h3>Brings to the table</h3><div class="tag-row">${gives}</div></div>
     <div class="detail-block"><h3>Equipment</h3>${gear}</div>
     <div class="detail-block"><h3>Spaces</h3>${spaces}</div>
     <div class="detail-block"><h3>Availability</h3><div class="tag-row">${avail}</div></div>
+    ${isSelf ? `
     <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap">
       <button class="btn" onclick="location.href='onboarding.html'" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
         Re-run onboarding
       </button>
-    </div>
-  `;
+    </div>` : ''}`;
 }
 
-function renderSettings() {
-  const toggle = (key, on) => `<button class="toggle ${on ? 'on' : ''}" data-toggle="${key}" type="button" aria-pressed="${on}"></button>`;
+/* ─── SETTINGS ────────────────────────────────────────────────────────── */
+function renderSettings(){
+  const toggle = (key,on) => `<button class="toggle ${on?'on':''}" data-toggle="${key}" type="button" aria-pressed="${on}"></button>`;
   $('#view-settings').innerHTML = `
     <div class="section">
       <div class="section-head"><h2>Appearance</h2></div>
       <div class="setting-panel">
         <div class="setting">
-          <div class="info"><b>Dark mode</b><span>Toggle dark / light theme across every page.</span></div>
+          <div class="info"><b>Dark mode</b><span>Toggle theme across every page.</span></div>
           ${toggle('dark-mode', document.documentElement.getAttribute('data-theme') === 'dark')}
         </div>
       </div>
@@ -1266,7 +2227,7 @@ function renderSettings() {
           <input class="range" type="range" min="5" max="100" value="${state.maxKm}" id="maxKmRange" style="flex:1;max-width:none"/>
         </div>
         <div class="setting">
-          <div class="info"><b>Show me to others</b><span>When off, your profile is hidden from the feed.</span></div>
+          <div class="info"><b>Show me to others</b><span>When off, your profile is hidden.</span></div>
           ${toggle('discoverable', state.me?.is_discoverable !== false)}
         </div>
       </div>
@@ -1275,7 +2236,7 @@ function renderSettings() {
       <div class="section-head"><h2>Account</h2></div>
       <div class="setting-panel">
         <div class="setting">
-          <div class="info"><b>Edit profile</b><span>Re-run onboarding to update location, niches, gear and availability.</span></div>
+          <div class="info"><b>Edit profile</b><span>Re-run onboarding to update your details.</span></div>
           <button class="btn sm" onclick="location.href='onboarding.html'" type="button">Re-run</button>
         </div>
         <div class="setting">
@@ -1283,8 +2244,7 @@ function renderSettings() {
           <button class="btn sm" id="signOutBtn2" type="button">Sign out</button>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 
   const range = $('#maxKmRange');
   if (range) {
@@ -1295,7 +2255,7 @@ function renderSettings() {
       t = setTimeout(async () => {
         state.maxKm = Number(e.target.value);
         try { await loadFeed(); toast(`Radius set to ${state.maxKm} km`); render(); }
-        catch (err) { toast(err.message || 'Refresh failed', 'err'); }
+        catch(err){ toast(err.message || 'Refresh failed', 'err'); }
       }, 500);
     });
   }
@@ -1303,19 +2263,23 @@ function renderSettings() {
   if (so) so.addEventListener('click', doSignOut);
 }
 
-/* ── sheet ── */
+/* ─── SHEET ───────────────────────────────────────────────────────────── */
 const backdrop = $('#backdrop');
 const sheet = $('#sheet');
 const sheetBody = $('#sheetBody');
 const sheetFoot = $('#sheetFoot');
 const sheetTitle = $('#sheetTitle');
 
-function openSheet() {
+function openSheet(title, body, foot){
+  sheetTitle.textContent = title;
+  sheetBody.innerHTML = body;
+  sheetFoot.innerHTML = foot || '';
+  sheetFoot.style.display = foot ? 'flex' : 'none';
   backdrop.classList.add('is-open');
   sheet.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 }
-function closeSheet() {
+function closeSheet(){
   backdrop.classList.remove('is-open');
   sheet.classList.remove('is-open');
   document.body.style.overflow = '';
@@ -1324,13 +2288,16 @@ $('#sheetClose').addEventListener('click', closeSheet);
 backdrop.addEventListener('click', closeSheet);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
 
-async function openCreator(id) {
+async function openCreator(id){
+  if (id === state.me.id) { closeSheet(); navigate('profile'); return; }
   const cached = state.feed.find(c => c.profile_id === id);
   sheetTitle.textContent = cached?.display_name || 'Profile';
   sheetBody.innerHTML = `<div class="empty"><h3>Loading…</h3></div>`;
   sheetFoot.innerHTML = '';
   sheetFoot.style.display = 'none';
-  openSheet();
+  backdrop.classList.add('is-open');
+  sheet.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
 
   try {
     const { data: profile, error } = await supabase.rpc('get_profile', { target: id });
@@ -1356,29 +2323,79 @@ async function openCreator(id) {
               <div class="bar"><div class="bar-fill" style="width:${val ?? 0}%"></div></div>
             </div>`).join('')}
         </div>
-      </div>
-    ` : '';
+      </div>` : '';
 
     const isSaved = state.savedIds.has(id);
+    const isFollowing = profile.is_following || state.followedIds.has(id);
     sheetTitle.textContent = profile.display_name;
-    sheetBody.innerHTML = profileBodyHTML(profile) + scoreBlock;
+    sheetBody.innerHTML = profileBodyHTML(profile, { isSelf: false }) + scoreBlock;
 
     sheetFoot.style.display = 'flex';
     sheetFoot.innerHTML = `
-      <button class="btn btn-primary" data-action="message" data-id="${esc(id)}" type="button">
+      <button class="btn ${isFollowing?'is-following':'btn-primary'}" data-action="follow" data-id="${esc(id)}" type="button" id="sheetFollowBtn">
+        ${isFollowing ? 'Following' : 'Follow'}
+      </button>
+      <button class="btn" data-action="message" data-id="${esc(id)}" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
         Say hi
       </button>
-      <button class="btn ${isSaved ? 'is-saved' : ''}" data-action="save" data-id="${esc(id)}" type="button">
-        ${isSaved ? 'Saved' : 'Save'}
-      </button>
-    `;
-  } catch (err) {
+      <button class="btn" id="startCollabBtn" type="button">Collab</button>
+      <button class="btn ${isSaved?'is-saved':''}" data-action="save" data-id="${esc(id)}" type="button">
+        ${isSaved?'Saved':'Save'}
+      </button>`;
+
+    const scb = $('#startCollabBtn');
+    if (scb) scb.addEventListener('click', () => {
+      closeSheet();
+      openNewCollabSheet(id, profile.display_name);
+    });
+  } catch(err){
     sheetBody.innerHTML = `<div class="empty"><h3>Could not load profile</h3><p>${esc(err.message)}</p></div>`;
   }
 }
 
-/* ── events ── */
+function openNewCollabSheet(partnerId, partnerName){
+  openSheet('New collab', `
+    <div class="field" style="margin-bottom:16px">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:8px">Title</label>
+      <input id="ncTitle" type="text" placeholder="e.g. Tech review B-roll swap" maxlength="120" style="width:100%;padding:13px 15px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:14.5px;color:var(--text)"/>
+    </div>
+    <div class="field" style="margin-bottom:16px">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:8px">Summary (optional)</label>
+      <textarea id="ncSummary" placeholder="What are you building together?" rows="3" style="width:100%;padding:13px 15px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:14.5px;color:var(--text);resize:vertical;font-family:inherit"></textarea>
+    </div>
+    <p style="font-size:12.5px;color:var(--text-3);line-height:1.55">${esc(partnerName)} will be invited as a partner.</p>
+  `, `
+    <button class="btn" id="ncCancel" type="button">Cancel</button>
+    <button class="btn btn-primary" id="ncCreate" type="button">Create</button>`);
+
+  const cancel = $('#ncCancel');
+  if (cancel) cancel.addEventListener('click', closeSheet);
+
+  const create = $('#ncCreate');
+  if (create) create.addEventListener('click', async () => {
+    const title = $('#ncTitle').value.trim();
+    if (title.length < 2) return toast('Title required', 'err');
+    const summary = $('#ncSummary').value.trim();
+    create.classList.add('is-loading'); create.disabled = true;
+    try {
+      const { error } = await supabase.rpc('create_collab', {
+        p_title: title, p_summary: summary, p_partners: [partnerId]
+      });
+      if (error) throw error;
+      toast('Collab created');
+      closeSheet();
+      await loadCollabs();
+      navigate('collabs');
+    } catch(err){
+      toast(err.message || 'Create failed', 'err');
+    } finally {
+      create.classList.remove('is-loading'); create.disabled = false;
+    }
+  });
+}
+
+/* ─── EVENTS ──────────────────────────────────────────────────────────── */
 document.addEventListener('click', async e => {
   const navBtn = e.target.closest('[data-nav]');
   if (navBtn) { navigate(navBtn.dataset.nav); return; }
@@ -1388,16 +2405,16 @@ document.addEventListener('click', async e => {
     const on = !tg.classList.contains('on');
     tg.classList.toggle('on', on);
     tg.setAttribute('aria-pressed', on);
-    if (tg.dataset.toggle === 'dark-mode') {
+    if (tg.dataset.toggle === 'dark-mode'){
       const next = on ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('timcrenet-theme', next);
-      $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+      $('#metaThemeColor').setAttribute('content', next==='light' ? '#FAF9F7' : '#0A0B0F');
     }
-    if (tg.dataset.toggle === 'discoverable') {
+    if (tg.dataset.toggle === 'discoverable'){
       const { error } = await supabase.from('profiles').update({ is_discoverable: on }).eq('id', state.me.id);
-      if (error) { toast('Could not update', 'err'); tg.classList.toggle('on', !on); }
-      else { state.me.is_discoverable = on; toast(on ? 'You are visible to others' : 'Hidden from everyone'); }
+      if (error){ toast('Could not update', 'err'); tg.classList.toggle('on', !on); }
+      else { state.me.is_discoverable = on; toast(on ? 'Visible to others' : 'Hidden'); }
     }
     return;
   }
@@ -1406,35 +2423,103 @@ document.addEventListener('click', async e => {
   if (!act) return;
   const { action, id } = act.dataset;
 
-  if (action === 'view') { openCreator(id); return; }
+  if (action === 'view'){ openCreator(id); return; }
 
-  if (action === 'save') {
+  if (action === 'save'){
     act.classList.add('is-loading');
     try {
       const { data, error } = await supabase.rpc('toggle_save', { target: id });
       if (error) throw error;
       if (data) state.savedIds.add(id); else state.savedIds.delete(id);
       updateSavedBadge();
-      toast(data ? 'Saved' : 'Removed from saved');
+      toast(data ? 'Saved' : 'Removed');
+      // Update UI in place
       render();
-      if (sheet.classList.contains('is-open')) {
+      if (sheet.classList.contains('is-open')){
         const foot = sheetFoot.querySelector('[data-action="save"]');
-        if (foot) {
+        if (foot){
           const now = state.savedIds.has(id);
           foot.classList.toggle('is-saved', now);
           foot.textContent = now ? 'Saved' : 'Save';
         }
       }
-    } catch (err) {
-      toast(err.message || 'Save failed', 'err');
-    } finally {
-      act.classList.remove('is-loading');
-    }
+    } catch(err){ toast(err.message || 'Save failed', 'err'); }
+    finally { act.classList.remove('is-loading'); }
     return;
   }
 
-  if (action === 'message') { toast('Messages arrive in the next build'); return; }
+  if (action === 'follow'){
+    if (id === state.me.id){ toast('Cannot follow yourself', 'err'); return; }
+    const wasFollowing = state.followedIds.has(id);
+    act.classList.add('is-loading');
+    try {
+      const { data, error } = await supabase.rpc('toggle_follow', { target: id });
+      if (error) throw error;
+      if (data) state.followedIds.add(id); else state.followedIds.delete(id);
+      toast(data ? 'Following' : 'Unfollowed');
+      // Re-render everything since follow state appears in many places
+      render();
+      // Update sheet button if open
+      if (sheet.classList.contains('is-open')){
+        const foot = sheetFoot.querySelector('[data-action="follow"]');
+        if (foot){
+          const now = state.followedIds.has(id);
+          foot.classList.toggle('is-following', now);
+          foot.classList.toggle('btn-primary', !now);
+          foot.textContent = now ? 'Following' : 'Follow';
+        }
+        const inline = sheetBody.querySelector('[data-action="follow"]');
+        if (inline){
+          const now = state.followedIds.has(id);
+          inline.classList.toggle('is-following', now);
+          inline.classList.toggle('btn-primary', !now);
+          inline.textContent = now ? 'Following' : 'Follow';
+        }
+      }
+    } catch(err){
+      console.error('toggle_follow error:', err);
+      toast(err.message || 'Could not update follow', 'err');
+    } finally { act.classList.remove('is-loading'); }
+    return;
+  }
+
+  if (action === 'delete-post'){
+    const pid = act.dataset.postId;
+    if (!pid) return;
+    if (!confirm('Delete this post? This cannot be undone.')) return;
+    act.classList.add('is-loading');
+    try {
+      const { error } = await supabase.rpc('delete_post', { p_id: pid });
+      if (error) throw error;
+      toast('Post deleted');
+      state.posts = state.posts.filter(p => p.id !== pid);
+      updatePostsBadge();
+      render();
+    } catch(err){
+      toast(err.message || 'Delete failed', 'err');
+    } finally { act.classList.remove('is-loading'); }
+    return;
+  }
+
+  if (action === 'message'){
+    closeSheet();
+    await startDM(id);
+    return;
+  }
 });
+
+async function startDM(otherId){
+  if (!otherId || otherId === state.me.id){ toast('Cannot chat with yourself', 'err'); return; }
+  try {
+    const { data: cid, error } = await supabase.rpc('find_or_create_dm', { other_user: otherId });
+    if (error) throw error;
+    await loadConversations();
+    await openConversation(cid);
+    navigate('messages');
+  } catch(err){
+    toast(err.message || 'Could not open chat', 'err');
+  }
+}
 
 $('#globalSearch').addEventListener('input', e => {
   state.searchQuery = e.target.value;
@@ -1444,26 +2529,33 @@ $('#globalSearch').addEventListener('input', e => {
 
 $('#meBtn').addEventListener('click', () => navigate('profile'));
 
-async function refreshFeed() {
+async function refreshFeed(){
   const btn = $('#refreshBtn');
   btn.disabled = true;
   try {
     await loadFeed();
+    await loadPosts();
+    await loadConversations();
+    await loadCollabs();
+    await loadNotifications();
     render();
-    toast('Matches refreshed');
-  } catch (err) {
-    toast(err.message || 'Refresh failed', 'err');
-  } finally {
-    btn.disabled = false;
-  }
+    toast('Everything refreshed');
+  } catch(err){ toast(err.message || 'Refresh failed', 'err'); }
+  finally { btn.disabled = false; }
 }
 $('#refreshBtn').addEventListener('click', refreshFeed);
 
-async function doSignOut() {
+async function doSignOut(){
+  if (state.messageChannel){ try { await supabase.removeChannel(state.messageChannel); } catch(e){} }
   await supabase.auth.signOut();
   location.href = SIGNIN_URL;
 }
 $('#signOutBtn').addEventListener('click', doSignOut);
+
+setInterval(() => {
+  if (document.hidden) return;
+  loadNotifications().catch(()=>{});
+}, 30000);
 </script>
 </body>
 </html>
