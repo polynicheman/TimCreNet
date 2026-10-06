@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0F" id="metaThemeColor" />
+<title>Posts — TIMCRENET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
+  --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
+  --text:#F0F1F5; --text-2:#9698A6; --text-3:#5D5F70;
+  --primary:#FF6B3D; --primary-soft:rgba(255,107,61,.14); --primary-glow:rgba(255,107,61,.4);
+  --accent:#7C6BFF; --accent-soft:rgba(124,107,255,.14);
+  --success:#3DD68C; --success-soft:rgba(61,214,140,.13);
+  --warning:#FFB547; --warning-soft:rgba(255,181,71,.13);
+  --danger:#FF5A6E; --danger-soft:rgba(255,90,110,.13);
+  --radius-sm:10px; --radius-md:14px; --radius-lg:20px; --radius-full:999px;
+  --shadow-md:0 12px 32px -16px rgba(0,0,0,.7);
+  --grad-primary:linear-gradient(135deg,#FF6B3D 0%,#FF8F5C 40%,#FFB347 100%);
+  --grad-warm:linear-gradient(135deg,#FF6B3D 0%,#FF4D8F 100%);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#FAF9F7; --bg-elev:#FFFFFF; --surface:#FFFFFF; --surface-2:#F5F3F0; --surface-3:#EDEAE5;
+  --border:rgba(20,15,10,.08); --border-strong:rgba(20,15,10,.15);
+  --text:#0F0F12; --text-2:#5B5A66; --text-3:#8E8C99;
+  --primary:#E5552A; --primary-soft:rgba(229,85,42,.1); --primary-glow:rgba(229,85,42,.3);
+  --accent:#6A54F0; --accent-soft:rgba(106,84,240,.1);
+  --success:#119F68; --success-soft:rgba(17,159,104,.11);
+  --warning:#C28A0E; --warning-soft:rgba(194,138,14,.12);
+  --danger:#DC2F45; --danger-soft:rgba(220,47,69,.1);
+  --shadow-md:0 12px 32px -16px rgba(30,20,10,.18);
+  --grad-primary:linear-gradient(135deg,#E5552A 0%,#F0703F 40%,#D18B1F 100%);
+  --grad-warm:linear-gradient(135deg,#E5552A 0%,#D93D7A 100%);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:15px; line-height:1.5; letter-spacing:-.005em;
+  transition:background .3s ease,color .3s ease;
+}
+button,input,textarea{font:inherit;color:inherit;background:none;border:none;outline:none}
+button{cursor:pointer;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+::selection{background:var(--primary);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:3px solid transparent;background-clip:content-box}
+
+.shell{max-width:720px;margin:0 auto;padding:0 20px 80px}
+
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 0;margin-bottom:16px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.back{
+  width:40px;height:40px;border-radius:11px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:background .16s;
+}
+.back:hover{background:var(--surface-2);color:var(--text)}
+.back svg{width:18px;height:18px;stroke-width:2.2;stroke-linecap:round;fill:none}
+.topbar h1{flex:1;font-size:18px;font-weight:800;letter-spacing:-.5px}
+.topbar .theme-btn{
+  width:40px;height:40px;border-radius:11px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:background .16s;
+}
+.topbar .theme-btn:hover{background:var(--surface-2);color:var(--text)}
+.topbar .theme-btn svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;fill:none}
+
+.composer{
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:18px;margin-bottom:20px;
+}
+.composer textarea{
+  width:100%;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:14px;padding:14px 16px;resize:none;font-family:inherit;
+  font-size:14.5px;min-height:80px;line-height:1.55;color:var(--text);
+}
+.composer textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.composer .cm-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+.composer .cm-count{font-size:12px;color:var(--text-3);font-weight:600}
+.composer .btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 20px;border-radius:12px;font-size:13.5px;font-weight:700;
+  background:var(--grad-warm);color:#fff;
+  box-shadow:0 10px 22px -12px var(--primary-glow);
+  transition:filter .16s;
+}
+.composer .btn:hover{filter:brightness(1.06)}
+.composer .btn:disabled{opacity:.5;cursor:not-allowed}
+
+.tabs{display:flex;gap:6px;margin-bottom:20px}
+.tab{
+  padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:all .16s;
+}
+.tab:hover{border-color:var(--border-strong);color:var(--text)}
+.tab.is-active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
+
+.feed{display:flex;flex-direction:column;gap:14px}
+
+.post{
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:20px;transition:border-color .2s;
+}
+.post:hover{border-color:var(--border-strong)}
+.post-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.post-avatar{
+  width:46px;height:46px;border-radius:14px;flex:none;
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);position:relative;overflow:hidden;
+}
+.post-avatar::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);mix-blend-mode:overlay}
+.post-who{flex:1;min-width:0}
+.post-who b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.2px}
+.post-who span{display:block;font-size:12px;color:var(--text-3);font-weight:500}
+.post-follow{
+  padding:7px 14px;border-radius:20px;font-size:12.5px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-2);
+  transition:all .16s;flex:none;
+}
+.post-follow:hover{color:var(--text);border-color:var(--border-strong)}
+.post-follow.is-on{background:transparent;color:var(--text-3)}
+.post-follow.is-on:hover{color:var(--danger);border-color:var(--danger-soft)}
+.post-title{font-size:17px;font-weight:800;letter-spacing:-.4px;margin-bottom:8px;line-height:1.3}
+.post-body{font-size:14.5px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word;font-weight:500;color:var(--text)}
+.post-actions{
+  display:flex;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
+}
+.post-action{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 12px;border-radius:10px;font-size:12.5px;font-weight:600;
+  color:var(--text-2);transition:all .16s;
+}
+.post-action:hover{background:var(--surface-2);color:var(--text)}
+.post-action svg{width:16px;height:16px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.post-action.liked{color:var(--danger)}
+.post-action.liked svg{fill:currentColor;stroke:currentColor}
+
+.comments{
+  margin-top:14px;padding-top:14px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:12px;
+}
+.comment{display:flex;gap:10px;align-items:flex-start}
+.comment-avatar{
+  width:32px;height:32px;border-radius:10px;flex:none;
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:11.5px;
+  text-shadow:0 1px 4px rgba(0,0,0,.35);
+}
+.comment-body{flex:1;min-width:0}
+.comment-body .cwho{font-size:12.5px;font-weight:700;margin-bottom:2px}
+.comment-body .ctext{font-size:13px;line-height:1.5;color:var(--text);white-space:pre-wrap;word-wrap:break-word;font-weight:500}
+.comment-body .cmeta{font-size:11px;color:var(--text-3);margin-top:3px;font-weight:500}
+.comment-form{display:flex;gap:8px;align-items:center}
+.comment-form input{
+  flex:1;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:20px;padding:9px 14px;font-size:13px;color:var(--text);
+}
+.comment-form input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.comment-form button{
+  width:36px;height:36px;border-radius:10px;flex:none;
+  background:var(--grad-warm);color:#fff;display:grid;place-items:center;
+}
+.comment-form button svg{width:16px;height:16px;stroke-width:2.2;fill:none}
+
+.empty{
+  padding:64px 24px;text-align:center;color:var(--text-3);
+  border:1px dashed var(--border-strong);border-radius:20px;
+  background:var(--surface);
+}
+.empty h3{font-size:15px;color:var(--text-2);margin-bottom:6px;font-weight:700}
+.empty p{font-size:13px;max-width:320px;margin:0 auto;line-height:1.55}
+
+.toast-root{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:800;display:flex;flex-direction:column;gap:10px;align-items:center;
+  pointer-events:none;max-width:calc(100vw - 32px);
+}
+.toast{
+  background:var(--surface-3);border:1px solid var(--border-strong);
+  color:var(--text);padding:12px 20px;border-radius:14px;font-size:13px;font-weight:600;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;
+  animation:tIn .3s;white-space:nowrap;
+}
+.toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4;fill:none}
+.toast.err svg{color:var(--danger)}
+@keyframes tIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.loading{
+  position:fixed;inset:0;z-index:600;display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;background:var(--bg);
+}
+.loading.is-open{display:flex}
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--surface-3);border-top-color:var(--primary);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:13px;color:var(--text-3);font-weight:600}
+
+@media (max-width:520px){
+  .shell{padding:0 14px 60px}
+  .topbar h1{font-size:16px}
+  .post{padding:16px;border-radius:16px}
+  .post-title{font-size:16px}
+  .post-body{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <p>Loading posts…</p>
+</div>
+
+<div class="shell">
+  <div class="topbar">
+    <button class="back" onclick="location.href='app.html'" aria-label="Back">
+      <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <h1>Posts</h1>
+    <button class="theme-btn" id="themeBtn" aria-label="Theme">
+      <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+  </div>
+
+  <div class="composer">
+    <textarea id="composeBody" placeholder="What do you want to share?" maxlength="4000"></textarea>
+    <div class="cm-actions">
+      <span class="cm-count" id="cmCount">0 / 4000</span>
+      <button class="btn" id="composeBtn" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" style="stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round">
+          <path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/>
+        </svg>
+        Post
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab is-active" data-scope="all" type="button">Everyone</button>
+    <button class="tab" data-scope="following" type="button">Following</button>
+  </div>
+
+  <div class="feed" id="feed"></div>
+</div>
+
+<div class="toast-root" id="toastRoot"></div>
+
+<script type="module">
+const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+const sb = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
+  auth: { persistSession: true, autoRefreshToken: true, storageKey: 'timcrenet.auth' }
+});
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const hashStr = s => {let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0};
+const avatarStyle = seed => {
+  const h = hashStr(String(seed||'x'));
+  const a=h%360,b=(a+55+(h>>3)%110)%360,c=(a+210+(h>>7)%90)%360,ang=h%360;
+  return `background:conic-gradient(from ${ang}deg,hsl(${a} 72% 58%),hsl(${b} 70% 54%),hsl(${c} 74% 60%),hsl(${a} 72% 58%));`;
+};
+const timeAgo = iso => {
+  const s = Math.floor((Date.now() - new Date(iso).getTime())/1000);
+  if (s<60) return 'now'; const m=Math.floor(s/60); if(m<60)return m+'m';
+  const h=Math.floor(m/60); if(h<24)return h+'h'; const d=Math.floor(h/24);
+  if(d<7)return d+'d'; return new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+};
+
+function toast(txt, kind='ok'){
+  const el = document.createElement('div');
+  el.className = 'toast' + (kind==='err'?' err':'');
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
+    kind==='err'?'<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>':'<path d="M20 6 9 17l-5-5"/>'
+  }</svg><span>${esc(txt)}</span>`;
+  $('#toastRoot').appendChild(el);
+  setTimeout(()=>{el.style.transition='opacity .3s,transform .3s';el.style.opacity='0';el.style.transform='translateY(12px)';setTimeout(()=>el.remove(),320)},2600);
+}
+
+(function theme(){
+  const t = localStorage.getItem('timcrenet-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  document.documentElement.setAttribute('data-theme', t);
+  $('#metaThemeColor').setAttribute('content', t==='light'?'#FAF9F7':'#0A0B0F');
+})();
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next==='light'?'#FAF9F7':'#0A0B0F');
+});
+
+const state = { me: null, posts: [], followedIds: new Set(), scope: 'all', openComments: new Set() };
+
+(async function boot(){
+  $('#loading').classList.add('is-open');
+  try {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { location.href = 'index.html'; return; }
+    const { data: profile } = await sb.from('profiles').select('id, handle, display_name, initials, avatar_seed').eq('id', session.user.id).maybeSingle();
+    if (!profile) { location.href = 'onboarding.html'; return; }
+    state.me = profile;
+
+    try {
+      const { data: f } = await sb.rpc('my_following_ids');
+      state.followedIds = new Set(f || []);
+    } catch(e){}
+
+    await loadPosts();
+    $('#loading').classList.remove('is-open');
+  } catch(err){
+    toast(err.message || 'Load failed', 'err');
+    $('#loading').classList.remove('is-open');
+  }
+})();
+
+async function loadPosts(){
+  const fn = state.scope==='following' ? 'following_posts' : 'all_posts';
+  const { data, error } = await sb.rpc(fn, { p_lim: 100 });
+  if (error) throw error;
+  state.posts = data || [];
+  render();
+}
+
+function postHTML(p){
+  const isMine = p.author_id === state.me.id;
+  const isFollowing = state.followedIds.has(p.author_id);
+  const commentsOpen = state.openComments.has(p.id);
+
+  return `<article class="post" data-post-id="${esc(p.id)}">
+    <div class="post-head">
+      <div class="post-avatar" style="${avatarStyle(p.author_avatar_seed||p.author_handle)}">${esc(p.author_initials||'·')}</div>
+      <div class="post-who">
+        <b>${esc(p.author_display_name)}</b>
+        <span>@${esc(p.author_handle)} · ${esc(timeAgo(p.created_at))}${p.author_city?` · ${esc(p.author_city)}`:''}</span>
+      </div>
+      ${!isMine ? `<button class="post-follow ${isFollowing?'is-on':''}" data-action="follow" data-id="${esc(p.author_id)}" type="button">${isFollowing?'Following':'Follow'}</button>` : ''}
+    </div>
+    ${p.title ? `<h3 class="post-title">${esc(p.title)}</h3>` : ''}
+    <p class="post-body">${esc(p.body)}</p>
+    <div class="post-actions">
+      <button class="post-action ${p.liked_by_me?'liked':''}" data-action="like" data-id="${esc(p.id)}" type="button">
+        <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+        <span>${p.like_count||0}</span>
+      </button>
+      <button class="post-action" data-action="comments" data-id="${esc(p.id)}" type="button">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+        <span>${p.comment_count||0}</span>
+      </button>
+      ${isMine ? `<div style="flex:1"></div><button class="post-action" data-action="delete" data-id="${esc(p.id)}" type="button" style="color:var(--danger)">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
+      </button>` : ''}
+    </div>
+    <div class="comments" id="comments-${esc(p.id)}" style="display:${commentsOpen?'flex':'none'}"></div>
+  </article>`;
+}
+
+function render(){
+  const feed = $('#feed');
+  if (!state.posts.length){
+    feed.innerHTML = `<div class="empty">
+      <h3>${state.scope==='following'?'No posts from creators you follow':'No posts yet'}</h3>
+      <p>${state.scope==='following'?'Follow more creators, or switch to "Everyone" to see the global feed.':'Be the first to share something above.'}</p>
+    </div>`;
+    return;
+  }
+  feed.innerHTML = state.posts.map(postHTML).join('');
+
+  // Restore open comments
+  state.posts.forEach(p => {
+    if (state.openComments.has(p.id)) loadComments(p.id);
+  });
+}
+
+async function loadComments(postId){
+  const el = document.getElementById('comments-' + postId);
+  if (!el) return;
+  try {
+    const { data, error } = await sb.rpc('comments_for', { p_post: postId });
+    if (error) throw error;
+    const list = data || [];
+    el.innerHTML = `
+      ${list.length ? list.map(c => `
+        <div class="comment">
+          <div class="comment-avatar" style="${avatarStyle(c.author_avatar_seed||c.author_handle)}">${esc(c.author_initials||'·')}</div>
+          <div class="comment-body">
+            <div class="cwho">${esc(c.author_display_name)}</div>
+            <div class="ctext">${esc(c.body)}</div>
+            <div class="cmeta">${esc(timeAgo(c.created_at))}</div>
+          </div>
+        </div>`).join('') : `<div style="font-size:12.5px;color:var(--text-3);text-align:center;padding:6px">No comments yet</div>`}
+      <div class="comment-form">
+        <input data-comment-input="${esc(postId)}" placeholder="Add a comment…" maxlength="1000"/>
+        <button data-comment-send="${esc(postId)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+        </button>
+      </div>`;
+
+    const input = el.querySelector('[data-comment-input]');
+    const send = el.querySelector('[data-comment-send]');
+    const submit = async () => {
+      const body = input.value.trim();
+      if (!body) return;
+      try {
+        const { error } = await sb.rpc('add_comment', { p_post: postId, p_body: body });
+        if (error) throw error;
+        input.value = '';
+        await loadComments(postId);
+        const p = state.posts.find(x => x.id === postId);
+        if (p) p.comment_count = (p.comment_count||0) + 1;
+        render();
+        // reopen comments after render
+        state.openComments.add(postId);
+        loadComments(postId);
+      } catch(err){ toast(err.message || 'Comment failed', 'err'); }
+    };
+    send.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+  } catch(err){
+    el.innerHTML = `<div style="font-size:12.5px;color:var(--danger)">${esc(err.message||'Could not load comments')}</div>`;
+  }
+}
+
+document.addEventListener('click', async e => {
+  const act = e.target.closest('[data-action]');
+  if (!act) return;
+  const { action, id } = act.dataset;
+
+  if (action === 'follow'){
+    if (id === state.me.id) return;
+    const wasOn = state.followedIds.has(id);
+    try {
+      const { data, error } = await sb.rpc('toggle_follow', { target: id });
+      if (error) throw error;
+      if (data) state.followedIds.add(id); else state.followedIds.delete(id);
+      toast(data ? 'Following' : 'Unfollowed');
+      render();
+    } catch(err){ toast(err.message||'Failed', 'err'); }
+    return;
+  }
+
+  if (action === 'like'){
+    try {
+      const { data: newCount, error } = await sb.rpc('toggle_post_like', { p_post: id });
+      if (error) throw error;
+      const p = state.posts.find(x => x.id === id);
+      if (p){
+        p.liked_by_me = !p.liked_by_me;
+        p.like_count = newCount;
+      }
+      // Update button in place (avoid full re-render)
+      const btn = act;
+      btn.classList.toggle('liked', p.liked_by_me);
+      btn.querySelector('span').textContent = newCount;
+    } catch(err){ toast(err.message||'Failed', 'err'); }
+    return;
+  }
+
+  if (action === 'comments'){
+    const post = state.posts.find(x => x.id === id);
+    if (!post) return;
+    const el = document.getElementById('comments-' + id);
+    if (!el) return;
+    if (state.openComments.has(id)){
+      state.openComments.delete(id);
+      el.style.display = 'none';
+    } else {
+      state.openComments.add(id);
+      el.style.display = 'flex';
+      loadComments(id);
+    }
+    return;
+  }
+
+  if (action === 'delete'){
+    if (!confirm('Delete this post?')) return;
+    try {
+      const { error } = await sb.rpc('delete_post', { p_id: id });
+      if (error) throw error;
+      state.posts = state.posts.filter(p => p.id !== id);
+      toast('Deleted');
+      render();
+    } catch(err){ toast(err.message||'Delete failed', 'err'); }
+  }
+});
+
+/* tabs */
+$$('.tab').forEach(tab => tab.addEventListener('click', async () => {
+  const scope = tab.dataset.scope;
+  if (state.scope === scope) return;
+  state.scope = scope;
+  $$('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.scope === scope));
+  try { await loadPosts(); } catch(err){ toast(err.message||'Load failed', 'err'); }
+}));
+
+/* composer */
+const ta = $('#composeBody');
+ta.addEventListener('input', () => { $('#cmCount').textContent = ta.value.length + ' / 4000'; });
+
+$('#composeBtn').addEventListener('click', async () => {
+  const body = ta.value.trim();
+  if (!body) return toast('Write something first', 'err');
+  const btn = $('#composeBtn');
+  btn.disabled = true;
+  try {
+    const { error } = await sb.rpc('create_post', { p_title: null, p_body: body });
+    if (error) throw error;
+    ta.value = '';
+    $('#cmCount').textContent = '0 / 4000';
+    state.scope = 'all';
+    $$('.tab').forEach(t => t.classList.toggle('is-active', t.dataset.scope === 'all'));
+    await loadPosts();
+    toast('Posted');
+  } catch(err){ toast(err.message || 'Post failed', 'err'); }
+  finally { btn.disabled = false; }
+});
+</script>
+</body>
+</html>
