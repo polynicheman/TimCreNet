@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0F" id="metaThemeColor" />
+<title>Account — TIMCRENET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
+  --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
+  --text:#F0F1F5; --text-2:#9698A6; --text-3:#5D5F70;
+  --primary:#FF6B3D; --primary-soft:rgba(255,107,61,.14); --primary-glow:rgba(255,107,61,.4);
+  --accent:#7C6BFF; --accent-soft:rgba(124,107,255,.14);
+  --success:#3DD68C; --success-soft:rgba(61,214,140,.13);
+  --warning:#FFB547; --warning-soft:rgba(255,181,71,.13);
+  --danger:#FF5A6E; --danger-soft:rgba(255,90,110,.13);
+  --radius-md:14px; --radius-lg:20px; --radius-full:999px;
+  --shadow-md:0 12px 32px -16px rgba(0,0,0,.7);
+  --grad-primary:linear-gradient(135deg,#FF6B3D 0%,#FF8F5C 40%,#FFB347 100%);
+  --grad-warm:linear-gradient(135deg,#FF6B3D 0%,#FF4D8F 100%);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#FAF9F7; --bg-elev:#FFFFFF; --surface:#FFFFFF; --surface-2:#F5F3F0; --surface-3:#EDEAE5;
+  --border:rgba(20,15,10,.08); --border-strong:rgba(20,15,10,.15);
+  --text:#0F0F12; --text-2:#5B5A66; --text-3:#8E8C99;
+  --primary:#E5552A; --primary-soft:rgba(229,85,42,.1); --primary-glow:rgba(229,85,42,.3);
+  --accent:#6A54F0; --accent-soft:rgba(106,84,240,.1);
+  --success:#119F68; --success-soft:rgba(17,159,104,.11);
+  --warning:#C28A0E; --warning-soft:rgba(194,138,14,.12);
+  --danger:#DC2F45; --danger-soft:rgba(220,47,69,.1);
+  --shadow-md:0 12px 32px -16px rgba(30,20,10,.18);
+  --grad-primary:linear-gradient(135deg,#E5552A 0%,#F0703F 40%,#D18B1F 100%);
+  --grad-warm:linear-gradient(135deg,#E5552A 0%,#D93D7A 100%);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:15px; line-height:1.5; letter-spacing:-.005em;
+  transition:background .3s ease,color .3s ease;
+}
+button,input,textarea,select{font:inherit;color:inherit;background:none;border:none;outline:none}
+button{cursor:pointer;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+::selection{background:var(--primary);color:#fff}
+
+.shell{max-width:720px;margin:0 auto;padding:0 20px 80px}
+
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 0;margin-bottom:20px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.back{
+  width:40px;height:40px;border-radius:11px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:background .16s;
+}
+.back:hover{background:var(--surface-2);color:var(--text)}
+.back svg{width:18px;height:18px;stroke-width:2.2;stroke-linecap:round;fill:none}
+.topbar h1{flex:1;font-size:18px;font-weight:800;letter-spacing:-.5px}
+.theme-btn{
+  width:40px;height:40px;border-radius:11px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--border);background:var(--surface);color:var(--text-2);
+  transition:background .16s;
+}
+.theme-btn:hover{background:var(--surface-2);color:var(--text)}
+.theme-btn svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;fill:none}
+
+.section{margin-bottom:28px}
+.section-head{margin-bottom:12px}
+.section-head h2{font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--text-3)}
+
+.panel{
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:8px 22px;
+}
+.setting{
+  display:flex;align-items:center;gap:16px;padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+.setting:last-child{border-bottom:none}
+.setting .info{flex:1;min-width:0}
+.setting .info b{display:block;font-size:14px;font-weight:700}
+.setting .info span{display:block;font-size:12.5px;color:var(--text-3);margin-top:3px;line-height:1.5;font-weight:500}
+.toggle{
+  width:48px;height:28px;border-radius:20px;background:var(--surface-3);
+  position:relative;flex:none;transition:background .22s;border:1px solid var(--border);cursor:pointer;
+}
+.toggle::after{
+  content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;
+  background:var(--text-3);transition:transform .22s cubic-bezier(.4,0,.2,1),background .22s;
+}
+.toggle.on{background:var(--primary);border-color:var(--primary)}
+.toggle.on::after{transform:translateX(20px);background:#fff}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:9px 16px;border-radius:11px;font-size:13px;font-weight:600;
+  border:1px solid var(--border);background:var(--surface-2);
+  color:var(--text-2);transition:all .16s;white-space:nowrap;min-height:38px;
+}
+.btn:hover{background:var(--surface-3);color:var(--text);border-color:var(--border-strong)}
+.btn.sm{padding:7px 13px;font-size:12.5px;border-radius:9px;min-height:34px}
+.btn.full{width:100%}
+.btn.primary{background:var(--grad-warm);border-color:transparent;color:#fff}
+.btn.primary:hover{filter:brightness(1.06);color:#fff}
+.btn.danger{color:var(--danger);border-color:var(--danger-soft);background:transparent}
+.btn.danger:hover{background:var(--danger-soft);color:var(--danger)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn svg{width:15px;height:15px;stroke-width:2.2;flex:none;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+.field{margin-bottom:14px}
+.field label{
+  display:block;font-size:12px;font-weight:700;color:var(--text-2);
+  margin-bottom:8px;letter-spacing:.02em;
+}
+.field input, .field textarea{
+  width:100%;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:12px;padding:13px 15px;font-size:14.5px;color:var(--text);
+  font-family:inherit;font-weight:500;
+}
+.field textarea{resize:vertical;min-height:80px}
+.field input:focus, .field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.field .hint{font-size:11.5px;color:var(--text-3);margin-top:6px;font-weight:500}
+
+.user-chip{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:12px;
+  background:var(--surface-2);border:1px solid var(--border);margin-bottom:8px;
+}
+.user-chip .info{flex:1;min-width:0}
+.user-chip .info b{display:block;font-size:13.5px;font-weight:700}
+.user-chip .info span{display:block;font-size:12px;color:var(--text-3);margin-top:2px;font-weight:500}
+
+.toast-root{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:800;display:flex;flex-direction:column;gap:10px;align-items:center;
+  pointer-events:none;max-width:calc(100vw - 32px);
+}
+.toast{
+  background:var(--surface-3);border:1px solid var(--border-strong);
+  color:var(--text);padding:12px 20px;border-radius:14px;font-size:13px;font-weight:600;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;
+  animation:tIn .3s;white-space:nowrap;
+}
+.toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4;fill:none}
+.toast.err svg{color:var(--danger)}
+@keyframes tIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.loading{
+  position:fixed;inset:0;z-index:600;display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;background:var(--bg);
+}
+.loading.is-open{display:flex}
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--surface-3);border-top-color:var(--primary);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:13px;color:var(--text-3);font-weight:600}
+
+@media (max-width:520px){
+  .shell{padding:0 14px 60px}
+  .topbar h1{font-size:16px}
+  .panel{padding:6px 18px}
+  .setting{padding:16px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <p>Loading your account…</p>
+</div>
+
+<div class="shell">
+  <div class="topbar">
+    <button class="back" onclick="location.href='app.html'" aria-label="Back">
+      <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <h1>Account</h1>
+    <button class="theme-btn" id="themeBtn" aria-label="Theme">
+      <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="section">
+    <div class="section-head"><h2>Profile</h2></div>
+    <div class="panel" style="padding:22px">
+      <div class="field">
+        <label>Display name</label>
+        <input id="fDisplayName" type="text" maxlength="48"/>
+      </div>
+      <div class="field">
+        <label>City</label>
+        <input id="fCity" type="text" maxlength="80"/>
+      </div>
+      <div class="field">
+        <label>Region / State</label>
+        <input id="fRegion" type="text" maxlength="80"/>
+      </div>
+      <div class="field" style="margin-bottom:18px">
+        <label>Country</label>
+        <input id="fCountry" type="text" maxlength="80"/>
+      </div>
+      <button class="btn primary full" id="saveProfile" type="button">Save changes</button>
+      <p class="hint" style="font-size:11.5px;color:var(--text-3);margin-top:12px;text-align:center">
+        Want to change niches, gear, struggles? <a href="onboarding.html" style="color:var(--primary);font-weight:700">Re-run onboarding →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- APPEARANCE -->
+  <div class="section">
+    <div class="section-head"><h2>Appearance</h2></div>
+    <div class="panel">
+      <div class="setting">
+        <div class="info"><b>Dark mode</b><span>Toggle theme across every page.</span></div>
+        <button class="toggle" id="tDark" type="button"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCHING -->
+  <div class="section">
+    <div class="section-head"><h2>Matching & privacy</h2></div>
+    <div class="panel">
+      <div class="setting">
+        <div class="info"><b>Show me to others</b><span>When off, your profile is hidden from feeds and search.</span></div>
+        <button class="toggle" id="tDiscoverable" type="button"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCKED USERS -->
+  <div class="section">
+    <div class="section-head"><h2>Blocked users</h2></div>
+    <div class="panel" id="blockedPanel" style="padding:18px 22px"></div>
+  </div>
+
+  <!-- DATA -->
+  <div class="section">
+    <div class="section-head"><h2>Your data</h2></div>
+    <div class="panel">
+      <div class="setting">
+        <div class="info"><b>Export my data</b><span>Download a JSON copy of your profile, posts, follows and messages metadata.</span></div>
+        <button class="btn sm" id="exportData" type="button">Export</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DANGER ZONE -->
+  <div class="section">
+    <div class="section-head" style="color:var(--danger)"><h2 style="color:var(--danger)">Danger zone</h2></div>
+    <div class="panel">
+      <div class="setting">
+        <div class="info"><b>Sign out</b><span>End your session on this device.</span></div>
+        <button class="btn sm" id="signOut" type="button">Sign out</button>
+      </div>
+      <div class="setting">
+        <div class="info">
+          <b style="color:var(--danger)">Delete account</b>
+          <span>Permanently removes your profile, posts, follows, and messages. This cannot be undone.</span>
+        </div>
+        <button class="btn sm danger" id="deleteAccount" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-root" id="toastRoot"></div>
+
+<script type="module">
+const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+const sb = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
+  auth: { persistSession: true, autoRefreshToken: true, storageKey: 'timcrenet.auth' }
+});
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const hashStr = s => {let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0};
+const avatarStyle = seed => {
+  const h = hashStr(String(seed||'x'));
+  const a=h%360,b=(a+55+(h>>3)%110)%360,c=(a+210+(h>>7)%90)%360,ang=h%360;
+  return `background:conic-gradient(from ${ang}deg,hsl(${a} 72% 58%),hsl(${b} 70% 54%),hsl(${c} 74% 60%),hsl(${a} 72% 58%));`;
+};
+
+function toast(txt, kind='ok'){
+  const el = document.createElement('div');
+  el.className = 'toast' + (kind==='err'?' err':'');
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
+    kind==='err'?'<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>':'<path d="M20 6 9 17l-5-5"/>'
+  }</svg><span>${esc(txt)}</span>`;
+  $('#toastRoot').appendChild(el);
+  setTimeout(()=>{el.style.transition='opacity .3s,transform .3s';el.style.opacity='0';el.style.transform='translateY(12px)';setTimeout(()=>el.remove(),320)},2600);
+}
+
+(function theme(){
+  const t = localStorage.getItem('timcrenet-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  document.documentElement.setAttribute('data-theme', t);
+  $('#metaThemeColor').setAttribute('content', t==='light'?'#FAF9F7':'#0A0B0F');
+  $('#tDark').classList.toggle('on', t==='dark');
+})();
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next==='light'?'#FAF9F7':'#0A0B0F');
+  $('#tDark').classList.toggle('on', next==='dark');
+});
+
+const state = { me: null };
+
+async function loadMe(){
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.href = 'index.html'; return null; }
+  const { data, error } = await sb.from('profiles')
+    .select('id, handle, display_name, city, region, country, is_discoverable, avatar_seed')
+    .eq('id', session.user.id).maybeSingle();
+  if (error) { toast(error.message, 'err'); return null; }
+  return data;
+}
+
+async function loadBlocked(){
+  try {
+    const { data, error } = await sb.rpc('my_blocks');
+    if (error) throw error;
+    const list = data || [];
+    const el = $('#blockedPanel');
+    if (!list.length){
+      el.innerHTML = `<div style="font-size:13px;color:var(--text-3);text-align:center;padding:8px 0">You haven't blocked anyone.</div>`;
+      return;
+    }
+    el.innerHTML = list.map(b => `
+      <div class="user-chip">
+        <div style="width:36px;height:36px;border-radius:11px;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;${avatarStyle(b.avatar_seed||b.handle)}">${esc(b.initials||'·')}</div>
+        <div class="info"><b>${esc(b.display_name)}</b><span>@${esc(b.handle)}</span></div>
+        <button class="btn sm" data-unblock="${esc(b.id)}" type="button">Unblock</button>
+      </div>`).join('');
+    el.querySelectorAll('[data-unblock]').forEach(btn => btn.addEventListener('click', async () => {
+      try {
+        const { error } = await sb.rpc('toggle_block', { target: btn.dataset.unblock });
+        if (error) throw error;
+        toast('Unblocked');
+        loadBlocked();
+      } catch(err){ toast(err.message, 'err'); }
+    }));
+  } catch(err){
+    $('#blockedPanel').innerHTML = `<div style="font-size:12.5px;color:var(--danger);padding:8px 0">${esc(err.message)}</div>`;
+  }
+}
+
+(async function boot(){
+  $('#loading').classList.add('is-open');
+  const me = await loadMe();
+  if (!me) return;
+  state.me = me;
+  $('#fDisplayName').value = me.display_name || '';
+  $('#fCity').value = me.city || '';
+  $('#fRegion').value = me.region || '';
+  $('#fCountry').value = me.country || '';
+  $('#tDiscoverable').classList.toggle('on', me.is_discoverable !== false);
+  await loadBlocked();
+  $('#loading').classList.remove('is-open');
+})();
+
+$('#tDark').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next==='light'?'#FAF9F7':'#0A0B0F');
+  $('#tDark').classList.toggle('on', next==='dark');
+});
+
+$('#tDiscoverable').addEventListener('click', async () => {
+  const on = !$('#tDiscoverable').classList.contains('on');
+  $('#tDiscoverable').classList.toggle('on', on);
+  const { error } = await sb.from('profiles').update({ is_discoverable: on }).eq('id', state.me.id);
+  if (error){ toast(error.message, 'err'); $('#tDiscoverable').classList.toggle('on', !on); }
+  else { state.me.is_discoverable = on; toast(on ? 'Visible to others' : 'Hidden'); }
+});
+
+$('#saveProfile').addEventListener('click', async () => {
+  const btn = $('#saveProfile');
+  btn.disabled = true;
+  try {
+    const update = {
+      display_name: $('#fDisplayName').value.trim() || state.me.display_name,
+      city: $('#fCity').value.trim() || null,
+      region: $('#fRegion').value.trim() || null,
+      country: $('#fCountry').value.trim() || null
+    };
+    const { error } = await sb.from('profiles').update(update).eq('id', state.me.id);
+    if (error) throw error;
+    Object.assign(state.me, update);
+    toast('Profile updated');
+  } catch(err){ toast(err.message || 'Save failed', 'err'); }
+  finally { btn.disabled = false; }
+});
+
+$('#exportData').addEventListener('click', async () => {
+  const btn = $('#exportData');
+  btn.disabled = true;
+  try {
+    const { data, error } = await sb.rpc('export_my_data');
+    if (error) throw error;
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `timcrenet-export-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Exported');
+  } catch(err){ toast(err.message || 'Export failed', 'err'); }
+  finally { btn.disabled = false; }
+});
+
+$('#signOut').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  location.href = 'index.html';
+});
+
+$('#deleteAccount').addEventListener('click', async () => {
+  if (!confirm('Delete your account permanently? This cannot be undone.')) return;
+  if (!confirm('Last chance — everything you created will be removed. Continue?')) return;
+  const btn = $('#deleteAccount');
+  btn.disabled = true;
+  try {
+    const { error } = await sb.rpc('delete_my_account');
+    if (error) throw error;
+    await sb.auth.signOut();
+    location.href = 'index.html';
+  } catch(err){ toast(err.message || 'Delete failed', 'err'); btn.disabled = false; }
+});
+</script>
+</body>
+</html>
