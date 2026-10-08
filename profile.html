@@ -1,0 +1,1562 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0F" id="metaThemeColor" />
+<title>Profile — TIMCRENET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
+  --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
+  --text:#F0F1F5; --text-2:#9698A6; --text-3:#5D5F70;
+  --primary:#FF6B3D; --primary-soft:rgba(255,107,61,.14); --primary-glow:rgba(255,107,61,.4);
+  --accent:#7C6BFF; --accent-soft:rgba(124,107,255,.14);
+  --success:#3DD68C; --success-soft:rgba(61,214,140,.13);
+  --warning:#FFB547; --danger:#FF5A6E; --danger-soft:rgba(255,90,110,.13);
+  --radius-sm:10px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-full:999px;
+  --shadow-sm:0 4px 14px -8px rgba(0,0,0,.6);
+  --shadow-md:0 12px 32px -16px rgba(0,0,0,.7);
+  --shadow-lg:0 24px 60px -28px rgba(0,0,0,.9);
+  --sidebar-w:275px; --right-w:340px; --topbar-h:56px; --tabbar-h:60px;
+  --grad-warm:linear-gradient(135deg,#FF6B3D 0%,#FF4D8F 100%);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#FAF9F7; --bg-elev:#FFFFFF; --surface:#FFFFFF; --surface-2:#F5F3F0; --surface-3:#EDEAE5;
+  --border:rgba(20,15,10,.08); --border-strong:rgba(20,15,10,.15);
+  --text:#0F0F12; --text-2:#5B5A66; --text-3:#8E8C99;
+  --primary:#E5552A; --primary-soft:rgba(229,85,42,.1); --primary-glow:rgba(229,85,42,.3);
+  --accent:#6A54F0; --accent-soft:rgba(106,84,240,.1);
+  --success:#119F68; --success-soft:rgba(17,159,104,.11);
+  --warning:#C28A0E; --danger:#DC2F45; --danger-soft:rgba(220,47,69,.1);
+  --shadow-sm:0 4px 14px -8px rgba(30,20,10,.15);
+  --shadow-md:0 12px 32px -16px rgba(30,20,10,.18);
+  --shadow-lg:0 24px 60px -28px rgba(30,20,10,.22);
+  --grad-warm:linear-gradient(135deg,#E5552A 0%,#D93D7A 100%);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size:15px; line-height:1.5; letter-spacing:-.005em;
+  overflow:hidden; transition:background .3s,color .3s;
+}
+button,input,textarea{font:inherit;color:inherit;background:none;border:none;outline:none}
+button{cursor:pointer;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+svg{display:block;max-width:100%}
+::selection{background:var(--primary);color:#fff}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:3px solid transparent;background-clip:content-box}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+
+/* ─── LAYOUT ─── */
+.app{
+  display:grid;
+  grid-template-columns:var(--sidebar-w) minmax(0,600px) var(--right-w);
+  justify-content:center;
+  height:100dvh; overflow:hidden;
+  max-width:1400px; margin:0 auto;
+}
+
+/* ─── LEFT RAIL ─── */
+.left-rail{
+  display:flex;flex-direction:column;
+  padding:16px 18px;
+  border-right:1px solid var(--border);
+  height:100dvh; overflow-y:auto;
+  position:sticky; top:0;
+}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 10px 22px}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;flex:none;
+  background:linear-gradient(135deg,#FF6B3D 0%,#FF8F5C 40%,#FFB347 100%);
+  display:grid;place-items:center;
+  box-shadow:0 10px 24px -10px var(--primary-glow);position:relative;
+}
+.brand-mark::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);mix-blend-mode:overlay}
+.brand-mark svg{width:22px;height:22px;position:relative;z-index:1;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.brand-mark svg .node{fill:#fff;stroke:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text b{font-size:17px;font-weight:800;letter-spacing:1.2px}
+.brand-text span{font-size:10.5px;color:var(--text-3);font-weight:500;margin-top:2px}
+
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-item{
+  display:flex;align-items:center;gap:15px;
+  padding:12px 14px;border-radius:12px;
+  color:var(--text);font-size:15.5px;font-weight:600;
+  transition:background .16s,color .16s;
+  text-align:left;width:100%;min-height:50px;position:relative;
+}
+.nav-item svg{width:24px;height:24px;flex:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.nav-item:hover{background:var(--surface-2)}
+.nav-item.is-active{font-weight:800}
+.nav-item.is-active svg{stroke-width:2.3}
+.nav-item .nav-badge{
+  margin-left:auto;background:var(--primary);color:#fff;
+  font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:20px;
+  min-width:20px;text-align:center;
+}
+
+.left-foot{margin-top:auto;padding-top:14px}
+.me-card{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:14px;transition:background .16s;
+  width:100%;text-align:left;
+}
+.me-card:hover{background:var(--surface-2)}
+.me-card .who{flex:1;min-width:0}
+.me-card .who b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.me-card .who span{display:block;font-size:11.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+
+/* ─── CENTER ─── */
+.center{
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  height:100dvh; overflow:hidden;
+  min-width:0;
+}
+
+.topbar{
+  flex:none;display:flex;align-items:center;gap:12px;
+  padding:10px 20px;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  min-height:var(--topbar-h);
+  position:sticky;top:0;z-index:20;
+}
+.back-btn{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  color:var(--text-2);transition:background .16s,color .16s;
+}
+.back-btn:hover{background:var(--surface-2);color:var(--text)}
+.back-btn svg{width:20px;height:20px;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+.page-title{flex:1;min-width:0}
+.page-title h1{font-size:19px;font-weight:800;letter-spacing:-.5px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page-title p{font-size:12.5px;color:var(--text-3);font-weight:500;margin-top:1px}
+
+.icon-btn{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  color:var(--text-2);transition:background .16s,color .16s;
+}
+.icon-btn:hover{background:var(--surface-2);color:var(--text)}
+.icon-btn svg{width:20px;height:20px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.scroll{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  scroll-behavior:smooth;
+  overscroll-behavior:contain;
+  padding-bottom:80px;
+}
+
+/* ─── PROFILE HEADER ─── */
+.profile-head{
+  border-bottom:1px solid var(--border);
+}
+
+.cover{
+  height:180px;
+  position:relative;
+  overflow:hidden;
+}
+.cover::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0) 55%,rgba(0,0,0,.35));
+  pointer-events:none;
+}
+
+.phead-body{
+  padding:0 20px 16px;
+  position:relative;
+}
+
+.avatar-wrap-lg{
+  margin-top:-72px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.avatar-lg{
+  width:144px;height:144px;border-radius:50%;
+  border:4px solid var(--bg);
+  box-shadow:var(--shadow-md);
+  position:relative;overflow:hidden;
+  display:grid;place-items:center;
+  font-size:44px;font-weight:800;color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+  flex:none;
+}
+.avatar-lg::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);
+  mix-blend-mode:overlay;
+}
+
+.phead-actions{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:8px;
+}
+
+.btn{
+  padding:9px 18px;border-radius:22px;
+  font-size:14.5px;font-weight:700;letter-spacing:-.1px;
+  transition:background .16s,color .16s,border-color .16s,transform .16s,opacity .16s;
+  min-height:40px;
+  display:inline-flex;align-items:center;gap:7px;
+  white-space:nowrap;
+}
+.btn svg{width:17px;height:17px;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{opacity:.85}
+.btn-primary:active{transform:scale(.97)}
+.btn-primary.is-following{
+  background:transparent;border:1px solid var(--border-strong);color:var(--text);
+}
+.btn-primary.is-following:hover{
+  background:var(--danger-soft);border-color:transparent;color:var(--danger);
+}
+.btn-outline{
+  background:transparent;border:1px solid var(--border-strong);color:var(--text);
+}
+.btn-outline:hover{background:var(--surface-2)}
+.btn-ghost{
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+}
+.btn-ghost:hover{background:var(--surface-2)}
+
+.phead-name{
+  font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.15;
+  margin-bottom:2px;
+}
+.phead-handle{
+  font-size:14.5px;color:var(--text-3);font-weight:500;
+  margin-bottom:12px;
+}
+
+.phead-presence{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:700;
+  padding:4px 10px;border-radius:20px;
+  background:var(--success-soft);color:var(--success);
+  margin-bottom:12px;
+}
+.phead-presence .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--success);
+  animation:pd 2s infinite;
+}
+.phead-presence.offline{
+  background:var(--surface-3);color:var(--text-3);
+}
+.phead-presence.offline .dot{
+  background:var(--text-3);animation:none;
+}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+.phead-bio{
+  font-size:15px;line-height:1.5;
+  margin-bottom:12px;
+  white-space:pre-wrap;word-wrap:break-word;
+  color:var(--text);
+}
+.phead-bio a{color:var(--primary);font-weight:600}
+.phead-bio a:hover{text-decoration:underline}
+
+.phead-meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  font-size:13.5px;color:var(--text-3);font-weight:500;
+  margin-bottom:14px;
+}
+.phead-meta .item{
+  display:inline-flex;align-items:center;gap:5px;
+}
+.phead-meta svg{width:15px;height:15px;stroke-width:2;fill:none;stroke:currentColor;flex:none}
+
+.phead-stats{
+  display:flex;flex-wrap:wrap;gap:18px;
+  font-size:14px;font-weight:500;
+  margin-bottom:4px;
+}
+.phead-stats button{
+  display:inline-flex;align-items:baseline;gap:5px;
+  transition:opacity .16s;color:var(--text-2);
+}
+.phead-stats button:hover{opacity:.75}
+.phead-stats button b{color:var(--text);font-weight:800;font-size:15px}
+
+/* ─── TABS ─── */
+.tabs{
+  flex:none;display:flex;
+  border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  position:sticky;top:var(--topbar-h);z-index:19;
+}
+.tab{
+  flex:1;padding:16px 8px;text-align:center;
+  font-size:14.5px;font-weight:600;color:var(--text-3);
+  position:relative;transition:background .16s,color .16s;
+  min-height:52px;
+}
+.tab:hover{background:var(--surface-2);color:var(--text-2)}
+.tab.is-active{color:var(--text);font-weight:800}
+.tab.is-active::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);
+  bottom:0;height:3px;width:52px;
+  background:var(--primary);border-radius:20px;
+}
+
+/* ─── POST CARD (same as posts.html) ─── */
+.post{
+  display:flex;gap:12px;padding:16px 20px;
+  border-bottom:1px solid var(--border);
+  transition:background .16s;cursor:pointer;
+  position:relative;
+}
+.post:hover{background:var(--surface-2)}
+.post.is-thread-head{background:color-mix(in srgb,var(--bg-elev) 40%,transparent)}
+
+.post-avatar{flex:none}
+.post-body{flex:1;min-width:0}
+
+.post-head{
+  display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:2px;min-width:0;
+}
+.post-head .name{
+  font-size:15px;font-weight:800;letter-spacing:-.1px;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;
+}
+.post-head .handle{
+  font-size:15px;color:var(--text-3);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;
+}
+.post-head .dot{color:var(--text-3);font-size:12px}
+.post-head .time{
+  font-size:15px;color:var(--text-3);font-weight:500;flex:none;
+}
+.post-head .presence{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;font-weight:700;color:var(--success);
+  padding:1px 7px;border-radius:20px;
+  background:var(--success-soft);margin-left:2px;
+}
+.post-head .presence .pulse-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--success);
+  animation:pd 2s infinite;
+}
+.post-head .more{
+  margin-left:auto;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;color:var(--text-3);
+  transition:background .16s,color .16s;flex:none;
+}
+.post-head .more:hover{background:var(--primary-soft);color:var(--primary)}
+.post-head .more svg{width:18px;height:18px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.post-title{
+  font-size:16px;font-weight:800;letter-spacing:-.3px;
+  margin:6px 0 4px;line-height:1.35;color:var(--text);
+}
+.post-text{
+  font-size:15.5px;line-height:1.5;color:var(--text);
+  white-space:pre-wrap;word-wrap:break-word;font-weight:500;
+}
+
+.post-actions{
+  display:flex;align-items:center;gap:4px;
+  margin-top:12px;margin-left:-8px;
+}
+.act{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 8px;border-radius:20px;
+  font-size:13px;font-weight:600;color:var(--text-3);
+  transition:background .16s,color .16s;
+  min-width:60px;
+}
+.act svg{width:18px;height:18px;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .16s}
+.act:hover{color:var(--primary);background:var(--primary-soft)}
+.act.liked{color:var(--danger)}
+.act.liked:hover{color:var(--danger);background:var(--danger-soft)}
+.act.liked svg{fill:currentColor;stroke:currentColor}
+.act.reposted{color:var(--success)}
+.act.reposted:hover{color:var(--success);background:var(--success-soft)}
+.act.bookmarked{color:var(--primary)}
+.act.bookmarked svg{fill:currentColor;stroke:currentColor}
+
+.reply-context{
+  display:flex;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:600;color:var(--text-3);
+  padding:4px 0;margin-bottom:2px;
+}
+.reply-context svg{width:14px;height:14px;stroke-width:2;fill:none;color:var(--text-3)}
+
+/* ─── RIGHT RAIL ─── */
+.right-rail{
+  padding:16px 18px;
+  border-left:1px solid var(--border);
+  height:100dvh; overflow-y:auto;
+  position:sticky;top:0;
+  display:flex;flex-direction:column;gap:14px;
+}
+.panel{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;
+}
+.panel-head{
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  font-size:16px;font-weight:800;letter-spacing:-.3px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.panel-body{padding:8px 6px}
+
+.sug-row{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 10px;border-radius:12px;
+  cursor:pointer;transition:background .16s;
+  width:100%;text-align:left;
+}
+.sug-row:hover{background:var(--surface-2)}
+.sug-row .info{flex:1;min-width:0}
+.sug-row .info b{display:block;font-size:14px;font-weight:700;letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sug-row .info span{display:block;font-size:12.5px;color:var(--text-3);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.sug-follow{
+  padding:7px 15px;border-radius:20px;
+  background:var(--text);color:var(--bg);
+  font-size:13px;font-weight:700;letter-spacing:-.1px;
+  transition:opacity .16s,transform .16s;flex:none;
+  min-height:32px;
+}
+.sug-follow:hover{opacity:.85}
+.sug-follow:active{transform:scale(.96)}
+.sug-follow.is-following{background:transparent;border:1px solid var(--border-strong);color:var(--text)}
+.sug-follow.is-following:hover{background:var(--danger-soft);border-color:transparent;color:var(--danger)}
+
+/* ─── AVATAR ─── */
+.avatar{
+  border-radius:50%;flex:none;display:grid;place-items:center;
+  font-weight:800;color:#fff;letter-spacing:-.5px;
+  position:relative;overflow:hidden;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+.avatar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);mix-blend-mode:overlay}
+.avatar.xs{width:26px;height:26px;font-size:10.5px}
+.avatar.sm{width:32px;height:32px;font-size:12px}
+.avatar.md{width:40px;height:40px;font-size:14px}
+.avatar.lg{width:48px;height:48px;font-size:16px}
+
+.av-wrap{position:relative;flex:none}
+.av-wrap .online-dot{
+  position:absolute;right:-1px;bottom:-1px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--success);border:2.5px solid var(--bg);
+}
+
+/* ─── EMPTY ─── */
+.empty{
+  padding:64px 24px;text-align:center;color:var(--text-3);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.empty svg{width:44px;height:44px;opacity:.35;stroke-width:1.5;fill:none}
+.empty h3{font-size:17px;color:var(--text);font-weight:800;letter-spacing:-.3px}
+.empty p{font-size:13.5px;max-width:280px;line-height:1.5;font-weight:500}
+
+/* ─── SKELETON ─── */
+.sk-post{display:flex;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.sk-av{
+  width:48px;height:48px;border-radius:50%;flex:none;
+  background:linear-gradient(90deg,var(--surface-2) 0%,var(--surface-3) 50%,var(--surface-2) 100%);
+  background-size:200% 100%; animation:skel 1.4s ease-in-out infinite;
+}
+.sk-line{
+  height:12px;border-radius:6px;
+  background:linear-gradient(90deg,var(--surface-2) 0%,var(--surface-3) 50%,var(--surface-2) 100%);
+  background-size:200% 100%; animation:skel 1.4s ease-in-out infinite;
+}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ─── SHEET ─── */
+.sheet-back{
+  position:fixed;inset:0;background:rgba(4,5,10,.72);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .3s;z-index:100;
+}
+.sheet-back.is-open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;top:0;right:0;height:100dvh;width:min(560px,100vw);
+  background:var(--bg-elev);border-left:1px solid var(--border);
+  z-index:101;transform:translateX(102%);
+  transition:transform .36s cubic-bezier(.32,.72,0,1);
+  display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+}
+.sheet.is-open{transform:translateX(0)}
+.sheet-head{
+  flex:none;display:flex;align-items:center;gap:12px;
+  padding:16px 22px;border-bottom:1px solid var(--border);
+}
+.sheet-head h2{font-size:17px;font-weight:800;letter-spacing:-.3px;flex:1;min-width:0}
+.sheet-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 8px 24px}
+
+.pick-row{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;border-radius:14px;
+  transition:background .16s;width:100%;text-align:left;
+}
+.pick-row:hover{background:var(--surface-2)}
+.pick-info{flex:1;min-width:0}
+.pick-info b{display:block;font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick-info span{display:block;font-size:12.5px;color:var(--text-3);font-weight:500;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick-follow{
+  padding:7px 14px;border-radius:20px;
+  background:var(--text);color:var(--bg);
+  font-size:12.5px;font-weight:700;flex:none;
+  transition:opacity .16s,background .16s,color .16s;
+}
+.pick-follow:hover{opacity:.85}
+.pick-follow.is-following{
+  background:transparent;border:1px solid var(--border-strong);color:var(--text);
+}
+.pick-follow.is-following:hover{background:var(--danger-soft);border-color:transparent;color:var(--danger)}
+
+/* ─── EDIT FORM ─── */
+.form-group{margin-bottom:14px}
+.form-group label{
+  display:block;font-size:12.5px;font-weight:700;color:var(--text-3);
+  margin-bottom:6px;letter-spacing:.02em;
+}
+.form-group input,
+.form-group textarea{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:11px 14px;
+  font-size:15px;font-weight:500;font-family:inherit;
+  color:var(--text);transition:border-color .16s,box-shadow .16s;
+  resize:none;
+}
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft);
+}
+.form-group textarea{min-height:90px;line-height:1.5}
+
+/* ─── TOAST ─── */
+.toast-root{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:800;display:flex;flex-direction:column;gap:10px;align-items:center;
+  pointer-events:none;max-width:calc(100vw - 32px);
+}
+.toast{
+  background:var(--surface-3);border:1px solid var(--border-strong);
+  color:var(--text);padding:12px 20px;border-radius:14px;
+  font-size:13.5px;font-weight:600;box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:10px;
+  animation:tIn .3s cubic-bezier(.2,.9,.3,1.2);white-space:nowrap;
+}
+.toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4;fill:none}
+.toast.err svg{color:var(--danger)}
+@keyframes tIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ─── BOOT ─── */
+.boot{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  background:radial-gradient(900px 500px at 50% 0%,var(--primary-soft),transparent 65%),var(--bg);
+}
+.boot.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
+.boot-mark{
+  width:64px;height:64px;border-radius:20px;flex:none;
+  background:var(--grad-warm);display:grid;place-items:center;
+  box-shadow:0 18px 42px -14px var(--primary-glow);position:relative;
+  animation:bp 2s ease-in-out infinite;
+}
+@keyframes bp{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.boot-mark::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);mix-blend-mode:overlay}
+.boot-mark svg{width:36px;height:36px;position:relative;z-index:1}
+.boot-mark svg *{stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round}
+.boot-mark svg .node{fill:#fff;stroke:none}
+.boot-text{font-size:13px;color:var(--text-3);font-weight:600}
+
+/* ─── MOBILE TABBAR ─── */
+.tabbar{display:none}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1200px){:root{--right-w:300px}}
+@media (max-width:1000px){
+  :root{--right-w:0px}
+  .right-rail{display:none}
+  .app{grid-template-columns:var(--sidebar-w) minmax(0,600px);}
+}
+@media (max-width:820px){
+  :root{--sidebar-w:0px}
+  .app{
+    grid-template-columns:1fr;
+    height:calc(100dvh - var(--tabbar-h));
+    max-width:none;
+  }
+  .left-rail{display:none}
+  .center{height:calc(100dvh - var(--tabbar-h));border-right:none}
+  .topbar{padding:10px 14px;gap:10px}
+  .page-title h1{font-size:17px}
+  .page-title p{display:none}
+  .scroll{padding-bottom:60px}
+  .cover{height:130px}
+  .avatar-wrap-lg{margin-top:-58px}
+  .avatar-lg{width:110px;height:110px;font-size:34px;border-width:3px}
+  .phead-body{padding:0 16px 14px}
+  .phead-name{font-size:19px}
+  .phead-bio{font-size:14.5px}
+  .phead-meta{font-size:12.5px;gap:12px}
+  .phead-stats{font-size:13.5px;gap:16px}
+
+  .post{padding:14px 16px;gap:10px}
+  .post-head .name{font-size:14.5px;max-width:160px}
+  .post-head .handle{font-size:14.5px}
+  .post-head .time{font-size:14.5px}
+  .post-text{font-size:15px}
+  .act{padding:8px 6px;min-width:0;font-size:12.5px}
+  .act .count{display:none}
+
+  .tabbar{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    height:var(--tabbar-h);
+    background:color-mix(in srgb,var(--bg-elev) 94%,transparent);
+    backdrop-filter:blur(22px) saturate(1.4);
+    -webkit-backdrop-filter:blur(22px) saturate(1.4);
+    border-top:1px solid var(--border);z-index:60;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .tb-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;color:var(--text-3);font-size:10px;font-weight:700;
+    position:relative;transition:color .16s;min-height:52px;
+  }
+  .tb-item svg{width:22px;height:22px;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .tb-item.is-active{color:var(--primary)}
+  .tb-item.is-active svg{stroke-width:2.3}
+  .tb-item .tb-badge{
+    position:absolute;top:6px;right:calc(50% - 22px);
+    background:var(--primary);color:#fff;
+    font-size:9px;font-weight:800;min-width:16px;height:16px;
+    border-radius:20px;display:grid;place-items:center;padding:0 4px;
+  }
+  .sheet{
+    top:auto;bottom:0;right:0;left:0;width:100vw;height:auto;max-height:88dvh;
+    border-left:none;border-top:1px solid var(--border);
+    border-radius:22px 22px 0 0;transform:translateY(102%);
+  }
+  .sheet.is-open{transform:translateY(0)}
+  .sheet::before{
+    content:"";display:block;width:40px;height:4px;border-radius:20px;
+    background:var(--border-strong);margin:10px auto 0;
+  }
+}
+@media (max-width:400px){
+  .post-head .handle{display:none}
+  .post-head .presence{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── BOOT ─── -->
+<div class="boot" id="bootScreen">
+  <div class="boot-mark">
+    <svg viewBox="0 0 32 32">
+      <circle class="node" cx="16" cy="16" r="3.6"/>
+      <circle cx="7"  cy="7.5" r="2.4"/><circle cx="25" cy="7.5" r="2.4"/>
+      <circle cx="7"  cy="24.5" r="2.4"/><circle cx="25" cy="24.5" r="2.4"/>
+      <path d="M8.9 9.1 13.2 13.5M23.1 9.1 18.8 13.5M8.9 22.9 13.2 18.5M23.1 22.9 18.8 18.5"/>
+    </svg>
+  </div>
+  <div class="boot-text">Loading profile…</div>
+</div>
+
+<div class="app" id="app" style="display:none">
+
+  <!-- ─── LEFT RAIL ─── -->
+  <aside class="left-rail">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 32 32">
+          <circle class="node" cx="16" cy="16" r="3.6"/>
+          <circle cx="7"  cy="7.5" r="2.4"/><circle cx="25" cy="7.5" r="2.4"/>
+          <circle cx="7"  cy="24.5" r="2.4"/><circle cx="25" cy="24.5" r="2.4"/>
+          <path d="M8.9 9.1 13.2 13.5M23.1 9.1 18.8 13.5M8.9 22.9 13.2 18.5M23.1 22.9 18.8 18.5"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <b>TIMCRENET</b>
+        <span>Time · Create · Network</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item" data-nav="posts" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+        Posts
+      </button>
+      <button class="nav-item" data-nav="feed" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-3 6-4-4 6-3Z"/></svg>
+        Explore
+      </button>
+      <button class="nav-item" data-nav="nearby" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Nearby
+      </button>
+      <button class="nav-item" data-nav="messages" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+        Messages
+        <span class="nav-badge" id="navMsgBadge" style="display:none">0</span>
+      </button>
+      <button class="nav-item" data-nav="bookmarks" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+        Bookmarks
+      </button>
+      <button class="nav-item is-active" data-nav="profile" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        Profile
+      </button>
+      <button class="nav-item" data-nav="account" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>
+        Account
+      </button>
+    </nav>
+
+    <div class="left-foot">
+      <button class="me-card" id="meCard" type="button">
+        <div class="av-wrap"><div class="avatar sm" id="meAv"></div></div>
+        <div class="who">
+          <b id="meName">Loading…</b>
+          <span id="meHandle">@…</span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ─── CENTER ─── -->
+  <main class="center">
+    <header class="topbar">
+      <button class="back-btn" id="backBtn" type="button" aria-label="Back">
+        <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="page-title">
+        <h1 id="pageTitle">Profile</h1>
+        <p id="pageSub">— posts</p>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Theme" title="Theme">
+        <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </header>
+
+    <div class="scroll" id="scroll">
+      <!-- Profile header injected here -->
+      <div id="profileHead"></div>
+
+      <!-- Tabs -->
+      <div class="tabs" id="tabs" style="display:none">
+        <button class="tab is-active" data-tab="posts" type="button">Posts</button>
+        <button class="tab" data-tab="replies" type="button">Replies</button>
+        <button class="tab" data-tab="media" type="button">Media</button>
+      </div>
+
+      <!-- Feed -->
+      <div id="feed"></div>
+    </div>
+  </main>
+
+  <!-- ─── RIGHT RAIL ─── -->
+  <aside class="right-rail">
+    <div class="panel">
+      <div class="panel-head">You might like</div>
+      <div class="panel-body" id="suggestedBody">
+        <div class="sug-row"><div class="sk-av" style="width:40px;height:40px"></div><div style="flex:1"><div class="sk-line" style="width:60%;margin-bottom:6px"></div><div class="sk-line" style="width:40%"></div></div></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── MOBILE TABBAR ─── -->
+<nav class="tabbar" id="tabbar" style="display:none">
+  <button class="tb-item" data-nav="posts" type="button">
+    <svg viewBox="0 0 24 24"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span>Posts</span>
+  </button>
+  <button class="tb-item" data-nav="nearby" type="button">
+    <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    <span>Nearby</span>
+  </button>
+  <button class="tb-item" data-nav="messages" type="button">
+    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+    <span>Chats</span>
+    <span class="tb-badge" id="tbMsgBadge" style="display:none">0</span>
+  </button>
+  <button class="tb-item" data-nav="bookmarks" type="button">
+    <svg viewBox="0 0 24 24"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+    <span>Saved</span>
+  </button>
+  <button class="tb-item is-active" data-nav="profile" type="button">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    <span>You</span>
+  </button>
+</nav>
+
+<!-- ─── SHEET ─── -->
+<div class="sheet-back" id="sheetBack"></div>
+<aside class="sheet" id="sheet">
+  <div class="sheet-head">
+    <h2 id="sheetTitle">Edit profile</h2>
+    <button class="icon-btn" id="sheetClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</aside>
+
+<div class="toast-root" id="toastRoot"></div>
+
+<script type="module">
+/* ══════════════════════════════════════════════════════════════════════════
+   TIMCRENET · profile.html
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
+
+const SIGNIN_URL = 'index.html';
+const APP_URL    = 'app.html';
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+
+const supabase = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'timcrenet.auth' },
+  global: { headers: { 'x-application-name': 'timcrenet-web' } }
+});
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+/* ─── helpers ─────────────────────────────────────────────────────────── */
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function avatarStyle(seed){
+  const h = hashStr(String(seed || 'x'));
+  const a = h % 360, b = (a+55+(h>>3)%110)%360, c = (a+210+(h>>7)%90)%360, ang = h%360;
+  return `background:conic-gradient(from ${ang}deg, hsl(${a} 72% 58%), hsl(${b} 70% 54%), hsl(${c} 74% 60%), hsl(${a} 72% 58%));`;
+}
+function coverStyle(seed){
+  const h = hashStr('cover-' + String(seed || 'x'));
+  const a = h % 360, b = (a+80+(h>>3)%120)%360, c = (a+200+(h>>7)%120)%360;
+  return `background:linear-gradient(135deg, hsl(${a} 70% 42%), hsl(${b} 68% 38%) 45%, hsl(${c} 72% 40%));`;
+}
+function avatarHTML(seed, initials, size='md', online=false){
+  return `<div class="av-wrap">
+    <div class="avatar ${size}" style="${avatarStyle(seed)}">${esc(initials || '·')}</div>
+    ${online ? '<span class="online-dot"></span>' : ''}
+  </div>`;
+}
+function timeAgo(iso){
+  if (!iso) return '';
+  const s = Math.floor((Date.now() - new Date(iso).getTime())/1000);
+  if (s < 45) return 'now';
+  const m = Math.floor(s/60); if (m < 60) return m + 'm';
+  const h = Math.floor(m/60); if (h < 24) return h + 'h';
+  const d = Math.floor(h/24);
+  if (d < 7) return d + 'd';
+  return new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+}
+function presenceLabel(lastSeen){
+  if (!lastSeen) return { online: false, label: 'Offline' };
+  const s = Math.floor((Date.now() - new Date(lastSeen).getTime())/1000);
+  if (s < 60) return { online: true, label: 'Active now' };
+  const m = Math.floor(s/60);
+  if (m < 60) return { online: false, label: `Active ${m}m ago` };
+  const h = Math.floor(m/60);
+  if (h < 24) return { online: false, label: `Active ${h}h ago` };
+  const d = Math.floor(h/24);
+  if (d < 7) return { online: false, label: `Active ${d}d ago` };
+  return { online: false, label: 'Offline' };
+}
+function joinedLabel(iso){
+  if (!iso) return null;
+  return 'Joined ' + new Date(iso).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+}
+function fmtNum(n){
+  n = Number(n) || 0;
+  if (n < 1000) return String(n);
+  if (n < 10000) return (n/1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  if (n < 1000000) return Math.round(n/1000) + 'K';
+  return (n/1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+}
+function toast(text, kind='ok'){
+  const el = document.createElement('div');
+  el.className = 'toast' + (kind === 'err' ? ' err' : '');
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
+    kind === 'err'
+      ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
+      : '<path d="M20 6 9 17l-5-5"/>'
+  }</svg><span>${esc(text)}</span>`;
+  $('#toastRoot').appendChild(el);
+  setTimeout(() => {
+    el.style.transition = 'opacity .3s, transform .3s';
+    el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
+    setTimeout(() => el.remove(), 320);
+  }, 2400);
+}
+function goTo(p){ location.href = p; }
+
+/* ─── state ───────────────────────────────────────────────────────────── */
+const state = {
+  me: null,
+  profileId: null,      // whose profile we're viewing
+  profile: null,
+  currentTab: 'posts',
+  posts: [],
+  heartbeat: null
+};
+
+/* ─── theme ───────────────────────────────────────────────────────────── */
+(function initTheme(){
+  const saved = localStorage.getItem('timcrenet-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const theme = saved || (prefersLight ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', theme);
+  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
+})();
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+});
+
+/* ─── back ────────────────────────────────────────────────────────────── */
+$('#backBtn').addEventListener('click', () => {
+  if (window.history.length > 1) history.back();
+  else goTo(APP_URL);
+});
+
+/* ─── boot ────────────────────────────────────────────────────────────── */
+(async function boot(){
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) { goTo(SIGNIN_URL); return; }
+
+    const { data: myProfile, error: meErr } = await supabase
+      .from('profiles')
+      .select('id, handle, display_name, initials, avatar_seed')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (meErr) throw meErr;
+    if (!myProfile) { goTo('onboarding.html'); return; }
+
+    state.me = myProfile;
+    paintMe();
+
+    // Which profile?
+    const url = new URL(location.href);
+    const u = url.searchParams.get('u');
+    state.profileId = u || state.me.id;
+
+    $('#bootScreen').classList.add('is-hidden');
+    setTimeout(() => { $('#bootScreen').style.display = 'none'; }, 400);
+    $('#app').style.display = '';
+    $('#tabbar').style.display = '';
+
+    wireNav();
+    wireTabs();
+    startHeartbeat();
+    refreshUnreadBadge();
+
+    await loadProfile();
+    await loadFeed();
+    await renderSuggested();
+
+  } catch(err){
+    console.error('[profile boot]', err);
+    toast(err.message || 'Could not load', 'err');
+  }
+})();
+
+function paintMe(){
+  const seed = state.me.avatar_seed || state.me.handle;
+  const init = state.me.initials || (state.me.display_name || '·')[0].toUpperCase();
+  const el = $('#meAv');
+  el.style.cssText = avatarStyle(seed);
+  el.textContent = init;
+  $('#meName').textContent = state.me.display_name;
+  $('#meHandle').textContent = '@' + state.me.handle;
+}
+
+function startHeartbeat(){
+  const beat = () => { supabase.rpc('heartbeat').catch(()=>{}); };
+  beat();
+  state.heartbeat = setInterval(beat, 30000);
+}
+
+async function refreshUnreadBadge(){
+  try {
+    const { data } = await supabase.rpc('unread_total');
+    const n = data || 0;
+    const badge = $('#navMsgBadge');
+    const tb = $('#tbMsgBadge');
+    if (n > 0){
+      badge.textContent = n > 99 ? '99+' : n; badge.style.display = '';
+      tb.textContent = n > 99 ? '99+' : n; tb.style.display = '';
+    } else {
+      badge.style.display = 'none';
+      tb.style.display = 'none';
+    }
+  } catch(e){}
+}
+
+/* ─── load profile ────────────────────────────────────────────────────── */
+async function loadProfile(){
+  const { data, error } = await supabase.rpc('get_profile', { p_id: state.profileId });
+  if (error) throw error;
+  const p = Array.isArray(data) ? data[0] : data;
+  if (!p) throw new Error('Profile not found');
+
+  state.profile = p;
+  renderProfileHeader();
+}
+
+function renderProfileHeader(){
+  const p = state.profile;
+  const seed = p.avatar_seed || p.handle;
+  const init = p.initials || (p.display_name || '·')[0].toUpperCase();
+  const presence = presenceLabel(p.last_seen_at);
+  const showPresence = p.show_presence !== false;
+  const location = [p.city, p.region, p.country].filter(Boolean).join(', ');
+  const joined = joinedLabel(p.onboarded_at);
+
+  // Update topbar
+  $('#pageTitle').textContent = p.display_name;
+  $('#pageSub').textContent = `${fmtNum(p.post_count)} posts`;
+
+  const actionBtns = p.is_me
+    ? `<button class="btn btn-outline" id="editProfileBtn" type="button">
+         <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+         Edit profile
+       </button>
+       <button class="icon-btn" id="shareBtn" title="Share profile" aria-label="Share">
+         <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 21h14a2 2 0 0 0 2-2v-5M3 14v5a2 2 0 0 0 2 2"/></svg>
+       </button>`
+    : `<button class="btn btn-primary ${p.is_following ? 'is-following' : ''}" id="followBtn" type="button">
+         ${p.is_following ? 'Following' : 'Follow'}
+       </button>
+       <button class="btn btn-outline" id="messageBtn" type="button">
+         <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+         Message
+       </button>
+       <button class="icon-btn" id="shareBtn" title="Share profile" aria-label="Share">
+         <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 21h14a2 2 0 0 0 2-2v-5M3 14v5a2 2 0 0 0 2 2"/></svg>
+       </button>`;
+
+  const presencePill = showPresence
+    ? `<div class="phead-presence ${presence.online ? '' : 'offline'}">
+         <span class="dot"></span>${esc(presence.label)}
+       </div>`
+    : '';
+
+  const bioHTML = p.bio
+    ? `<div class="phead-bio">${linkify(esc(p.bio))}</div>`
+    : '';
+
+  const metaItems = [];
+  if (location) metaItems.push(`
+    <span class="item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      ${esc(location)}
+    </span>`);
+  if (p.website) metaItems.push(`
+    <span class="item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+      <a href="${esc(normalizeUrl(p.website))}" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600">${esc(p.website)}</a>
+    </span>`);
+  if (joined) metaItems.push(`
+    <span class="item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      ${esc(joined)}
+    </span>`);
+
+  $('#profileHead').innerHTML = `
+    <div class="profile-head">
+      <div class="cover" style="${coverStyle(p.cover_seed || seed)}"></div>
+      <div class="phead-body">
+        <div class="avatar-wrap-lg">
+          <div class="avatar-lg" style="${avatarStyle(seed)}">${esc(init)}</div>
+          <div class="phead-actions">${actionBtns}</div>
+        </div>
+        <h2 class="phead-name">${esc(p.display_name)}</h2>
+        <div class="phead-handle">@${esc(p.handle)}</div>
+        ${presencePill}
+        ${bioHTML}
+        ${metaItems.length ? `<div class="phead-meta">${metaItems.join('')}</div>` : ''}
+        <div class="phead-stats">
+          <button type="button" data-open-sheet="following">
+            <b>${fmtNum(p.following_count)}</b> Following
+          </button>
+          <button type="button" data-open-sheet="followers">
+            <b>${fmtNum(p.follower_count)}</b> ${p.follower_count === 1 ? 'Follower' : 'Followers'}
+          </button>
+          <button type="button" data-open-sheet="posts">
+            <b>${fmtNum(p.post_count)}</b> ${p.post_count === 1 ? 'Post' : 'Posts'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Wire header buttons
+  $('#followBtn')?.addEventListener('click', toggleFollow);
+  $('#messageBtn')?.addEventListener('click', startChat);
+  $('#editProfileBtn')?.addEventListener('click', openEditProfile);
+  $('#shareBtn')?.addEventListener('click', shareProfile);
+  $$('[data-open-sheet]').forEach(btn => {
+    btn.addEventListener('click', () => openListSheet(btn.dataset.openSheet));
+  });
+
+  $('#tabs').style.display = '';
+}
+
+function linkify(html){
+  // html is already escaped; safe to add anchors for urls / mentions
+  return html
+    .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+    .replace(/(^|\s)@([a-zA-Z0-9_]{1,32})/g, '$1<a href="' + APP_URL + '?v=profile&handle=$2">@$2</a>');
+}
+function normalizeUrl(u){
+  u = String(u || '').trim();
+  if (!/^https?:\/\//i.test(u)) return 'https://' + u;
+  return u;
+}
+
+/* ─── follow ──────────────────────────────────────────────────────────── */
+async function toggleFollow(){
+  const btn = $('#followBtn');
+  if (!btn) return;
+  const wasFollowing = state.profile.is_following;
+  btn.disabled = true;
+  btn.textContent = wasFollowing ? 'Follow' : 'Following';
+  btn.classList.toggle('is-following', !wasFollowing);
+
+  try {
+    const { data: now, error } = await supabase.rpc('toggle_follow', { target: state.profile.id });
+    if (error) throw error;
+    state.profile.is_following = !!now;
+    // update follower count locally
+    state.profile.follower_count = Math.max(0, (state.profile.follower_count || 0) + (now ? 1 : -1));
+    // rerender header
+    renderProfileHeader();
+    toast(now ? `Following @${state.profile.handle}` : `Unfollowed @${state.profile.handle}`);
+  } catch(err){
+    toast(err.message || 'Could not follow', 'err');
+    btn.disabled = false;
+    btn.textContent = wasFollowing ? 'Following' : 'Follow';
+    btn.classList.toggle('is-following', wasFollowing);
+  }
+}
+
+/* ─── message ─────────────────────────────────────────────────────────── */
+async function startChat(){
+  try {
+    const { data: threadId, error } = await supabase.rpc('find_or_create_dm', { other_user: state.profile.id });
+    if (error) throw error;
+    goTo('messages.html?t=' + encodeURIComponent(threadId));
+  } catch(err){
+    toast(err.message || 'Could not open chat', 'err');
+  }
+}
+
+/* ─── share ───────────────────────────────────────────────────────────── */
+async function shareProfile(){
+  const url = location.origin + location.pathname + '?u=' + state.profile.id;
+  try {
+    if (navigator.share){
+      await navigator.share({
+        title: state.profile.display_name + ' (@' + state.profile.handle + ')',
+        url
+      });
+    } else {
+      await navigator.clipboard.writeText(url);
+      toast('Profile link copied');
+    }
+  } catch(e){ /* user cancelled */ }
+}
+
+/* ─── edit profile ────────────────────────────────────────────────────── */
+function openEditProfile(){
+  const p = state.profile;
+  openSheet('Edit profile', `
+    <div style="padding:6px 20px 24px">
+      <div class="form-group">
+        <label for="efName">Display name</label>
+        <input id="efName" maxlength="60" value="${esc(p.display_name || '')}"/>
+      </div>
+      <div class="form-group">
+        <label for="efBio">Bio</label>
+        <textarea id="efBio" maxlength="280" placeholder="Tell people a little about yourself">${esc(p.bio || '')}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="efCity">City</label>
+        <input id="efCity" maxlength="60" value="${esc(p.city || '')}"/>
+      </div>
+      <div class="form-group">
+        <label for="efRegion">State / Region</label>
+        <input id="efRegion" maxlength="60" value="${esc(p.region || '')}"/>
+      </div>
+      <div class="form-group">
+        <label for="efCountry">Country</label>
+        <input id="efCountry" maxlength="60" value="${esc(p.country || '')}"/>
+      </div>
+      <div class="form-group">
+        <label for="efWebsite">Website</label>
+        <input id="efWebsite" maxlength="120" placeholder="yoursite.com" value="${esc(p.website || '')}"/>
+      </div>
+      <button class="btn btn-primary" id="efSave" style="width:100%;justify-content:center;margin-top:6px">
+        Save changes
+      </button>
+    </div>
+  `);
+
+  $('#efSave').addEventListener('click', async () => {
+    const btn = $('#efSave');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    try {
+      const { error } = await supabase.rpc('update_my_profile', {
+        p_display_name: $('#efName').value,
+        p_bio:          $('#efBio').value,
+        p_city:         $('#efCity').value,
+        p_region:       $('#efRegion').value,
+        p_country:      $('#efCountry').value,
+        p_website:      $('#efWebsite').value
+      });
+      if (error) throw error;
+      toast('Profile updated');
+      closeSheet();
+      await loadProfile();
+    } catch(err){
+      toast(err.message || 'Could not save', 'err');
+      btn.disabled = false;
+      btn.textContent = 'Save changes';
+    }
+  });
+}
+
+/* ─── followers / following list sheet ────────────────────────────────── */
+async function openListSheet(kind){
+  if (kind === 'posts'){
+    // just scroll to the tabs
+    $('#tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
+  const titleMap = { followers: 'Followers', following: 'Following' };
+  openSheet(titleMap[kind] || 'List', `
+    <div style="padding:0 8px 16px" id="listBody">
+      <div class="sk-post"><div class="sk-av"></div><div style="flex:1"><div class="sk-line" style="width:55%;margin-bottom:7px"></div><div class="sk-line" style="width:75%"></div></div></div>
+      <div class="sk-post"><div class="sk-av"></div><div style="flex:1"><div class="sk-line" style="width:45%;margin-bottom:7px"></div><div class="sk-line" style="width:70%"></div></div></div>
+    </div>
+  `);
+
+  const fn = kind === 'followers' ? 'user_followers' : 'user_following';
+  const { data, error } = await supabase.rpc(fn, { p_id: state.profile.id, p_lim: 200 });
+  if (error){
+    $('#listBody').innerHTML = `<div style="padding:24px;text-align:center;color:var(--danger);font-size:13.5px">${esc(error.message)}</div>`;
+    return;
+  }
+
+  const list = data || [];
+  if (!list.length){
+    $('#listBody').innerHTML = `<div class="empty" style="padding:40px 20px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      <h3>${kind === 'followers' ? 'No followers yet' : 'Not following anyone'}</h3>
+      <p>${kind === 'followers' ? 'When people follow this profile, they will show up here.' : 'When this user follows people, they will show up here.'}</p>
+    </div>`;
+    return;
+  }
+
+  $('#listBody').innerHTML = list.map(u => {
+    const p = presenceLabel(u.last_seen_at);
+    return `<button class="pick-row" data-user-id="${esc(u.id)}" type="button">
+      ${avatarHTML(u.avatar_seed || u.handle, u.initials, 'md', p.online)}
+      <div class="pick-info">
+        <b>${esc(u.display_name)}</b>
+        <span>@${esc(u.handle)}${p.label ? ' · ' + esc(p.label) : ''}</span>
+      </div>
+      ${u.id !== state.me.id
+        ? `<span class="pick-follow ${u.i_follow ? 'is-following' : ''}" data-follow-id="${esc(u.id)}" role="button">${u.i_follow ? 'Following' : 'Follow'}</span>`
+        : ''}
+    </button>`;
+  }).join('');
+
+  $$('[data-user-id]', $('#listBody')).forEach(btn => {
+    btn.addEventListener('click', e => {
+      if (e.target.closest('[data-follow-id]')) return;
+      goTo('profile.html?u=' + encodeURIComponent(btn.dataset.userId));
+    });
+  });
+
+  $$('[data-follow-id]', $('#listBody')).forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      const id = btn.dataset.followId;
+      try {
+        const { data: now, error } = await supabase.rpc('toggle_follow', { target: id });
+        if (error) throw error;
+        btn.classList.toggle('is-following', !!now);
+        btn.textContent = now ? 'Following' : 'Follow';
+      } catch(err){ toast(err.message || 'Failed', 'err'); }
+    });
+  });
+}
+
+/* ─── feed tabs ───────────────────────────────────────────────────────── */
+function wireTabs(){
+  $('#tabs').addEventListener('click', async e => {
+    const t = e.target.closest('[data-tab]');
+    if (!t) return;
+    if (state.currentTab === t.dataset.tab) return;
+    state.currentTab = t.dataset.tab;
+    $$('.tab').forEach(x => x.classList.toggle('is-active', x.dataset.tab === state.currentTab));
+    await loadFeed();
+  });
+}
+
+async function loadFeed(){
+  const el = $('#feed');
+  el.innerHTML = Array.from({length: 3}).map(() => `
+    <div class="sk-post">
+      <div class="sk-av"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <div class="sk-line" style="width:45%"></div>
+        <div class="sk-line" style="width:85%"></div>
+        <div class="sk-line" style="width:70%"></div>
+      </div>
+    </div>
+  `).join('');
+
+  if (state.currentTab === 'media'){
+    el.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+      <h3>No media yet</h3>
+      <p>When ${state.profile?.is_me ? 'you post' : 'this user posts'} photos or videos, they'll show up here.</p>
+    </div>`;
+    return;
+  }
+
+  const fn = state.currentTab === 'replies' ? 'user_replies' : 'user_posts';
+  const { data, error } = await supabase.rpc(fn, { p_id: state.profile.id, p_lim: 60 });
+  if (error){ toast(error.message, 'err'); return; }
+  state.posts = data || [];
+  renderPosts();
+}
+
+/* ─── post card ───────────────────────────────────────────────────────── */
+function postHTML(p){
+  const seed = p.author_avatar_seed || p.author_handle;
+  const init = p.author_initials || '·';
+  const presence = presenceLabel(p.author_last_seen);
+  const online = presence?.online;
+
+  const replyNote = p.reply_to
+    ? `<div class="reply-context">
+         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 5 5v3"/></svg>
+         Replying to a post
+       </div>`
+    : '';
+
+  const title = p.title ? `<h3 class="post-title">${esc(p.title)}</h3>` : '';
+
+  const presencePill = presence && presence.label
+    ? presence.online
+      ? `<span class="presence"><span class="pulse-dot"></span>${esc(presence.label)}</span>`
+      : `<span class="presence" style="color:var(--text-3);background:var(--surface-3)">${esc(presence.label)}</span>`
+    : '';
+
+  return `<article class="post ${p.reply_to ? 'is-thread-head' : ''}" data-post-id="${esc(p.id)}">
+    <div class="post-avatar">${avatarHTML(seed, init, 'lg', online)}</div>
+    <div class="post-body">
+      <div class="post-head">
+        <span class="name">${esc(p.author_display_name)}</span>
+        <span class="handle">@${esc(p.author_handle)}</span>
+        <span class="dot">·</span>
+        <span class="time">${esc(timeAgo(p.created_at))}</span>
+        ${presencePill}
+      </div>
+      ${replyNote}
+      ${title}
+      <div class="post-text">${esc(p.body)}</div>
+      <div class="post-actions">
+        <button class="act" data-act="reply" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          <span class="count">${p.reply_count || ''}</span>
+        </button>
+        <button class="act ${p.reposted_by_me ? 'reposted' : ''}" data-act="repost" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <span class="count">${p.repost_count || ''}</span>
+        </button>
+        <button class="act ${p.liked_by_me ? 'liked' : ''}" data-act="like" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          <span class="count">${p.like_count || ''}</span>
+        </button>
+        <button class="act ${p.bookmarked_by_me ? 'bookmarked' : ''}" data-act="bookmark" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderPosts(){
+  const el = $('#feed');
+  if (!state.posts.length){
+    const isMe = state.profile?.is_me;
+    el.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/></svg>
+      <h3>${state.currentTab === 'replies'
+        ? (isMe ? "You haven't replied yet" : "No replies yet")
+        : (isMe ? "You haven't posted yet" : "No posts yet")}</h3>
+      <p>${state.currentTab === 'replies'
+        ? 'Replies will show up here.'
+        : (isMe ? 'When you post, it will show up here.' : 'When this user posts, it will show up here.')}</p>
+    </div>`;
+    return;
+  }
+  el.innerHTML = state.posts.map(postHTML).join('');
+  $$('[data-act]', el).forEach(btn => btn.addEventListener('click', e => {
+    e.stopPropagation();
+    handleAction(btn);
+  }));
+}
+
+/* ─── post actions ────────────────────────────────────────────────────── */
+async function handleAction(btn){
+  const act = btn.dataset.act;
+  const id  = btn.dataset.postId;
+  const post = state.posts.find(p => p.id === id);
+  if (!post) return;
+
+  if (act === 'like'){
+    try {
+      const { data: cnt, error } = await supabase.rpc('toggle_post_like', { p_post: id });
+      if (error) throw error;
+      post.liked_by_me = !post.liked_by_me;
+      post.like_count = cnt;
+      btn.classList.toggle('liked', post.liked_by_me);
+      btn.querySelector('.count').textContent = cnt || '';
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  } else if (act === 'repost'){
+    try {
+      const { data: cnt, error } = await supabase.rpc('toggle_post_repost', { p_post: id });
+      if (error) throw error;
+      post.reposted_by_me = !post.reposted_by_me;
+      post.repost_count = cnt;
+      btn.classList.toggle('reposted', post.reposted_by_me);
+      btn.querySelector('.count').textContent = cnt || '';
+      toast(post.reposted_by_me ? 'Reposted' : 'Removed repost');
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  } else if (act === 'bookmark'){
+    try {
+      const { data, error } = await supabase.rpc('toggle_post_bookmark', { p_post: id });
+      if (error) throw error;
+      post.bookmarked_by_me = !!data;
+      btn.classList.toggle('bookmarked', post.bookmarked_by_me);
+      toast(post.bookmarked_by_me ? 'Saved' : 'Removed');
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  } else if (act === 'reply'){
+    goTo('posts.html#' + id);
+  }
+}
+
+/* ─── suggested follows ───────────────────────────────────────────────── */
+async function renderSuggested(){
+  const el = $('#suggestedBody');
+  try {
+    const { data, error } = await supabase.rpc('suggested_follows', { p_lim: 5 });
+    if (error) throw error;
+    if (!data || !data.length){
+      el.innerHTML = `<div style="padding:14px 16px;color:var(--text-3);font-size:13px;text-align:center">No suggestions.</div>`;
+      return;
+    }
+    el.innerHTML = data.map(u => {
+      const p = presenceLabel(u.last_seen_at);
+      return `<button class="sug-row" data-user-id="${esc(u.id)}" type="button">
+        ${avatarHTML(u.avatar_seed || u.handle, u.initials, 'md', p.online)}
+        <div class="info">
+          <b>${esc(u.display_name)}</b>
+          <span>${p.label ? esc(p.label) : '@' + esc(u.handle)}</span>
+        </div>
+        <span class="sug-follow" data-follow-id="${esc(u.id)}" role="button">Follow</span>
+      </button>`;
+    }).join('');
+
+    $$('[data-user-id]', el).forEach(btn => btn.addEventListener('click', e => {
+      if (e.target.closest('[data-follow-id]')) return;
+      goTo('profile.html?u=' + encodeURIComponent(btn.dataset.userId));
+    }));
+    $$('[data-follow-id]', el).forEach(btn => btn.addEventListener('click', async e => {
+      e.stopPropagation();
+      try {
+        const { data: now, error } = await supabase.rpc('toggle_follow', { target: btn.dataset.followId });
+        if (error) throw error;
+        btn.classList.toggle('is-following', !!now);
+        btn.textContent = now ? 'Following' : 'Follow';
+      } catch(err){ toast(err.message || 'Failed', 'err'); }
+    }));
+  } catch(e){ el.innerHTML = ''; }
+}
+
+/* ─── sheet ───────────────────────────────────────────────────────────── */
+const sheetBack = $('#sheetBack');
+const sheet = $('#sheet');
+const sheetBody = $('#sheetBody');
+const sheetTitle = $('#sheetTitle');
+
+function openSheet(title, body){
+  sheetTitle.textContent = title || '';
+  sheetBody.innerHTML = body || '';
+  sheetBack.classList.add('is-open');
+  sheet.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet(){
+  sheetBack.classList.remove('is-open');
+  sheet.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+$('#sheetClose').addEventListener('click', closeSheet);
+sheetBack.addEventListener('click', closeSheet);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+/* ─── nav ─────────────────────────────────────────────────────────────── */
+function wireNav(){
+  $$('[data-nav]').forEach(el => el.addEventListener('click', () => {
+    const nav = el.dataset.nav;
+    if (nav === 'profile') return;
+    if (nav === 'posts')    { goTo('posts.html'); return; }
+    if (nav === 'feed')     { goTo('app.html'); return; }
+    if (nav === 'nearby')   { goTo('map.html'); return; }
+    if (nav === 'messages') { goTo('messages.html'); return; }
+    if (nav === 'bookmarks'){ goTo('posts.html'); return; }
+    if (nav === 'account')  { goTo('account.html'); return; }
+  }));
+  $('#meCard')?.addEventListener('click', () => goTo('profile.html'));
+}
+</script>
+</body>
+</html>
