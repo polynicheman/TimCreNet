@@ -1,0 +1,1680 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0B0F" id="metaThemeColor" />
+<title>Posts — TIMCRENET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0F; --bg-elev:#0F1117; --surface:#14161E; --surface-2:#1B1E28; --surface-3:#242833;
+  --border:rgba(255,255,255,.07); --border-strong:rgba(255,255,255,.13);
+  --text:#F0F1F5; --text-2:#9698A6; --text-3:#5D5F70;
+  --primary:#FF6B3D; --primary-soft:rgba(255,107,61,.14); --primary-glow:rgba(255,107,61,.4);
+  --accent:#7C6BFF; --accent-soft:rgba(124,107,255,.14);
+  --success:#3DD68C; --success-soft:rgba(61,214,140,.13);
+  --warning:#FFB547; --danger:#FF5A6E; --danger-soft:rgba(255,90,110,.13);
+  --radius-sm:10px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-full:999px;
+  --shadow-sm:0 4px 14px -8px rgba(0,0,0,.6);
+  --shadow-md:0 12px 32px -16px rgba(0,0,0,.7);
+  --shadow-lg:0 24px 60px -28px rgba(0,0,0,.9);
+  --sidebar-w:275px; --right-w:340px; --topbar-h:56px; --tabbar-h:60px;
+  --grad-warm:linear-gradient(135deg,#FF6B3D 0%,#FF4D8F 100%);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#FAF9F7; --bg-elev:#FFFFFF; --surface:#FFFFFF; --surface-2:#F5F3F0; --surface-3:#EDEAE5;
+  --border:rgba(20,15,10,.08); --border-strong:rgba(20,15,10,.15);
+  --text:#0F0F12; --text-2:#5B5A66; --text-3:#8E8C99;
+  --primary:#E5552A; --primary-soft:rgba(229,85,42,.1); --primary-glow:rgba(229,85,42,.3);
+  --accent:#6A54F0; --accent-soft:rgba(106,84,240,.1);
+  --success:#119F68; --success-soft:rgba(17,159,104,.11);
+  --warning:#C28A0E; --danger:#DC2F45; --danger-soft:rgba(220,47,69,.1);
+  --shadow-sm:0 4px 14px -8px rgba(30,20,10,.15);
+  --shadow-md:0 12px 32px -16px rgba(30,20,10,.18);
+  --shadow-lg:0 24px 60px -28px rgba(30,20,10,.22);
+  --grad-warm:linear-gradient(135deg,#E5552A 0%,#D93D7A 100%);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--text);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size:15px; line-height:1.5; letter-spacing:-.005em;
+  overflow:hidden; transition:background .3s ease,color .3s ease;
+}
+button,input,textarea{font:inherit;color:inherit;background:none;border:none;outline:none}
+button{cursor:pointer;touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+svg{display:block;max-width:100%}
+::selection{background:var(--primary);color:#fff}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:8px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:20px;border:3px solid transparent;background-clip:content-box}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+
+/* ─── LAYOUT ─── */
+.app{
+  display:grid;
+  grid-template-columns:var(--sidebar-w) minmax(0,600px) var(--right-w);
+  gap:0;
+  justify-content:center;
+  height:100dvh; overflow:hidden;
+  max-width:1400px; margin:0 auto;
+}
+
+/* ─── LEFT SIDEBAR (X-style) ─── */
+.left-rail{
+  display:flex; flex-direction:column;
+  padding:16px 18px;
+  border-right:1px solid var(--border);
+  height:100dvh; overflow-y:auto;
+  position:sticky; top:0;
+}
+.brand{
+  display:flex; align-items:center; gap:11px;
+  padding:4px 10px 22px;
+}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;flex:none;
+  background:linear-gradient(135deg,#FF6B3D 0%,#FF8F5C 40%,#FFB347 100%);
+  display:grid;place-items:center;
+  box-shadow:0 10px 24px -10px var(--primary-glow); position:relative;
+}
+.brand-mark::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);
+  mix-blend-mode:overlay;
+}
+.brand-mark svg{width:22px;height:22px;position:relative;z-index:1;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.brand-mark svg .node{fill:#fff;stroke:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-text b{font-size:17px;font-weight:800;letter-spacing:1.2px}
+.brand-text span{font-size:10.5px;color:var(--text-3);font-weight:500;margin-top:2px}
+
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-item{
+  display:flex;align-items:center;gap:15px;
+  padding:12px 14px;border-radius:12px;
+  color:var(--text);font-size:15.5px;font-weight:600;
+  transition:background .16s,color .16s;
+  text-align:left;width:100%;min-height:50px;
+  position:relative;
+}
+.nav-item svg{width:24px;height:24px;flex:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.nav-item:hover{background:var(--surface-2)}
+.nav-item.is-active{font-weight:800}
+.nav-item.is-active svg{stroke-width:2.3}
+.nav-item .nav-badge{
+  margin-left:auto;
+  background:var(--primary);color:#fff;
+  font-size:10.5px;font-weight:800;
+  padding:2px 7px;border-radius:20px;
+  min-width:20px;text-align:center;
+}
+.nav-item .nav-badge.soft{background:var(--surface-3);color:var(--text-2)}
+
+.post-btn{
+  margin-top:18px; margin-left:0;
+  display:flex;align-items:center;justify-content:center;
+  gap:9px; padding:14px 22px; border-radius:14px;
+  background:var(--grad-warm); color:#fff;
+  font-weight:700; font-size:15px; letter-spacing:-.1px;
+  box-shadow:0 14px 30px -14px var(--primary-glow);
+  transition:transform .16s,filter .16s;
+}
+.post-btn:hover{filter:brightness(1.06); transform:translateY(-1px)}
+.post-btn:active{transform:scale(.98)}
+.post-btn svg{width:18px;height:18px;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.left-foot{margin-top:auto;padding-top:14px}
+.me-card{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:14px;
+  transition:background .16s; width:100%;text-align:left;
+}
+.me-card:hover{background:var(--surface-2)}
+.me-card .who{flex:1;min-width:0}
+.me-card .who b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.me-card .who span{display:block;font-size:11.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.me-card .more{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--text-3);transition:background .16s,color .16s;flex:none}
+.me-card .more:hover{background:var(--surface-3);color:var(--text)}
+.me-card .more svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* ─── CENTER COLUMN ─── */
+.center{
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  height:100dvh; overflow:hidden;
+  min-width:0;
+}
+
+.topbar{
+  flex:none;
+  display:flex;align-items:center;gap:12px;
+  padding:10px 20px;
+  border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  min-height:var(--topbar-h);
+  position:sticky; top:0; z-index:20;
+}
+.back-btn{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  display:none; place-items:center;
+  color:var(--text-2);transition:background .16s,color .16s;
+}
+.back-btn:hover{background:var(--surface-2);color:var(--text)}
+.back-btn svg{width:20px;height:20px;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+.page-title{flex:1;min-width:0}
+.page-title h1{font-size:19px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+.page-title p{font-size:12.5px;color:var(--text-3);font-weight:500;margin-top:1px}
+
+.icon-btn{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  color:var(--text-2);transition:background .16s,color .16s;
+}
+.icon-btn:hover{background:var(--surface-2);color:var(--text)}
+.icon-btn svg{width:20px;height:20px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* ─── TABS ─── */
+.tabs{
+  flex:none;
+  display:flex;
+  border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 85%,transparent);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  position:sticky; top:var(--topbar-h); z-index:19;
+}
+.tab{
+  flex:1;padding:16px 8px; text-align:center;
+  font-size:14.5px;font-weight:600;color:var(--text-3);
+  position:relative;transition:background .16s,color .16s;
+  min-height:52px;
+}
+.tab:hover{background:var(--surface-2);color:var(--text-2)}
+.tab.is-active{color:var(--text);font-weight:800}
+.tab.is-active::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);
+  bottom:0; height:3px; width:56px;
+  background:var(--primary); border-radius:20px;
+}
+
+/* ─── SCROLL AREA ─── */
+.scroll{
+  flex:1; overflow-y:auto; overflow-x:hidden;
+  scroll-behavior:smooth;
+  overscroll-behavior:contain;
+  padding-bottom:80px;
+}
+
+/* ─── COMPOSER ─── */
+.composer{
+  display:flex; gap:12px; padding:16px 20px;
+  border-bottom:1px solid var(--border);
+}
+.composer-avatar{flex:none}
+.composer-body{flex:1;min-width:0}
+.composer textarea{
+  width:100%;background:transparent;border:none;resize:none;
+  font-size:17px;font-weight:500;line-height:1.45;
+  font-family:inherit;color:var(--text);
+  padding:8px 0;min-height:52px;max-height:280px;
+}
+.composer textarea::placeholder{color:var(--text-3)}
+.composer-title{
+  width:100%;background:transparent;border:none;
+  font-size:17px;font-weight:700;font-family:inherit;
+  color:var(--text);padding:0;margin-bottom:2px;
+}
+.composer-title::placeholder{color:var(--text-3);font-weight:700}
+.composer-tools{
+  display:flex;align-items:center;gap:6px;
+  padding-top:10px;border-top:1px solid var(--border);margin-top:10px;
+}
+.composer-tools .spacer{flex:1}
+.tool-btn{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+  color:var(--primary);transition:background .16s;
+}
+.tool-btn:hover{background:var(--primary-soft)}
+.tool-btn svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+.char-count{
+  font-size:13px;font-weight:700;color:var(--text-3);
+  min-width:40px;text-align:right;padding-right:4px;
+}
+.char-count.warn{color:var(--warning)}
+.char-count.danger{color:var(--danger)}
+
+.submit-post{
+  padding:9px 22px;border-radius:20px;
+  background:var(--grad-warm);color:#fff;
+  font-weight:800;font-size:15px;letter-spacing:-.1px;
+  transition:filter .16s,transform .16s;
+  min-height:40px;
+}
+.submit-post:hover:not(:disabled){filter:brightness(1.06)}
+.submit-post:disabled{opacity:.5;cursor:not-allowed}
+
+/* ─── POST CARD ─── */
+.post{
+  display:flex; gap:12px; padding:16px 20px;
+  border-bottom:1px solid var(--border);
+  transition:background .16s; cursor:pointer;
+  position:relative;
+}
+.post:hover{background:var(--surface-2)}
+.post.is-thread-head{background:color-mix(in srgb,var(--bg-elev) 40%,transparent)}
+
+.post-avatar{flex:none}
+.post-body{flex:1;min-width:0}
+
+.post-head{
+  display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:2px;
+  min-width:0;
+}
+.post-head .name{
+  font-size:15px;font-weight:800;letter-spacing:-.1px;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  max-width:220px;
+}
+.post-head .verified{
+  width:16px;height:16px;flex:none;color:var(--primary);
+  margin-left:-2px;
+}
+.post-head .handle{
+  font-size:15px;color:var(--text-3);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  min-width:0;
+}
+.post-head .dot{color:var(--text-3);font-size:12px}
+.post-head .time{
+  font-size:15px;color:var(--text-3);font-weight:500;flex:none;
+}
+.post-head .presence{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;font-weight:700;color:var(--success);
+  padding:1px 7px;border-radius:20px;
+  background:var(--success-soft);margin-left:2px;
+}
+.post-head .presence .pulse-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--success);
+  animation:pd 2s infinite;
+}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.post-head .more{
+  margin-left:auto; width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;color:var(--text-3);
+  transition:background .16s,color .16s;flex:none;
+}
+.post-head .more:hover{background:var(--primary-soft);color:var(--primary)}
+.post-head .more svg{width:18px;height:18px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.post-title{
+  font-size:16px;font-weight:800;letter-spacing:-.3px;
+  margin:6px 0 4px; line-height:1.35;color:var(--text);
+}
+.post-text{
+  font-size:15.5px;line-height:1.5;color:var(--text);
+  white-space:pre-wrap;word-wrap:break-word;font-weight:500;
+}
+
+.post-actions{
+  display:flex;align-items:center;gap:4px;
+  margin-top:12px;margin-left:-8px;
+}
+.act{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 8px;border-radius:20px;
+  font-size:13px;font-weight:600;color:var(--text-3);
+  transition:background .16s,color .16s;
+  min-width:60px;
+}
+.act svg{width:18px;height:18px;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .16s}
+.act:hover{color:var(--primary);background:var(--primary-soft)}
+.act.liked{color:var(--danger)}
+.act.liked:hover{color:var(--danger);background:var(--danger-soft)}
+.act.liked svg{fill:currentColor;stroke:currentColor}
+.act.reposted{color:var(--success)}
+.act.reposted:hover{color:var(--success);background:var(--success-soft)}
+.act.bookmarked{color:var(--primary)}
+.act.bookmarked svg{fill:currentColor;stroke:currentColor}
+
+/* ─── REPLY INDICATOR ─── */
+.reply-context{
+  display:flex;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:600;color:var(--text-3);
+  padding:4px 0;margin-bottom:2px;
+}
+.reply-context svg{width:14px;height:14px;stroke-width:2;fill:none;color:var(--text-3)}
+
+/* ─── RIGHT RAIL ─── */
+.right-rail{
+  padding:16px 18px;
+  border-left:1px solid var(--border);
+  height:100dvh; overflow-y:auto;
+  position:sticky; top:0;
+  display:flex;flex-direction:column;gap:14px;
+}
+.search-box{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:10px 16px;
+  transition:border-color .16s,box-shadow .16s;
+}
+.search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.search-box svg{width:17px;height:17px;color:var(--text-3);flex:none;stroke-width:2.2;fill:none}
+.search-box input{flex:1;font-size:14px;font-weight:500;min-width:0;color:var(--text)}
+.search-box input::placeholder{color:var(--text-3)}
+
+.panel{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;
+}
+.panel-head{
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  font-size:16px;font-weight:800;letter-spacing:-.3px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.panel-head .see-all{
+  font-size:13px;font-weight:600;color:var(--primary);
+  transition:opacity .16s;
+}
+.panel-head .see-all:hover{opacity:.75}
+.panel-body{padding:8px 6px}
+
+.sug-row{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 10px;border-radius:12px;
+  cursor:pointer;transition:background .16s;
+  width:100%;text-align:left;
+}
+.sug-row:hover{background:var(--surface-2)}
+.sug-row .info{flex:1;min-width:0}
+.sug-row .info b{display:block;font-size:14px;font-weight:700;letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sug-row .info span{display:block;font-size:12.5px;color:var(--text-3);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.sug-follow{
+  padding:7px 15px;border-radius:20px;
+  background:var(--text);color:var(--bg);
+  font-size:13px;font-weight:700;letter-spacing:-.1px;
+  transition:opacity .16s,transform .16s;flex:none;
+  min-height:32px;
+}
+.sug-follow:hover{opacity:.85}
+.sug-follow:active{transform:scale(.96)}
+.sug-follow.is-following{
+  background:transparent;border:1px solid var(--border-strong);
+  color:var(--text);
+}
+.sug-follow.is-following:hover{
+  background:var(--danger-soft);border-color:transparent;color:var(--danger);
+}
+
+.trend-row{
+  display:flex;flex-direction:column;gap:2px;
+  padding:11px 10px;border-radius:12px;
+  cursor:pointer;transition:background .16s;
+  width:100%;text-align:left;
+}
+.trend-row:hover{background:var(--surface-2)}
+.trend-row .trend-meta{font-size:12px;color:var(--text-3);font-weight:500}
+.trend-row .trend-title{font-size:14px;font-weight:700;letter-spacing:-.1px}
+.trend-row .trend-count{font-size:12px;color:var(--text-3);font-weight:500;margin-top:2px}
+
+/* ─── AVATARS ─── */
+.avatar{
+  border-radius:50%;flex:none;display:grid;place-items:center;
+  font-weight:800;color:#fff;letter-spacing:-.5px;
+  position:relative;overflow:hidden;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+.avatar::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 55%);
+  mix-blend-mode:overlay;
+}
+.avatar.lg{width:48px;height:48px;font-size:16px}
+.avatar.md{width:40px;height:40px;font-size:14px}
+.avatar.sm{width:32px;height:32px;font-size:12px}
+.avatar.xs{width:26px;height:26px;font-size:10.5px}
+
+.av-wrap{position:relative;flex:none}
+.av-wrap .online-dot{
+  position:absolute;right:-1px;bottom:-1px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--success);border:2.5px solid var(--bg);
+}
+
+/* ─── EMPTY ─── */
+.empty{
+  padding:64px 24px;text-align:center;color:var(--text-3);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.empty svg{width:44px;height:44px;opacity:.35;stroke-width:1.5;fill:none}
+.empty h3{font-size:17px;color:var(--text);font-weight:800;letter-spacing:-.3px}
+.empty p{font-size:13.5px;max-width:280px;line-height:1.5;font-weight:500}
+
+/* ─── LOADING SKELETON ─── */
+.sk-post{
+  display:flex;gap:12px;padding:16px 20px;
+  border-bottom:1px solid var(--border);
+}
+.sk-av{
+  width:48px;height:48px;border-radius:50%;flex:none;
+  background:linear-gradient(90deg,var(--surface-2) 0%,var(--surface-3) 50%,var(--surface-2) 100%);
+  background-size:200% 100%; animation:skel 1.4s ease-in-out infinite;
+}
+.sk-line{
+  height:12px;border-radius:6px;
+  background:linear-gradient(90deg,var(--surface-2) 0%,var(--surface-3) 50%,var(--surface-2) 100%);
+  background-size:200% 100%; animation:skel 1.4s ease-in-out infinite;
+}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ─── SHEET (reply / menu) ─── */
+.sheet-back{
+  position:fixed;inset:0;background:rgba(4,5,10,.72);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .3s;z-index:100;
+}
+.sheet-back.is-open{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;top:0;right:0;height:100dvh;width:min(600px,100vw);
+  background:var(--bg-elev);border-left:1px solid var(--border);
+  z-index:101;transform:translateX(102%);
+  transition:transform .36s cubic-bezier(.32,.72,0,1);
+  display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
+}
+.sheet.is-open{transform:translateX(0)}
+.sheet-head{
+  flex:none;display:flex;align-items:center;gap:12px;
+  padding:16px 22px;border-bottom:1px solid var(--border);
+}
+.sheet-head h2{font-size:17px;font-weight:800;letter-spacing:-.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sheet-menu{
+  display:flex;flex-direction:column;
+}
+.menu-item{
+  display:flex;align-items:center;gap:14px;
+  padding:15px 22px;
+  font-size:15px;font-weight:600;color:var(--text);
+  transition:background .16s; width:100%;text-align:left;
+}
+.menu-item:hover{background:var(--surface-2)}
+.menu-item svg{width:20px;height:20px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.menu-item.danger{color:var(--danger)}
+
+/* ─── TOAST ─── */
+.toast-root{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:800;display:flex;flex-direction:column;gap:10px;align-items:center;
+  pointer-events:none;max-width:calc(100vw - 32px);
+}
+.toast{
+  background:var(--surface-3);border:1px solid var(--border-strong);
+  color:var(--text);padding:12px 20px;border-radius:14px;
+  font-size:13.5px;font-weight:600;box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:10px;
+  animation:tIn .3s cubic-bezier(.2,.9,.3,1.2);white-space:nowrap;
+}
+.toast svg{width:16px;height:16px;color:var(--success);flex:none;stroke-width:2.4;fill:none}
+.toast.err svg{color:var(--danger)}
+@keyframes tIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ─── MOBILE TABBAR ─── */
+.tabbar{display:none}
+
+/* ─── BOOT ─── */
+.boot{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  background:
+    radial-gradient(900px 500px at 50% 0%, var(--primary-soft), transparent 65%),
+    var(--bg);
+}
+.boot.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s,visibility .4s}
+.boot-mark{
+  width:64px;height:64px;border-radius:20px;flex:none;
+  background:var(--grad-warm); display:grid;place-items:center;
+  box-shadow:0 18px 42px -14px var(--primary-glow);position:relative;
+  animation:bp 2s ease-in-out infinite;
+}
+@keyframes bp{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.boot-mark::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 62%);mix-blend-mode:overlay}
+.boot-mark svg{width:36px;height:36px;position:relative;z-index:1}
+.boot-mark svg *{stroke:#fff;stroke-width:1.7;fill:none;stroke-linecap:round}
+.boot-mark svg .node{fill:#fff;stroke:none}
+.boot-text{font-size:13px;color:var(--text-3);font-weight:600}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1200px){
+  :root{--right-w:300px}
+}
+@media (max-width:1000px){
+  :root{--right-w:0px}
+  .right-rail{display:none}
+  .app{grid-template-columns:var(--sidebar-w) minmax(0,600px);}
+}
+@media (max-width:820px){
+  :root{--sidebar-w:0px}
+  .app{
+    grid-template-columns:1fr;
+    height:calc(100dvh - var(--tabbar-h));
+    max-width:none;
+  }
+  .left-rail{display:none}
+  .center{height:calc(100dvh - var(--tabbar-h)); border-right:none}
+  .back-btn{display:grid}
+  .topbar{padding:10px 14px;gap:10px}
+  .page-title h1{font-size:17px}
+  .page-title p{display:none}
+  .scroll{padding-bottom:60px}
+  .post{padding:14px 16px;gap:10px}
+  .post-head .name{font-size:14.5px;max-width:160px}
+  .post-head .handle{font-size:14.5px}
+  .post-head .time{font-size:14.5px}
+  .post-title{font-size:15.5px}
+  .post-text{font-size:15px}
+  .act{padding:8px 6px;min-width:0;font-size:12.5px}
+  .act .count{display:none}
+  .composer{padding:12px 16px;gap:10px}
+  .composer textarea{font-size:16px}
+
+  .tabbar{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    height:var(--tabbar-h);
+    background:color-mix(in srgb,var(--bg-elev) 94%,transparent);
+    backdrop-filter:blur(22px) saturate(1.4);
+    -webkit-backdrop-filter:blur(22px) saturate(1.4);
+    border-top:1px solid var(--border);z-index:60;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .tb-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;color:var(--text-3);font-size:10px;font-weight:700;
+    position:relative;transition:color .16s;min-height:52px;
+  }
+  .tb-item svg{width:22px;height:22px;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .tb-item.is-active{color:var(--primary)}
+  .tb-item.is-active svg{stroke-width:2.3}
+  .tb-item .tb-badge{
+    position:absolute;top:6px;right:calc(50% - 22px);
+    background:var(--primary);color:#fff;
+    font-size:9px;font-weight:800;min-width:16px;height:16px;
+    border-radius:20px;display:grid;place-items:center;padding:0 4px;
+  }
+  .sheet{
+    top:auto;bottom:0;right:0;left:0;width:100vw;height:auto;max-height:88dvh;
+    border-left:none;border-top:1px solid var(--border);
+    border-radius:22px 22px 0 0;transform:translateY(102%);
+  }
+  .sheet.is-open{transform:translateY(0)}
+  .sheet::before{
+    content:"";display:block;width:40px;height:4px;border-radius:20px;
+    background:var(--border-strong);margin:10px auto 0;
+  }
+}
+@media (max-width:400px){
+  .post-head .handle{display:none}
+  .post-head .presence{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── BOOT ─── -->
+<div class="boot" id="bootScreen">
+  <div class="boot-mark">
+    <svg viewBox="0 0 32 32">
+      <circle class="node" cx="16" cy="16" r="3.6"/>
+      <circle cx="7"  cy="7.5" r="2.4"/><circle cx="25" cy="7.5" r="2.4"/>
+      <circle cx="7"  cy="24.5" r="2.4"/><circle cx="25" cy="24.5" r="2.4"/>
+      <path d="M8.9 9.1 13.2 13.5M23.1 9.1 18.8 13.5M8.9 22.9 13.2 18.5M23.1 22.9 18.8 18.5"/>
+    </svg>
+  </div>
+  <div class="boot-text">Loading posts…</div>
+</div>
+
+<div class="app" id="app" style="display:none">
+
+  <!-- ─── LEFT SIDEBAR ─── -->
+  <aside class="left-rail">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 32 32">
+          <circle class="node" cx="16" cy="16" r="3.6"/>
+          <circle cx="7"  cy="7.5" r="2.4"/><circle cx="25" cy="7.5" r="2.4"/>
+          <circle cx="7"  cy="24.5" r="2.4"/><circle cx="25" cy="24.5" r="2.4"/>
+          <path d="M8.9 9.1 13.2 13.5M23.1 9.1 18.8 13.5M8.9 22.9 13.2 18.5M23.1 22.9 18.8 18.5"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <b>TIMCRENET</b>
+        <span>Time · Create · Network</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item is-active" data-nav="posts" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+        Posts
+      </button>
+      <button class="nav-item" data-nav="feed" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+        For you
+      </button>
+      <button class="nav-item" data-nav="explore" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-3 6-4-4 6-3Z"/></svg>
+        Explore
+      </button>
+      <button class="nav-item" data-nav="nearby" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Nearby
+      </button>
+      <button class="nav-item" data-nav="messages" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+        Messages
+        <span class="nav-badge" id="navMsgBadge" style="display:none">0</span>
+      </button>
+      <button class="nav-item" data-nav="bookmarks" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+        Bookmarks
+      </button>
+      <button class="nav-item" data-nav="activity" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8.5a6 6 0 1 0-12 0c0 7-2.5 8.5-2.5 8.5h17S18 15.5 18 8.5"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg>
+        Activity
+        <span class="nav-badge" id="navNotifBadge" style="display:none">0</span>
+      </button>
+      <button class="nav-item" data-nav="profile" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        Profile
+      </button>
+      <button class="nav-item" data-nav="account" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>
+        Account
+      </button>
+    </nav>
+
+    <button class="post-btn" id="openComposerBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+      Post
+    </button>
+
+    <div class="left-foot">
+      <button class="me-card" id="meCard" type="button">
+        <div class="av-wrap">
+          <div class="avatar sm" id="meAv"></div>
+        </div>
+        <div class="who">
+          <b id="meName">Loading…</b>
+          <span id="meHandle">@…</span>
+        </div>
+        <span class="more">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+        </span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ─── CENTER COLUMN ─── -->
+  <main class="center">
+    <header class="topbar">
+      <button class="back-btn" id="backBtn" type="button" aria-label="Back">
+        <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="page-title">
+        <h1 id="pageTitle">Posts</h1>
+        <p id="pageSub">What creators are sharing right now</p>
+      </div>
+      <button class="icon-btn" id="refreshBtn" aria-label="Refresh" title="Refresh">
+        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+      </button>
+      <button class="icon-btn" id="themeBtn" aria-label="Theme" title="Theme">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </header>
+
+    <div class="tabs" id="tabs">
+      <button class="tab is-active" data-tab="foryou" type="button">For you</button>
+      <button class="tab" data-tab="following" type="button">Following</button>
+      <button class="tab" data-tab="trending" type="button">Trending</button>
+    </div>
+
+    <div class="scroll" id="scroll">
+
+      <!-- Inline composer (desktop only) -->
+      <div class="composer" id="inlineComposer" style="display:none">
+        <div class="composer-avatar">
+          <div class="avatar lg" id="composerAv"></div>
+        </div>
+        <div class="composer-body">
+          <textarea id="composerText" placeholder="What's happening?" maxlength="4000" rows="1"></textarea>
+          <div class="composer-tools">
+            <button class="tool-btn" title="Text only">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+            </button>
+            <div class="spacer"></div>
+            <span class="char-count" id="charCount">0 / 4000</span>
+            <button class="submit-post" id="submitPostBtn" disabled>Post</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="feed"></div>
+
+    </div>
+  </main>
+
+  <!-- ─── RIGHT RAIL ─── -->
+  <aside class="right-rail">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" placeholder="Search TIMCRENET"/>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        Who to follow
+        <button class="see-all" data-nav="explore" type="button">See all</button>
+      </div>
+      <div class="panel-body" id="suggestedBody">
+        <div class="sug-row"><div class="sk-av" style="width:40px;height:40px"></div><div style="flex:1"><div class="sk-line" style="width:60%;margin-bottom:6px"></div><div class="sk-line" style="width:40%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">Trending on TIMCRENET</div>
+      <div class="panel-body" id="trendingBody">
+        <div class="trend-row"><div class="trend-meta">Trending</div><div class="trend-title">Tech Review</div><div class="trend-count">128 posts this week</div></div>
+        <div class="trend-row"><div class="trend-meta">Trending</div><div class="trend-title">Education</div><div class="trend-count">94 posts this week</div></div>
+        <div class="trend-row"><div class="trend-meta">Trending</div><div class="trend-title">Documentary</div><div class="trend-count">71 posts this week</div></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── MOBILE TABBAR ─── -->
+<nav class="tabbar" id="tabbar" style="display:none">
+  <button class="tb-item is-active" data-nav="posts" type="button">
+    <svg viewBox="0 0 24 24"><path d="M4 5h16v11H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span>Posts</span>
+  </button>
+  <button class="tb-item" data-nav="nearby" type="button">
+    <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 1 1 14 0c0 5.3-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    <span>Nearby</span>
+  </button>
+  <button class="tb-item" data-nav="messages" type="button">
+    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+    <span>Chats</span>
+  </button>
+  <button class="tb-item" data-nav="bookmarks" type="button">
+    <svg viewBox="0 0 24 24"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+    <span>Saved</span>
+  </button>
+  <button class="tb-item" data-nav="profile" type="button">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    <span>You</span>
+  </button>
+</nav>
+
+<!-- ─── SHEET ─── -->
+<div class="sheet-back" id="sheetBack"></div>
+<aside class="sheet" id="sheet">
+  <div class="sheet-head">
+    <h2 id="sheetTitle">Post</h2>
+    <button class="icon-btn" id="sheetClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</aside>
+
+<div class="toast-root" id="toastRoot"></div>
+
+<script type="module">
+/* ══════════════════════════════════════════════════════════════════════════
+   TIMCRENET · posts.html — Twitter/X-style posts page
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const SUPABASE_URL      = 'https://zwzryfzmfgkfwpxznypn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3enJ5ZnptZmdrZndweHpueXBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyNzAwNjksImV4cCI6MjEwNjg0NjA2OX0.ShUxUIUhKNmWSxElZQXWJNTe4g2m_YtDRgjSPVWVWuo';
+
+const SIGNIN_URL = 'index.html';
+const APP_URL    = 'app.html';
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
+
+const supabase = createClient(SUPABASE_URL.trim(), SUPABASE_ANON_KEY.trim(), {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'timcrenet.auth' },
+  global: { headers: { 'x-application-name': 'timcrenet-web' } }
+});
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function avatarStyle(seed){
+  const h = hashStr(String(seed || 'x'));
+  const a = h % 360, b = (a+55+(h>>3)%110)%360, c = (a+210+(h>>7)%90)%360, ang = h%360;
+  return `background:conic-gradient(from ${ang}deg, hsl(${a} 72% 58%), hsl(${b} 70% 54%), hsl(${c} 74% 60%), hsl(${a} 72% 58%));`;
+}
+function avatarHTML(seed, initials, size = 'md', online = false){
+  return `<div class="av-wrap">
+    <div class="avatar ${size}" style="${avatarStyle(seed)}">${esc(initials || '·')}</div>
+    ${online ? '<span class="online-dot"></span>' : ''}
+  </div>`;
+}
+function timeAgo(iso){
+  if (!iso) return '';
+  const s = Math.floor((Date.now() - new Date(iso).getTime())/1000);
+  if (s < 45) return 'now';
+  const m = Math.floor(s/60); if (m < 60) return m + 'm';
+  const h = Math.floor(m/60); if (h < 24) return h + 'h';
+  const d = Math.floor(h/24);
+  if (d < 7) return d + 'd';
+  const date = new Date(iso);
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+function presenceLabel(lastSeen){
+  if (!lastSeen) return null;
+  const s = Math.floor((Date.now() - new Date(lastSeen).getTime())/1000);
+  if (s < 60) return { online: true, label: 'Active now' };
+  const m = Math.floor(s/60);
+  if (m < 60) return { online: false, label: `${m} min ago` };
+  const h = Math.floor(m/60);
+  if (h < 24) return { online: false, label: `${h}h ago` };
+  const d = Math.floor(h/24);
+  if (d < 7) return { online: false, label: `${d}d ago` };
+  return { online: false, label: null };
+}
+function toast(text, kind = 'ok'){
+  const el = document.createElement('div');
+  el.className = 'toast' + (kind === 'err' ? ' err' : '');
+  el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${
+    kind === 'err'
+      ? '<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>'
+      : '<path d="M20 6 9 17l-5-5"/>'
+  }</svg><span>${esc(text)}</span>`;
+  $('#toastRoot').appendChild(el);
+  setTimeout(() => {
+    el.style.transition = 'opacity .3s, transform .3s';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    setTimeout(() => el.remove(), 320);
+  }, 2600);
+}
+function goTo(path) { location.href = path; }
+
+/* ─── state ───────────────────────────────────────────────────────────── */
+const state = {
+  me: null,
+  currentTab: 'foryou',
+  posts: [],
+  bookmarkedIds: new Set(),
+  followedIds: new Set(),
+  search: '',
+  heartbeat: null,
+  replyTo: null   // when replying
+};
+
+/* ─── theme ───────────────────────────────────────────────────────────── */
+(function initTheme(){
+  const saved = localStorage.getItem('timcrenet-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const theme = saved || (prefersLight ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', theme);
+  $('#metaThemeColor').setAttribute('content', theme === 'light' ? '#FAF9F7' : '#0A0B0F');
+})();
+$('#themeBtn').addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('timcrenet-theme', next);
+  $('#metaThemeColor').setAttribute('content', next === 'light' ? '#FAF9F7' : '#0A0B0F');
+});
+
+/* ─── back button ─────────────────────────────────────────────────────── */
+$('#backBtn').addEventListener('click', () => {
+  if (document.referrer && document.referrer.includes('timcrenet') === false && document.referrer.includes(location.host)) {
+    history.back();
+  } else if (window.history.length > 1) {
+    history.back();
+  } else {
+    goTo(APP_URL);
+  }
+});
+
+/* ─── boot ────────────────────────────────────────────────────────────── */
+(async function boot(){
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) { goTo(SIGNIN_URL); return; }
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('id, handle, display_name, initials, avatar_seed, city, region, last_seen_at')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (error) throw error;
+    if (!profile) { goTo('onboarding.html'); return; }
+
+    state.me = profile;
+    paintMe();
+
+    // Load followed IDs for the follow buttons
+    try {
+      const { data: f } = await supabase.rpc('my_following_ids');
+      state.followedIds = new Set(f || []);
+    } catch(e) { console.warn('my_following_ids:', e); }
+
+    // Show everything
+    $('#bootScreen').classList.add('is-hidden');
+    setTimeout(() => { $('#bootScreen').style.display = 'none'; }, 400);
+    $('#app').style.display = '';
+    $('#tabbar').style.display = '';
+
+    // Inline composer is only for desktop
+    if (window.matchMedia('(min-width: 821px)').matches) {
+      $('#inlineComposer').style.display = 'flex';
+    }
+
+    // Load posts
+    await loadPosts();
+
+    // Start presence heartbeat every 30 seconds
+    startHeartbeat();
+
+    // Wire the nav
+    wireNav();
+  } catch(err){
+    console.error('[posts boot]', err);
+    toast(err.message || 'Could not load', 'err');
+    setTimeout(() => goTo(APP_URL), 1500);
+  }
+})();
+
+function paintMe(){
+  const seed = state.me.avatar_seed || state.me.handle;
+  const init = state.me.initials || (state.me.display_name || '·')[0].toUpperCase();
+
+  ['#meAv','#composerAv'].forEach(sel => {
+    const el = $(sel);
+    if (!el) return;
+    el.style.cssText = avatarStyle(seed);
+    el.textContent = init;
+  });
+
+  $('#meName').textContent = state.me.display_name;
+  $('#meHandle').textContent = '@' + state.me.handle;
+}
+
+/* ─── presence ────────────────────────────────────────────────────────── */
+function startHeartbeat(){
+  const beat = () => { supabase.rpc('heartbeat').catch(()=>{}); };
+  beat();
+  state.heartbeat = setInterval(beat, 30000);
+  // Also on tab focus
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) beat();
+  });
+}
+
+/* ─── load posts ──────────────────────────────────────────────────────── */
+async function loadPosts(){
+  const el = $('#feed');
+  el.innerHTML = Array.from({length: 4}).map(() => `
+    <div class="sk-post">
+      <div class="sk-av"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <div class="sk-line" style="width:45%"></div>
+        <div class="sk-line" style="width:85%"></div>
+        <div class="sk-line" style="width:70%"></div>
+      </div>
+    </div>
+  `).join('');
+
+  let fn;
+  if (state.currentTab === 'following')      fn = 'following_posts';
+  else if (state.currentTab === 'trending')  fn = 'trending_posts';
+  else                                        fn = 'all_posts';
+
+  const { data, error } = await supabase.rpc(fn, { p_lim: 60 });
+  if (error) throw error;
+  state.posts = data || [];
+
+  // cache bookmark state
+  state.bookmarkedIds = new Set(state.posts.filter(p => p.bookmarked_by_me).map(p => p.id));
+
+  // Apply client-side search filter
+  let list = state.posts;
+  if (state.search) {
+    const q = state.search.toLowerCase();
+    list = list.filter(p =>
+      (p.body || '').toLowerCase().includes(q) ||
+      (p.title || '').toLowerCase().includes(q) ||
+      (p.author_display_name || '').toLowerCase().includes(q) ||
+      (p.author_handle || '').toLowerCase().includes(q)
+    );
+  }
+
+  renderPosts(list);
+  renderSuggested();
+  renderTrending();
+}
+
+function renderPosts(list){
+  const el = $('#feed');
+  if (!list.length){
+    el.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v11H7l-3 3z"/></svg>
+      <h3>${state.search ? 'Nothing matched' : 'No posts yet'}</h3>
+      <p>${state.search
+        ? 'Try a different search term.'
+        : (state.currentTab === 'following'
+            ? 'Follow more creators to see their posts here.'
+            : 'Be the first to post something.')}</p>
+    </div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(postHTML).join('');
+
+  // Wire interactions
+  $$('[data-act]', el).forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      handleAction(btn);
+    });
+  });
+
+  $$('.post', el).forEach(post => {
+    post.addEventListener('click', e => {
+      if (e.target.closest('button')) return;
+      const id = post.dataset.postId;
+      if (id) openPostDetail(id);
+    });
+  });
+
+  $$('[data-view-author]', el).forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = el.dataset.viewAuthor;
+      if (id) goTo(`app.html?v=profile&u=${encodeURIComponent(id)}`);
+    });
+  });
+}
+
+function postHTML(p){
+  const seed = p.author_avatar_seed || p.author_handle;
+  const init = p.author_initials || '·';
+  const presence = presenceLabel(p.author_last_seen);
+  const online = presence?.online;
+
+  const replyNote = p.reply_to
+    ? `<div class="reply-context">
+         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 5 5v3"/></svg>
+         Replying to a post
+       </div>`
+    : '';
+
+  const title = p.title ? `<h3 class="post-title">${esc(p.title)}</h3>` : '';
+
+  const presencePill = presence && presence.label
+    ? presence.online
+      ? `<span class="presence"><span class="pulse-dot"></span>${esc(presence.label)}</span>`
+      : `<span class="presence" style="color:var(--text-3);background:var(--surface-3)">${esc(presence.label)}</span>`
+    : '';
+
+  return `<article class="post ${p.reply_to ? 'is-thread-head' : ''}" data-post-id="${esc(p.id)}">
+    <div class="post-avatar">
+      ${avatarHTML(seed, init, 'lg', online)}
+    </div>
+    <div class="post-body">
+      <div class="post-head">
+        <span class="name" data-view-author="${esc(p.author_id)}" style="cursor:pointer">${esc(p.author_display_name)}</span>
+        <span class="handle" data-view-author="${esc(p.author_id)}" style="cursor:pointer">@${esc(p.author_handle)}</span>
+        <span class="dot">·</span>
+        <span class="time">${esc(timeAgo(p.created_at))}</span>
+        ${presencePill}
+        <button class="more" data-act="more" data-post-id="${esc(p.id)}" type="button" aria-label="More">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+        </button>
+      </div>
+      ${replyNote}
+      ${title}
+      <div class="post-text">${esc(p.body)}</div>
+      <div class="post-actions">
+        <button class="act" data-act="reply" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          <span class="count">${p.reply_count || ''}</span>
+        </button>
+        <button class="act ${p.reposted_by_me ? 'reposted' : ''}" data-act="repost" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <span class="count">${p.repost_count || ''}</span>
+        </button>
+        <button class="act ${p.liked_by_me ? 'liked' : ''}" data-act="like" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          <span class="count">${p.like_count || ''}</span>
+        </button>
+        <button class="act ${p.bookmarked_by_me ? 'bookmarked' : ''}" data-act="bookmark" data-post-id="${esc(p.id)}" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+          <span class="count"></span>
+        </button>
+      </div>
+    </div>
+  </article>`;
+}
+
+/* ─── actions ─────────────────────────────────────────────────────────── */
+async function handleAction(btn){
+  const act = btn.dataset.act;
+  const id  = btn.dataset.postId;
+  const post = state.posts.find(p => p.id === id);
+  if (!post && act !== 'more') return;
+
+  if (act === 'like'){
+    try {
+      const { data: cnt, error } = await supabase.rpc('toggle_post_like', { p_post: id });
+      if (error) throw error;
+      post.liked_by_me = !post.liked_by_me;
+      post.like_count = cnt;
+      btn.classList.toggle('liked', post.liked_by_me);
+      btn.querySelector('.count').textContent = cnt || '';
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+    return;
+  }
+
+  if (act === 'repost'){
+    try {
+      const { data: cnt, error } = await supabase.rpc('toggle_post_repost', { p_post: id });
+      if (error) throw error;
+      post.reposted_by_me = !post.reposted_by_me;
+      post.repost_count = cnt;
+      btn.classList.toggle('reposted', post.reposted_by_me);
+      btn.querySelector('.count').textContent = cnt || '';
+      toast(post.reposted_by_me ? 'Reposted' : 'Removed repost');
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+    return;
+  }
+
+  if (act === 'bookmark'){
+    try {
+      const { data, error } = await supabase.rpc('toggle_post_bookmark', { p_post: id });
+      if (error) throw error;
+      post.bookmarked_by_me = !!data;
+      btn.classList.toggle('bookmarked', post.bookmarked_by_me);
+      if (post.bookmarked_by_me) state.bookmarkedIds.add(id);
+      else state.bookmarkedIds.delete(id);
+      toast(post.bookmarked_by_me ? 'Saved' : 'Removed');
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+    return;
+  }
+
+  if (act === 'reply'){
+    openReplySheet(post);
+    return;
+  }
+
+  if (act === 'more'){
+    openMenuSheet(post);
+    return;
+  }
+}
+
+/* ─── reply composer sheet ────────────────────────────────────────────── */
+function openReplySheet(post){
+  openSheet('Reply', `
+    <div style="padding:18px 22px;display:flex;gap:12px">
+      <div>${avatarHTML(post.author_avatar_seed || post.author_handle, post.author_initials, 'md')}</div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+          <b style="font-size:14px">${esc(post.author_display_name)}</b>
+          <span style="font-size:13px;color:var(--text-3)">@${esc(post.author_handle)} · ${esc(timeAgo(post.created_at))}</span>
+        </div>
+        <p style="font-size:14px;line-height:1.5;margin-top:4px;color:var(--text);white-space:pre-wrap">${esc(post.body)}</p>
+      </div>
+    </div>
+    <div style="padding:0 22px 22px;display:flex;gap:12px">
+      <div>${avatarHTML(state.me.avatar_seed || state.me.handle, state.me.initials, 'md')}</div>
+      <div style="flex:1;min-width:0">
+        <textarea id="replyText" style="width:100%;background:transparent;border:none;resize:none;font-size:15px;color:var(--text);min-height:100px;font-family:inherit;font-weight:500" placeholder="Post your reply" maxlength="4000" rows="4"></textarea>
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:14px;border-top:1px solid var(--border)">
+          <span class="char-count" id="replyCount" style="font-size:12px;color:var(--text-3)">0 / 4000</span>
+          <button class="submit-post" id="replySubmit" disabled>Reply</button>
+        </div>
+      </div>
+    </div>
+  `, `<button class="btn" id="replyCancel" style="flex:1;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:600">Cancel</button>`);
+
+  const ta = $('#replyText');
+  const counter = $('#replyCount');
+  const submit = $('#replySubmit');
+  setTimeout(() => ta.focus(), 60);
+
+  const check = () => {
+    const n = ta.value.length;
+    counter.textContent = n + ' / 4000';
+    counter.className = 'char-count' + (n > 3800 ? ' danger' : n > 3400 ? ' warn' : '');
+    counter.style.color = n > 3800 ? 'var(--danger)' : n > 3400 ? 'var(--warning)' : 'var(--text-3)';
+    submit.disabled = n === 0 || n > 4000;
+  };
+  ta.addEventListener('input', check);
+
+  submit.addEventListener('click', async () => {
+    const body = ta.value.trim();
+    if (!body) return;
+    submit.disabled = true;
+    try {
+      const { error } = await supabase.rpc('create_post', {
+        p_title: null, p_body: body, p_reply_to: post.id
+      });
+      if (error) throw error;
+      toast('Reply posted');
+      closeSheet();
+      await loadPosts();
+    } catch(err){
+      toast(err.message || 'Failed to reply', 'err');
+      submit.disabled = false;
+    }
+  });
+
+  $('#replyCancel').addEventListener('click', closeSheet);
+}
+
+/* ─── more menu sheet ─────────────────────────────────────────────────── */
+function openMenuSheet(post){
+  const isMine = post.is_mine;
+  openSheet('', `
+    <div class="sheet-menu">
+      ${!isMine ? `
+        <button class="menu-item" id="menuFollow" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          ${state.followedIds.has(post.author_id) ? 'Unfollow' : 'Follow'} @${esc(post.author_handle)}
+        </button>
+        <button class="menu-item" id="menuMessage" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4c-1.4 0-2.8-.3-4-1l-5.6 1.6 1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          Message @${esc(post.author_handle)}
+        </button>
+      ` : `
+        <button class="menu-item danger" id="menuDelete" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
+          Delete post
+        </button>
+      `}
+      <button class="menu-item" id="menuCopy" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy post text
+      </button>
+    </div>
+  `);
+
+  $('#menuCopy')?.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(post.body); toast('Copied to clipboard'); closeSheet(); }
+    catch { toast('Could not copy', 'err'); }
+  });
+
+  $('#menuFollow')?.addEventListener('click', async () => {
+    try {
+      const { data, error } = await supabase.rpc('toggle_follow', { target: post.author_id });
+      if (error) throw error;
+      if (data) state.followedIds.add(post.author_id);
+      else state.followedIds.delete(post.author_id);
+      toast(data ? 'Following' : 'Unfollowed');
+      closeSheet();
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  });
+
+  $('#menuMessage')?.addEventListener('click', async () => {
+    try {
+      const { error } = await supabase.rpc('find_or_create_dm', { other_user: post.author_id });
+      if (error) throw error;
+      goTo('app.html?v=messages');
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  });
+
+  $('#menuDelete')?.addEventListener('click', async () => {
+    if (!confirm('Delete this post? This cannot be undone.')) return;
+    try {
+      const { error } = await supabase.rpc('delete_post', { p_id: post.id });
+      if (error) throw error;
+      toast('Post deleted');
+      closeSheet();
+      await loadPosts();
+    } catch(err){ toast(err.message || 'Failed', 'err'); }
+  });
+}
+
+/* ─── post detail sheet ───────────────────────────────────────────────── */
+async function openPostDetail(id){
+  openSheet('Post', `
+    <div style="padding:24px;text-align:center;color:var(--text-3)">Loading…</div>
+  `);
+
+  try {
+    const [{ data: postRow, error: e1 }, { data: replies, error: e2 }] = await Promise.all([
+      supabase.rpc('post_detail', { p_id: id }),
+      supabase.rpc('post_replies', { p_post: id, p_lim: 200 })
+    ]);
+    if (e1) throw e1;
+    if (e2) throw e2;
+    const post = Array.isArray(postRow) ? postRow[0] : postRow;
+    if (!post) throw new Error('Post not found');
+
+    const body = `
+      <div style="border-bottom:1px solid var(--border)">
+        ${postHTML(post)}
+      </div>
+      <div style="padding:14px 20px;font-size:12.5px;color:var(--text-3);font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border)">
+        ${(replies || []).length} ${(replies || []).length === 1 ? 'reply' : 'replies'}
+      </div>
+      ${(replies && replies.length)
+        ? replies.map(postHTML).join('')
+        : `<div style="padding:32px;text-align:center;color:var(--text-3);font-size:13.5px">No replies yet — be the first.</div>`}
+    `;
+    $('#sheetBody').innerHTML = body;
+    wireSheetPostActions();
+  } catch(err){
+    $('#sheetBody').innerHTML = `<div style="padding:24px;text-align:center;color:var(--danger)">${esc(err.message)}</div>`;
+  }
+}
+
+function wireSheetPostActions(){
+  const root = $('#sheetBody');
+  $$('[data-act]', root).forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      handleAction(btn);
+    });
+  });
+  $$('[data-view-author]', root).forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = el.dataset.viewAuthor;
+      if (id) goTo(`app.html?v=profile&u=${encodeURIComponent(id)}`);
+    });
+  });
+}
+
+/* ─── sheet ───────────────────────────────────────────────────────────── */
+const sheetBack = $('#sheetBack');
+const sheet = $('#sheet');
+const sheetBody = $('#sheetBody');
+const sheetTitle = $('#sheetTitle');
+
+function openSheet(title, body, foot){
+  sheetTitle.textContent = title || '';
+  sheetTitle.style.display = title ? '' : 'none';
+  sheetBody.innerHTML = body || '';
+  sheetBack.classList.add('is-open');
+  sheet.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet(){
+  sheetBack.classList.remove('is-open');
+  sheet.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+$('#sheetClose').addEventListener('click', closeSheet);
+sheetBack.addEventListener('click', closeSheet);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+/* ─── inline composer (desktop) ───────────────────────────────────────── */
+const compText = $('#composerText');
+const compCount = $('#charCount');
+const compSubmit = $('#submitPostBtn');
+
+function checkComposer(){
+  const n = compText.value.length;
+  compCount.textContent = n + ' / 4000';
+  compCount.className = 'char-count' + (n > 3800 ? ' danger' : n > 3400 ? ' warn' : '');
+  compSubmit.disabled = n === 0 || n > 4000;
+  compText.style.height = 'auto';
+  compText.style.height = Math.min(compText.scrollHeight, 280) + 'px';
+}
+compText?.addEventListener('input', checkComposer);
+
+compSubmit?.addEventListener('click', async () => {
+  const body = compText.value.trim();
+  if (!body) return;
+  compSubmit.disabled = true;
+  compSubmit.textContent = '…';
+  try {
+    const { error } = await supabase.rpc('create_post', {
+      p_title: null, p_body: body, p_reply_to: null
+    });
+    if (error) throw error;
+    toast('Posted');
+    compText.value = '';
+    checkComposer();
+    await loadPosts();
+  } catch(err){
+    toast(err.message || 'Failed', 'err');
+  } finally {
+    compSubmit.textContent = 'Post';
+  }
+});
+
+/* ─── "Post" button in left rail ──────────────────────────────────────── */
+$('#openComposerBtn')?.addEventListener('click', () => {
+  openSheet('New post', `
+    <div style="padding:16px 22px 22px;display:flex;gap:12px">
+      <div>${avatarHTML(state.me.avatar_seed || state.me.handle, state.me.initials, 'md')}</div>
+      <div style="flex:1;min-width:0">
+        <textarea id="sheetPostText" style="width:100%;background:transparent;border:none;resize:none;font-size:16px;color:var(--text);min-height:140px;font-family:inherit;font-weight:500" placeholder="What's happening?" maxlength="4000" rows="6"></textarea>
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:14px;border-top:1px solid var(--border)">
+          <span class="char-count" id="sheetPostCount" style="font-size:12px;color:var(--text-3)">0 / 4000</span>
+          <button class="submit-post" id="sheetPostSubmit" disabled>Post</button>
+        </div>
+      </div>
+    </div>
+  `);
+
+  const ta = $('#sheetPostText');
+  const counter = $('#sheetPostCount');
+  const submit = $('#sheetPostSubmit');
+  setTimeout(() => ta.focus(), 60);
+
+  const check = () => {
+    const n = ta.value.length;
+    counter.textContent = n + ' / 4000';
+    counter.style.color = n > 3800 ? 'var(--danger)' : n > 3400 ? 'var(--warning)' : 'var(--text-3)';
+    submit.disabled = n === 0 || n > 4000;
+  };
+  ta.addEventListener('input', check);
+
+  submit.addEventListener('click', async () => {
+    const body = ta.value.trim();
+    if (!body) return;
+    submit.disabled = true;
+    try {
+      const { error } = await supabase.rpc('create_post', {
+        p_title: null, p_body: body, p_reply_to: null
+      });
+      if (error) throw error;
+      toast('Posted');
+      closeSheet();
+      await loadPosts();
+    } catch(err){
+      toast(err.message || 'Failed', 'err');
+      submit.disabled = false;
+    }
+  });
+});
+
+/* ─── suggested follows ───────────────────────────────────────────────── */
+async function renderSuggested(){
+  const el = $('#suggestedBody');
+  try {
+    const { data, error } = await supabase.rpc('suggested_follows', { p_lim: 5 });
+    if (error) throw error;
+    if (!data || !data.length){
+      el.innerHTML = `<div style="padding:14px 16px;color:var(--text-3);font-size:13px;text-align:center">No suggestions yet.</div>`;
+      return;
+    }
+    el.innerHTML = data.map(u => {
+      const following = state.followedIds.has(u.id);
+      const presence = presenceLabel(u.last_seen_at);
+      const online = presence?.online;
+      const subline = presence?.label ? presence.label : `@${esc(u.handle)}`;
+      return `<button class="sug-row" data-view-author="${esc(u.id)}" type="button">
+        ${avatarHTML(u.avatar_seed || u.handle, u.initials, 'md', online)}
+        <div class="info">
+          <b>${esc(u.display_name)}</b>
+          <span>${esc(subline)}</span>
+        </div>
+        <span class="sug-follow ${following ? 'is-following' : ''}" data-follow-id="${esc(u.id)}" role="button">${following ? 'Following' : 'Follow'}</span>
+      </button>`;
+    }).join('');
+
+    $$('.sug-follow', el).forEach(btn => {
+      btn.addEventListener('click', async e => {
+        e.stopPropagation();
+        const id = btn.dataset.followId;
+        try {
+          const { data: now, error } = await supabase.rpc('toggle_follow', { target: id });
+          if (error) throw error;
+          if (now) state.followedIds.add(id);
+          else state.followedIds.delete(id);
+          btn.classList.toggle('is-following', !!now);
+          btn.textContent = now ? 'Following' : 'Follow';
+          toast(now ? 'Following' : 'Unfollowed');
+        } catch(err){ toast(err.message || 'Failed', 'err'); }
+      });
+    });
+
+  } catch(err){
+    console.warn('suggested:', err);
+    el.innerHTML = '';
+  }
+}
+
+/* ─── trending panel ──────────────────────────────────────────────────── */
+function renderTrending(){
+  const el = $('#trendingBody');
+  if (!el) return;
+  // Simple static trending — real version would need a trends table
+  el.innerHTML = `
+    <button class="trend-row" data-trend="Tech Review" type="button">
+      <div class="trend-meta">Trending in Tech</div>
+      <div class="trend-title">Tech Review</div>
+      <div class="trend-count">128 posts this week</div>
+    </button>
+    <button class="trend-row" data-trend="Education" type="button">
+      <div class="trend-meta">Trending in Knowledge</div>
+      <div class="trend-title">Education</div>
+      <div class="trend-count">94 posts this week</div>
+    </button>
+    <button class="trend-row" data-trend="Documentary" type="button">
+      <div class="trend-meta">Trending in Film</div>
+      <div class="trend-title">Documentary</div>
+      <div class="trend-count">71 posts this week</div>
+    </button>
+    <button class="trend-row" data-trend="Beauty" type="button">
+      <div class="trend-meta">Trending in Lifestyle</div>
+      <div class="trend-title">Beauty</div>
+      <div class="trend-count">52 posts this week</div>
+    </button>
+  `;
+  $$('[data-trend]').forEach(el => el.addEventListener('click', () => {
+    state.search = el.dataset.trend;
+    $('#searchInput').value = state.search;
+    loadPosts();
+  }));
+}
+
+/* ─── search ──────────────────────────────────────────────────────────── */
+$('#searchInput').addEventListener('input', e => {
+  state.search = e.target.value.trim();
+  renderPosts(state.search
+    ? state.posts.filter(p =>
+        (p.body || '').toLowerCase().includes(state.search.toLowerCase()) ||
+        (p.title || '').toLowerCase().includes(state.search.toLowerCase()) ||
+        (p.author_display_name || '').toLowerCase().includes(state.search.toLowerCase()) ||
+        (p.author_handle || '').toLowerCase().includes(state.search.toLowerCase())
+      )
+    : state.posts
+  );
+});
+
+/* ─── tabs ────────────────────────────────────────────────────────────── */
+$('#tabs').addEventListener('click', async e => {
+  const t = e.target.closest('[data-tab]');
+  if (!t) return;
+  if (state.currentTab === t.dataset.tab) return;
+  state.currentTab = t.dataset.tab;
+  $$('.tab').forEach(x => x.classList.toggle('is-active', x.dataset.tab === state.currentTab));
+  await loadPosts();
+});
+
+/* ─── nav ─────────────────────────────────────────────────────────────── */
+function wireNav(){
+  $$('[data-nav]').forEach(el => el.addEventListener('click', () => {
+    const nav = el.dataset.nav;
+    if (nav === 'posts') return; // current page
+    if (nav === 'messages') { goTo('app.html?v=messages'); return; }
+    if (nav === 'nearby')   { goTo('map.html'); return; }
+    if (nav === 'bookmarks'){ navigateBookmarks(); return; }
+    if (nav === 'feed')     { goTo('app.html'); return; }
+    if (nav === 'explore')  { goTo('app.html?v=explore'); return; }
+    if (nav === 'profile')  { goTo('app.html?v=profile'); return; }
+    if (nav === 'account')  { goTo('account.html'); return; }
+    if (nav === 'activity') { goTo('app.html?v=notifications'); return; }
+  }));
+
+  $('#meCard')?.addEventListener('click', () => goTo('app.html?v=profile'));
+}
+
+async function navigateBookmarks(){
+  $('#pageTitle').textContent = 'Bookmarks';
+  $('#pageSub').textContent = 'Posts you saved for later';
+  $('#tabs').style.display = 'none';
+  const el = $('#feed');
+  el.innerHTML = `<div class="sk-post"><div class="sk-av"></div><div style="flex:1;display:flex;flex-direction:column;gap:8px"><div class="sk-line" style="width:45%"></div><div class="sk-line" style="width:85%"></div></div></div>`;
+
+  const { data, error } = await supabase.rpc('bookmarked_posts', { p_lim: 100 });
+  if (error) { toast(error.message, 'err'); return; }
+  state.posts = data || [];
+  if (!state.posts.length){
+    el.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+      <h3>No bookmarks yet</h3>
+      <p>Tap the bookmark icon on any post to save it here.</p>
+    </div>`;
+    return;
+  }
+  renderPosts(state.posts);
+}
+
+/* ─── refresh button ──────────────────────────────────────────────────── */
+$('#refreshBtn').addEventListener('click', async () => {
+  const btn = $('#refreshBtn');
+  btn.style.opacity = '.5';
+  try {
+    await loadPosts();
+    toast('Refreshed');
+  } catch(err){ toast(err.message || 'Failed', 'err'); }
+  finally { btn.style.opacity = ''; }
+});
+
+/* ─── visibility: refresh when user comes back ────────────────────────── */
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && state.me) {
+    supabase.rpc('heartbeat').catch(()=>{});
+  }
+});
+</script>
+</body>
+</html>
